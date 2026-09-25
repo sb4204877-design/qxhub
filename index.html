@@ -24,7 +24,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .chart-container{position:fixed;top:0;left:0;width:100%;height:calc(100% - 50px);z-index:1;opacity:0;pointer-events:none;transition:opacity 0.5s ease,left 0.3s ease,height 0.3s ease}
 .chart-container.visible{opacity:1;pointer-events:auto}
 #tvChart{width:100%;height:100%;touch-action:none}
-.chart-zoom-controls{position:absolute;top:56px;right:8px;z-index:15;display:flex;flex-direction:row;gap:3px;pointer-events:none}
+.chart-zoom-controls{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);z-index:15;display:flex;flex-direction:row;gap:3px;pointer-events:none}
 .chart-zoom-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#ccc;cursor:pointer;pointer-events:auto;transition:all 0.15s ease;padding:0}
 .chart-zoom-btn:hover{background:rgba(17,17,17,0.95);border-color:rgba(255,255,255,0.3);color:#fff}
 .chart-zoom-btn:active{transform:scale(0.92);background:rgba(0,240,255,0.1);border-color:rgba(0,240,255,0.4);color:#00f0ff}
@@ -389,7 +389,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .indicators-top-row{flex-direction:column;align-items:stretch}
   .editor-side-btn{width:26px;height:26px}
   .editor-side-btn svg{width:12px;height:12px}
-  .chart-zoom-controls{top:56px;right:6px}
+  .chart-zoom-controls{bottom:8px;left:50%;transform:translateX(-50%)}
   .chart-zoom-btn{width:28px;height:28px}
 }
 @media (max-width: 380px){
