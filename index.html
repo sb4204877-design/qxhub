@@ -851,14 +851,18 @@ function startLiveSimulation(){
 document.getElementById('zoomIn').addEventListener('click',function(e){
   e.stopPropagation();if(!State.chart)return;
   var ts=State.chart.timeScale();var range=ts.getVisibleLogicalRange();if(!range)return;
-  var span=range.to-range.from;var newSpan=Math.max(3,span*0.7);var center=(range.from+range.to)/2;
-  ts.setVisibleLogicalRange({from:center-newSpan/2,to:center+newSpan/2});
+  var span=range.to-range.from;
+  var newSpan=Math.max(3,span*0.7);
+  // Anchor on the first visible candle (left edge) — keep `from` fixed, shrink `to`
+  ts.setVisibleLogicalRange({from:range.from,to:range.from+newSpan});
 });
 document.getElementById('zoomOut').addEventListener('click',function(e){
   e.stopPropagation();if(!State.chart)return;
   var ts=State.chart.timeScale();var range=ts.getVisibleLogicalRange();if(!range)return;
-  var span=range.to-range.from;var newSpan=Math.min(500,span*1.4);var center=(range.from+range.to)/2;
-  ts.setVisibleLogicalRange({from:center-newSpan/2,to:center+newSpan/2});
+  var span=range.to-range.from;
+  var newSpan=Math.min(500,span*1.4);
+  // Anchor on the first visible candle (left edge) — keep `from` fixed, expand `to`
+  ts.setVisibleLogicalRange({from:range.from,to:range.from+newSpan});
 });
 
 /* Incremental update: re-run only marker indicators to refresh markers.
