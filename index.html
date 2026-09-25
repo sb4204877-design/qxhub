@@ -9,7 +9,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff}
-
 .logo-container{width:460px;height:460px;position:relative;z-index:5;transform-origin:center center;transition:transform 3s cubic-bezier(0.22,1,0.36,1),opacity 1.5s ease,z-index 0.3s ease 2.5s}
 .logo-container svg{width:100%;height:100%;overflow:visible;display:block}
 .logo-container.expanded{transform:scale(2.2);opacity:0.25;z-index:0;pointer-events:none}
@@ -22,11 +21,9 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 @keyframes drawHex{to{stroke-dashoffset:0}}
 @keyframes growBar{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
 @keyframes revealHead{to{stroke-dashoffset:0}}
-
 .chart-container{position:fixed;top:0;left:0;width:100%;height:calc(100% - 50px);z-index:1;opacity:0;pointer-events:none;transition:opacity 0.5s ease,left 0.3s ease,height 0.3s ease}
 .chart-container.visible{opacity:1;pointer-events:auto}
 #tvChart{width:100%;height:100%;touch-action:none}
-
 .floating-indicators{position:absolute;top:56px;left:8px;z-index:10;display:flex;flex-direction:column;gap:4px;max-width:calc(100% - 16px);pointer-events:none}
 .floating-indicator-group{display:flex;flex-direction:column;gap:2px;pointer-events:auto}
 .floating-indicator-header{display:flex;align-items:center;gap:6px;padding:4px 8px;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;transition:background 0.15s ease;user-select:none}
@@ -54,7 +51,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .toggle-indicators-arrow svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s ease}
 .toggle-indicators-arrow.collapsed svg{transform:rotate(180deg)}
 .ind-list-wrapper.hidden{display:none}
-
 .top-controls{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;flex-direction:column;gap:0;opacity:0;transform:translateY(-20px);transition:opacity 0.5s ease,transform 0.5s ease,left 0.3s ease;pointer-events:none;direction:ltr}
 .top-controls.visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .top-bar{display:flex;align-items:center;gap:0;padding:0 8px;height:48px;background:#000;border-bottom:1px solid #1a1a1a}
@@ -71,7 +67,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .symbol-change.positive{color:#00ff88}
 .symbol-change.negative{color:#ff4466}
 .tf-btn{padding:0 12px;font-size:13px;font-weight:500}
-
 .overlay-menu{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.98);z-index:50;opacity:0;pointer-events:none;transition:opacity 0.3s ease;overflow-y:auto;padding:30px 30px 90px}
 .overlay-menu.visible{opacity:1;pointer-events:auto}
 .overlay-header{max-width:1200px;margin:0 auto 20px}
@@ -96,7 +91,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .item-change{font-size:12px;font-weight:500;font-variant-numeric:tabular-nums}
 .item-change.positive{color:#00ff88}
 .item-change.negative{color:#ff4466}
-
 .tf-dropdown{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);min-width:240px;background:#000;border:1px solid #1a1a1a;border-radius:6px;padding:8px;opacity:0;pointer-events:none;transition:all 0.2s ease;z-index:70;box-shadow:0 8px 24px rgba(0,0,0,0.8)}
 .tf-dropdown.visible{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
 .tf-dropdown-header{display:flex;justify-content:space-between;align-items:center;padding:4px 8px 10px;margin-bottom:4px;border-bottom:1px solid #1a1a1a}
@@ -110,7 +104,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .tf-option.active{background:#00ff88;color:#000}
 .tf-option .tf-label{font-size:10px;color:#888;font-weight:400}
 .tf-option.active .tf-label{color:rgba(0,0,0,0.7)}
-
 .editor-page{position:fixed;top:0;left:0;width:100%;height:calc(100% - 50px);background:#000;z-index:80;opacity:0;pointer-events:none;transition:opacity 0.3s ease,left 0.3s ease,height 0.3s ease;display:flex;flex-direction:column}
 .editor-page.visible{opacity:1;pointer-events:auto}
 .editor-toolbar{display:flex;align-items:center;gap:8px;padding:6px 12px;background:#000;border-bottom:1px solid #1a1a1a;flex-shrink:0;direction:ltr;height:48px}
@@ -213,8 +206,12 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .signals-title{color:#fff;font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px;letter-spacing:0.3px}
 .signals-title svg{width:22px;height:22px;stroke:#00f0ff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .signals-title .title-accent{color:#00f0ff}
-.signals-stats-bar{display:flex;gap:8px;flex-wrap:wrap}
-.stat-chip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+
+/* Stats bar - single row, no wrapping */
+.signals-stats-bar{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;align-items:center;scrollbar-width:none;-ms-overflow-style:none}
+.signals-stats-bar::-webkit-scrollbar{display:none}
+
+.stat-chip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap;flex-shrink:0}
 .stat-chip .stat-icon{width:16px;height:16px;display:flex;align-items:center;justify-content:center;border-radius:50%;font-size:10px;font-weight:700}
 .stat-chip.active-stat{background:rgba(0,240,255,0.08);border:1px solid rgba(0,240,255,0.2);color:#00f0ff}
 .stat-chip.active-stat .stat-icon{background:rgba(0,240,255,0.2);color:#00f0ff}
@@ -226,16 +223,13 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .stat-chip.rate-stat .stat-icon{background:rgba(171,130,255,0.2);color:#ab82ff}
 
 .signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;max-width:1200px;margin:0 auto}
-
 .signal-card{position:relative;border-radius:12px;overflow:hidden;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;transition:transform 0.2s ease,box-shadow 0.2s ease;cursor:pointer}
 .signal-card:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,0.5)}
 .signal-card.buy-card{background:linear-gradient(135deg,rgba(0,40,20,0.95) 0%,rgba(0,60,30,0.85) 50%,rgba(0,40,20,0.95) 100%);border:1px solid rgba(0,255,136,0.2)}
 .signal-card.sell-card{background:linear-gradient(135deg,rgba(50,10,15,0.95) 0%,rgba(70,15,25,0.85) 50%,rgba(50,10,15,0.95) 100%);border:1px solid rgba(255,68,102,0.2)}
 .signal-card.buy-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00ff88,transparent)}
 .signal-card.sell-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#ff4466,transparent)}
-
 .signal-card-inner{padding:16px;display:flex;gap:14px;align-items:center}
-
 .signal-timer-wrap{flex-shrink:0;position:relative;width:86px;height:86px}
 .signal-timer-svg{width:100%;height:100%;transform:rotate(-90deg)}
 .signal-timer-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:4}
@@ -245,26 +239,19 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .signal-timer-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
 .signal-timer-count{font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;color:#fff;line-height:1}
 .signal-timer-label{font-size:7px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px;margin-top:3px}
-
 .signal-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
-
-/* FIXED: signal-top-row must never wrap */
 .signal-top-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;min-width:0}
 .signal-symbol-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:0.3px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .signal-type-badge{padding:3px 10px;border-radius:4px;font-size:9px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;flex-shrink:0;white-space:nowrap}
 .buy-card .signal-type-badge{background:rgba(0,255,136,0.15);color:#00ff88;border:1px solid rgba(0,255,136,0.25)}
 .sell-card .signal-type-badge{background:rgba(255,68,102,0.15);color:#ff4466;border:1px solid rgba(255,68,102,0.25)}
-
 .signal-entry-row{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.5);flex-wrap:wrap}
 .signal-entry-row svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
 .signal-entry-row .val{color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
 .signal-entry-row .sep{color:rgba(255,255,255,0.15);margin:0 2px}
-
 .signal-open-hint{display:flex;align-items:center;gap:4px;font-size:9px;color:rgba(255,255,255,0.3);margin-top:2px}
 .signal-open-hint svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2}
-
 .signal-new-badge{position:absolute;bottom:8px;right:8px;padding:2px 8px;border-radius:3px;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.3);z-index:2;pointer-events:none}
-
 .signal-result-overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;opacity:0;pointer-events:none;transition:opacity 0.5s ease;z-index:5;border-radius:12px}
 .signal-result-overlay.visible{opacity:1;pointer-events:auto}
 .signal-result-overlay.win{background:rgba(0,30,15,0.93);backdrop-filter:blur(6px)}
@@ -281,13 +268,21 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .signal-result-profit{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums}
 .signal-result-overlay.win .signal-result-profit{color:#00ff88}
 .signal-result-overlay.lose .signal-result-profit{color:#ff4466}
-
 .signal-card.expired{opacity:0.75}
 
+/* ==================== INDICATORS PAGE ==================== */
 .indicators-page{position:fixed;top:0;left:0;width:100%;height:calc(100% - 50px);background:#000;z-index:75;opacity:0;pointer-events:none;transition:opacity 0.3s ease,left 0.3s ease,height 0.3s ease;overflow-y:auto;padding:30px 30px 90px;direction:ltr}
 .indicators-page.visible{opacity:1;pointer-events:auto}
-.indicators-page-header{max-width:1200px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center;padding-bottom:15px;border-bottom:1px solid #1a1a1a}
+.indicators-page-header{max-width:1200px;margin:0 auto 20px}
+.indicators-top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px}
+.indicators-title-row{display:flex;align-items:center;gap:12px}
 .indicators-page-title{color:#fff;font-size:18px;font-weight:600}
+.indicators-count-badge{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:600;background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.25);color:#00f0ff}
+.indicators-search-wrap{position:relative;width:280px;max-width:100%}
+.indicators-search-wrap svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:#888;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.indicators-search{width:100%;padding:9px 14px 9px 36px;background:rgba(0,0,0,0.6);border:1px solid #1a1a1a;border-radius:8px;color:#fff;font-family:inherit;font-size:13px;outline:none;transition:border-color 0.2s ease,background 0.2s ease}
+.indicators-search::placeholder{color:#666}
+.indicators-search:focus{border-color:#00f0ff;background:rgba(0,240,255,0.03)}
 .indicators-page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;max-width:1200px;margin:0 auto}
 .ind-page-card{padding:16px;background:#000;border:1px solid #1a1a1a;border-radius:6px;cursor:pointer;transition:all 0.2s ease;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards}
 .ind-page-card:hover{background:#111;border-color:#333}
@@ -302,6 +297,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .ind-page-btn.toggle.active{background:rgba(0,255,136,0.15);border-color:#00ff88;color:#00ff88}
 .ind-page-btn.delete-btn{flex:0 0 auto;padding:6px 10px;color:#ff4466;border-color:rgba(255,68,102,0.3)}
 .ind-page-btn.delete-btn:hover{background:rgba(255,68,102,0.15);border-color:#ff4466}
+.ind-no-results{text-align:center;padding:60px 20px;color:#888;font-size:13px;grid-column:1/-1}
 
 .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:90;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s ease}
 .modal-overlay.visible{opacity:1;pointer-events:auto}
@@ -376,6 +372,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .signals-stats-bar{gap:6px}
   .stat-chip{padding:5px 10px;font-size:11px}
   .indicators-page-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  .indicators-search-wrap{width:100%}
+  .indicators-top-row{flex-direction:column;align-items:stretch}
   .editor-side-btn{width:26px;height:26px}
   .editor-side-btn svg{width:12px;height:12px}
 }
@@ -388,239 +386,41 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 </style>
 </head>
 <body>
-
-<div class="chart-container" id="chartContainer">
-  <div id="tvChart"></div>
-  <div class="floating-indicators" id="floatingIndicators">
-    <div class="ind-list-wrapper" id="indListWrapper"></div>
-    <button class="toggle-indicators-arrow" id="toggleIndicatorsArrow" title="Hide/Show indicators">
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-  </div>
-</div>
-
-<div class="top-controls" id="topControls">
-  <div class="top-bar">
-    <div class="top-row">
-      <button class="top-btn symbol-btn" id="symbolBtn">
-        <span class="symbol-name" id="currentSymbol">BTC/USDT</span>
-        <div class="symbol-info">
-          <span class="symbol-price" id="currentPrice">67,234.50</span>
-          <span class="symbol-change positive" id="currentChange">+2.45%</span>
-        </div>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-      <button class="top-btn tf-btn" id="timeframeBtn">
-        <span id="currentTimeframe">1m</span>
-        <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
-    </div>
-  </div>
-</div>
-
-<div class="tf-dropdown" id="tfDropdown">
-  <div class="tf-dropdown-header">
-    <div class="tf-dropdown-title">Timeframe</div>
-    <button class="tf-dropdown-close" id="tfClose">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="tf-options-grid" id="tfOptionsGrid"></div>
-</div>
-
-<div class="overlay-menu" id="symbolMenu">
-  <div class="overlay-header">
-    <div class="overlay-top-row">
-      <div class="overlay-title">Select Market</div>
-      <button class="close-btn" data-close="symbolMenu">
-        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="search-box">
-      <input type="text" class="search-input" id="symbolSearch" placeholder="Search symbol..." autocomplete="off" spellcheck="false"/>
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
-    </div>
-  </div>
-  <div class="items-grid" id="symbolGrid"></div>
-  <div class="no-results" id="noResults">No markets found</div>
-</div>
-
-<div class="signals-page" id="signalsPage">
-  <div class="signals-header">
-    <div class="signals-top-row">
-      <div class="signals-title">
-        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-        <span>Cross-Market <span class="title-accent">Indicator Signals</span></span>
-      </div>
-      <div class="signals-stats-bar" id="signalsStats"></div>
-    </div>
-  </div>
-  <div class="signals-grid" id="signalsGrid"></div>
-</div>
-
-<div class="indicators-page" id="indicatorsPage">
-  <div class="indicators-page-header">
-    <div class="indicators-page-title">Indicators Library</div>
-  </div>
-  <div class="indicators-page-grid" id="indicatorsPageGrid"></div>
-</div>
-
-<div class="editor-page" id="editorPage">
-  <div class="editor-toolbar">
-    <div class="editor-toolbar-left">
-      <button class="editor-btn" id="editorBack">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-        <span class="btn-text">Back</span>
-      </button>
-      <div class="current-indicator-display" id="currentIndicatorDisplay">
-        <span class="current-indicator-name" id="currentIndicatorName">Signals</span>
-        <div class="current-indicator-actions">
-          <button class="ci-action settings" id="ciSettings" title="Settings">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          </button>
-          <button class="ci-action delete" id="ciDelete" title="Remove">
-            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="editor-toolbar-right">
-      <button class="editor-btn" id="editorNew">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        <span class="btn-text">New</span>
-      </button>
-      <button class="editor-btn primary" id="editorRun">
-        <svg class="run-icon-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        <svg class="run-icon-stop" viewBox="0 0 24 24" style="display:none"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
-        <span class="btn-text run-label">Run</span>
-      </button>
-    </div>
-  </div>
-  <div class="indicators-list-wrapper" id="indicatorsListWrapper">
-    <div class="indicators-list-header">
-      <span class="indicators-list-title">All Indicators</span>
-      <span class="indicators-list-count" id="indicatorsListCount">0</span>
-    </div>
-    <div class="indicators-list-body" id="indicatorsListBody"></div>
-  </div>
-  <button class="toggle-list-btn" id="toggleListBtn" title="Toggle indicators list">
-    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
-  <div class="editor-body">
-    <div class="editor-sidebar">
-      <div class="sidebar-header">Indicators</div>
-      <div class="sidebar-list" id="sidebarList"></div>
-    </div>
-    <div class="editor-main">
-      <div class="code-wrapper">
-        <textarea id="codeEditor"></textarea>
-        <div class="editor-side-toolbar" id="editorSideToolbar">
-          <button class="editor-side-btn" id="btnSelectAll" title="Select All">
-            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/><path d="M9 4v16"/></svg>
-            <span class="tooltip">Select All</span>
-          </button>
-          <button class="editor-side-btn" id="btnCopy" title="Copy">
-            <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-            <span class="tooltip">Copy</span>
-          </button>
-          <button class="editor-side-btn" id="btnCut" title="Cut">
-            <svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
-            <span class="tooltip">Cut</span>
-          </button>
-        </div>
-      </div>
-      <div class="editor-console" id="editorConsole">
-        <div class="console-resize-handle" id="consoleResizeHandle"></div>
-        <div class="console-header" id="consoleHeader">
-          <div class="console-title">Console</div>
-          <div class="console-header-actions">
-            <button class="console-clear" id="consoleClear">Clear</button>
-            <button class="console-close" id="consoleClose" title="Close console">
-              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-            </button>
-          </div>
-        </div>
-        <div class="console-output" id="consoleOutput"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="deleteConfirmModal">
-  <div class="modal">
-    <div class="modal-title">Delete Indicator</div>
-    <div class="modal-desc" id="deleteConfirmDesc">Are you sure?</div>
-    <div class="modal-actions">
-      <button class="modal-btn" id="deleteCancelBtn">Cancel</button>
-      <button class="modal-btn danger" id="deleteConfirmBtn">Delete</button>
-    </div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="newIndicatorModal">
-  <div class="modal">
-    <div class="modal-title">New Indicator</div>
-    <div class="modal-desc">Enter a name for your custom indicator</div>
-    <input type="text" class="modal-input" id="newIndicatorInput" placeholder="e.g. MyStrategy" autocomplete="off" spellcheck="false"/>
-    <div class="modal-filename" id="newIndicatorFilename">File: untitled.js</div>
-    <div class="modal-error" id="newIndicatorError"></div>
-    <div class="modal-actions">
-      <button class="modal-btn" id="newIndicatorCancel">Cancel</button>
-      <button class="modal-btn primary" id="newIndicatorContinue">Continue</button>
-    </div>
-  </div>
-</div>
+<div class="chart-container" id="chartContainer"><div id="tvChart"></div><div class="floating-indicators" id="floatingIndicators"><div class="ind-list-wrapper" id="indListWrapper"></div><button class="toggle-indicators-arrow" id="toggleIndicatorsArrow" title="Hide/Show indicators"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button></div></div>
+<div class="top-controls" id="topControls"><div class="top-bar"><div class="top-row"><button class="top-btn symbol-btn" id="symbolBtn"><span class="symbol-name" id="currentSymbol">BTC/USDT</span><div class="symbol-info"><span class="symbol-price" id="currentPrice">67,234.50</span><span class="symbol-change positive" id="currentChange">+2.45%</span></div><svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><button class="top-btn tf-btn" id="timeframeBtn"><span id="currentTimeframe">1m</span><svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button></div></div></div>
+<div class="tf-dropdown" id="tfDropdown"><div class="tf-dropdown-header"><div class="tf-dropdown-title">Timeframe</div><button class="tf-dropdown-close" id="tfClose"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="tf-options-grid" id="tfOptionsGrid"></div></div>
+<div class="overlay-menu" id="symbolMenu"><div class="overlay-header"><div class="overlay-top-row"><div class="overlay-title">Select Market</div><button class="close-btn" data-close="symbolMenu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="search-box"><input type="text" class="search-input" id="symbolSearch" placeholder="Search symbol..." autocomplete="off" spellcheck="false"/><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></div></div><div class="items-grid" id="symbolGrid"></div><div class="no-results" id="noResults">No markets found</div></div>
+<div class="signals-page" id="signalsPage"><div class="signals-header"><div class="signals-top-row"><div class="signals-title"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Cross-Market <span class="title-accent">Indicator Signals</span></span></div><div class="signals-stats-bar" id="signalsStats"></div></div></div><div class="signals-grid" id="signalsGrid"></div></div>
+<div class="indicators-page" id="indicatorsPage"><div class="indicators-page-header"><div class="indicators-top-row"><div class="indicators-title-row"><div class="indicators-page-title">Indicators Library</div><div class="indicators-count-badge" id="indicatorsCountBadge">0 indicators</div></div><div class="indicators-search-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg><input type="text" class="indicators-search" id="indicatorsSearch" placeholder="Search indicators..." autocomplete="off" spellcheck="false"/></div></div></div><div class="indicators-page-grid" id="indicatorsPageGrid"></div></div>
+<div class="editor-page" id="editorPage"><div class="editor-toolbar"><div class="editor-toolbar-left"><button class="editor-btn" id="editorBack"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span class="btn-text">Back</span></button><div class="current-indicator-display" id="currentIndicatorDisplay"><span class="current-indicator-name" id="currentIndicatorName">Signals</span><div class="current-indicator-actions"><button class="ci-action settings" id="ciSettings" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="ci-action delete" id="ciDelete" title="Remove"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div><div class="editor-toolbar-right"><button class="editor-btn" id="editorNew"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span class="btn-text">New</span></button><button class="editor-btn primary" id="editorRun"><svg class="run-icon-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><svg class="run-icon-stop" viewBox="0 0 24 24" style="display:none"><rect x="6" y="6" width="12" height="12" rx="1"/></svg><span class="btn-text run-label">Run</span></button></div></div><div class="indicators-list-wrapper" id="indicatorsListWrapper"><div class="indicators-list-header"><span class="indicators-list-title">All Indicators</span><span class="indicators-list-count" id="indicatorsListCount">0</span></div><div class="indicators-list-body" id="indicatorsListBody"></div></div><button class="toggle-list-btn" id="toggleListBtn" title="Toggle indicators list"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button><div class="editor-body"><div class="editor-sidebar"><div class="sidebar-header">Indicators</div><div class="sidebar-list" id="sidebarList"></div></div><div class="editor-main"><div class="code-wrapper"><textarea id="codeEditor"></textarea><div class="editor-side-toolbar" id="editorSideToolbar"><button class="editor-side-btn" id="btnSelectAll" title="Select All"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/><path d="M9 4v16"/></svg><span class="tooltip">Select All</span></button><button class="editor-side-btn" id="btnCopy" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="tooltip">Copy</span></button><button class="editor-side-btn" id="btnCut" title="Cut"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg><span class="tooltip">Cut</span></button></div></div><div class="editor-console" id="editorConsole"><div class="console-resize-handle" id="consoleResizeHandle"></div><div class="console-header" id="consoleHeader"><div class="console-title">Console</div><div class="console-header-actions"><button class="console-clear" id="consoleClear">Clear</button><button class="console-close" id="consoleClose" title="Close console"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><div class="console-output" id="consoleOutput"></div></div></div></div></div>
+<div class="modal-overlay" id="deleteConfirmModal"><div class="modal"><div class="modal-title">Delete Indicator</div><div class="modal-desc" id="deleteConfirmDesc">Are you sure?</div><div class="modal-actions"><button class="modal-btn" id="deleteCancelBtn">Cancel</button><button class="modal-btn danger" id="deleteConfirmBtn">Delete</button></div></div></div>
+<div class="modal-overlay" id="newIndicatorModal"><div class="modal"><div class="modal-title">New Indicator</div><div class="modal-desc">Enter a name for your custom indicator</div><input type="text" class="modal-input" id="newIndicatorInput" placeholder="e.g. MyStrategy" autocomplete="off" spellcheck="false"/><div class="modal-filename" id="newIndicatorFilename">File: untitled.js</div><div class="modal-error" id="newIndicatorError"></div><div class="modal-actions"><button class="modal-btn" id="newIndicatorCancel">Cancel</button><button class="modal-btn primary" id="newIndicatorContinue">Continue</button></div></div></div>
 
 <div class="logo-container">
 <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 <defs>
-<linearGradient id="cyanGrad" x1="40" y1="15" x2="160" y2="155" gradientUnits="userSpaceOnUse">
-<stop offset="0%" style="stop-color:#00d2ff"/><stop offset="40%" style="stop-color:#0099cc"/><stop offset="100%" style="stop-color:#00f0ff"/>
-</linearGradient>
-<linearGradient id="blueGrad" x1="40" y1="15" x2="160" y2="155" gradientUnits="userSpaceOnUse">
-<stop offset="0%" style="stop-color:#09111f"/><stop offset="50%" style="stop-color:#000"/><stop offset="100%" style="stop-color:#070d18"/>
-</linearGradient>
+<linearGradient id="cyanGrad" x1="40" y1="15" x2="160" y2="155" gradientUnits="userSpaceOnUse"><stop offset="0%" style="stop-color:#00d2ff"/><stop offset="40%" style="stop-color:#0099cc"/><stop offset="100%" style="stop-color:#00f0ff"/></linearGradient>
+<linearGradient id="blueGrad" x1="40" y1="15" x2="160" y2="155" gradientUnits="userSpaceOnUse"><stop offset="0%" style="stop-color:#09111f"/><stop offset="50%" style="stop-color:#000"/><stop offset="100%" style="stop-color:#070d18"/></linearGradient>
 <clipPath id="hexagonClip"><path d="M100 15 L160 50 L160 120 L100 155 L40 120 L40 50 Z"/></clipPath>
 </defs>
 <path d="M100 15 L160 50 L160 120 L100 155 L40 120 L40 50 Z" fill="#000"/>
-<g clip-path="url(#hexagonClip)">
-<rect class="bar bar-1" x="60" y="58" width="18" height="102" rx="2"/>
-<rect class="bar bar-3" x="122" y="58" width="18" height="102" rx="2"/>
-<path class="bar bar-2" d="M91 21 L91 160 L109 160 L109 21 Z"/>
-</g>
+<g clip-path="url(#hexagonClip)"><rect class="bar bar-1" x="60" y="58" width="18" height="102" rx="2"/><rect class="bar bar-3" x="122" y="58" width="18" height="102" rx="2"/><path class="bar bar-2" d="M91 21 L91 160 L109 160 L109 21 Z"/></g>
 <polygon points="97.733,158.883 100,165.42 102.267,158.883" fill="url(#cyanGrad)"/>
 <polygon points="99.244,156.294 100,158.476 100.756,156.294" fill="url(#blueGrad)"/>
-<path class="hexagon-border" d="M64 36 L40 50 L40 120 L100 155"/>
-<path class="hexagon-border" d="M136 36 L160 50 L160 120 L100 155"/>
-<path class="hexagon" d="M64 36 L40 50 L40 120 L100 155"/>
-<path class="hexagon" d="M136 36 L160 50 L160 120 L100 155"/>
+<path class="hexagon-border" d="M64 36 L40 50 L40 120 L100 155"/><path class="hexagon-border" d="M136 36 L160 50 L160 120 L100 155"/>
+<path class="hexagon" d="M64 36 L40 50 L40 120 L100 155"/><path class="hexagon" d="M136 36 L160 50 L160 120 L100 155"/>
 <polygon points="97.733,11.117 100,4.58 102.267,11.117" fill="url(#cyanGrad)"/>
 <polygon points="99.244,13.706 100,11.524 100.756,13.706" fill="url(#blueGrad)"/>
-<path class="notch-fill" d="M65.7 35 L100 15"/>
-<path class="notch-fill" d="M134.3 35 L100 15"/>
-<path class="notch-fill-inner" d="M65.7 35 L100 15"/>
-<path class="notch-fill-inner" d="M134.3 35 L100 15"/>
+<path class="notch-fill" d="M65.7 35 L100 15"/><path class="notch-fill" d="M134.3 35 L100 15"/>
+<path class="notch-fill-inner" d="M65.7 35 L100 15"/><path class="notch-fill-inner" d="M134.3 35 L100 15"/>
 </svg>
 </div>
 
 <div class="bottom-bar" id="bottomBar">
-  <button class="tool-btn" data-page="chart">
-    <svg viewBox="0 0 24 24"><line x1="5" y1="4" x2="5" y2="20" stroke-width="1.2"/><rect x="3.2" y="7" width="3.6" height="8" fill="#fff" stroke="none"/><line x1="12" y1="3" x2="12" y2="19" stroke-width="1.2"/><rect x="10.2" y="5" width="3.6" height="9" fill="#fff" stroke="none"/><line x1="19" y1="6" x2="19" y2="21" stroke-width="1.2"/><rect x="17.2" y="9" width="3.6" height="7" fill="#fff" stroke="none"/></svg>
-    <span class="label">Chart</span>
-  </button>
-  <button class="tool-btn" data-page="editor">
-    <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>
-    <span class="label">Editor</span>
-  </button>
-  <button class="tool-btn" data-page="indicators">
-    <svg viewBox="0 0 24 24"><line x1="7" y1="19" x2="7" y2="5"/><polyline points="3 9 7 5 11 9"/><line x1="17" y1="5" x2="17" y2="19"/><polyline points="13 15 17 19 21 15"/></svg>
-    <span class="label">Indicators</span>
-  </button>
-  <button class="tool-btn" data-page="signals">
-    <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-    <span class="badge hidden" id="signalsBadge">0</span>
-    <span class="label">Signals</span>
-  </button>
+  <button class="tool-btn" data-page="chart"><svg viewBox="0 0 24 24"><line x1="5" y1="4" x2="5" y2="20" stroke-width="1.2"/><rect x="3.2" y="7" width="3.6" height="8" fill="#fff" stroke="none"/><line x1="12" y1="3" x2="12" y2="19" stroke-width="1.2"/><rect x="10.2" y="5" width="3.6" height="9" fill="#fff" stroke="none"/><line x1="19" y1="6" x2="19" y2="21" stroke-width="1.2"/><rect x="17.2" y="9" width="3.6" height="7" fill="#fff" stroke="none"/></svg><span class="label">Chart</span></button>
+  <button class="tool-btn" data-page="editor"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg><span class="label">Editor</span></button>
+  <button class="tool-btn" data-page="indicators"><svg viewBox="0 0 24 24"><line x1="7" y1="19" x2="7" y2="5"/><polyline points="3 9 7 5 11 9"/><line x1="17" y1="5" x2="17" y2="19"/><polyline points="13 15 17 19 21 15"/></svg><span class="label">Indicators</span></button>
+  <button class="tool-btn" data-page="signals"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge hidden" id="signalsBadge">0</span><span class="label">Signals</span></button>
 </div>
 
 <script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
@@ -629,102 +429,141 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
-
 <script>
 var SYMBOLS=[{symbol:'BTC/USDT',price:67234.50,change:2.45},{symbol:'ETH/USDT',price:3456.20,change:1.82},{symbol:'SOL/USDT',price:178.50,change:4.21},{symbol:'BNB/USDT',price:612.30,change:-0.87},{symbol:'XRP/USDT',price:0.5432,change:3.15},{symbol:'ADA/USDT',price:0.4521,change:-1.23},{symbol:'DOGE/USDT',price:0.1654,change:5.67},{symbol:'AVAX/USDT',price:38.76,change:2.94},{symbol:'DOT/USDT',price:7.23,change:-2.15},{symbol:'MATIC/USDT',price:0.7823,change:1.45},{symbol:'LINK/USDT',price:14.56,change:3.78},{symbol:'UNI/USDT',price:9.87,change:-0.45},{symbol:'ATOM/USDT',price:8.92,change:1.23},{symbol:'LTC/USDT',price:84.56,change:0.89},{symbol:'NEAR/USDT',price:5.43,change:6.12},{symbol:'APT/USDT',price:11.23,change:-1.67}];
 var TIMEFRAMES=[{tf:'1m',label:'1 Minute',seconds:60},{tf:'5m',label:'5 Minutes',seconds:300},{tf:'15m',label:'15 Minutes',seconds:900},{tf:'30m',label:'30 Minutes',seconds:1800},{tf:'1H',label:'1 Hour',seconds:3600},{tf:'4H',label:'4 Hours',seconds:14400},{tf:'1D',label:'1 Day',seconds:86400},{tf:'1W',label:'1 Week',seconds:604800}];
 var currentSymbol='BTC/USDT',currentTimeframe='1m',searchQuery='',currentPage='chart';
 var indicators=[],currentIndicatorId=null,indicatorIdCounter=0,codeMirror=null,indicatorsOnChartHidden=false,pendingDeleteId=null;
+var indicatorsSearchQuery='';
 
-var MA10_CODE="// Moving Average 10 (Yellow)\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  const period = 10;\n  if (data.length < period) return { plots: [] };\n  const result = [];\n  for (let i = period - 1; i < data.length; i++) {\n    let sum = 0;\n    for (let j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 10', data: result, color: '#ffc452', width: 1 }] };\n}";
-var MA20_CODE="// Moving Average 20 (Purple)\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  const period = 20;\n  if (data.length < period) return { plots: [] };\n  const result = [];\n  for (let i = period - 1; i < data.length; i++) {\n    let sum = 0;\n    for (let j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 20', data: result, color: '#ab82ff', width: 1 }] };\n}";
-var SIGNALS_EXAMPLE_CODE="// Trading Signals Indicator\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  const lookback = 3;\n  if (data.length < lookback * 2 + 1) return { plots: [] };\n  const markers = [], trendLine = [];\n  for (let i = lookback; i < data.length - lookback; i++) {\n    const curr = data[i];\n    if (!curr || curr.close === undefined) continue;\n    let isSwingLow = true;\n    for (let j = 1; j <= lookback; j++) { if (!data[i-j] || !data[i+j] || data[i-j].low < curr.low || data[i+j].low < curr.low) { isSwingLow = false; break; } }\n    let isSwingHigh = true;\n    for (let j = 1; j <= lookback; j++) { if (!data[i-j] || !data[i+j] || data[i-j].high > curr.high || data[i+j].high > curr.high) { isSwingHigh = false; break; } }\n    if (isSwingLow) markers.push({ time: curr.time, position: 'belowBar', color: '#00ff88', shape: 'arrowUp', text: 'BUY' });\n    if (isSwingHigh) markers.push({ time: curr.time, position: 'aboveBar', color: '#ff4466', shape: 'arrowDown', text: 'SELL' });\n    let sum = 0, count = 0;\n    for (let j = 0; j < 5 && i-j >= 0; j++) { if (data[i-j] && data[i-j].close !== undefined) { sum += data[i-j].close; count++; } }\n    if (count > 0) trendLine.push({ time: curr.time, value: sum / count });\n  }\n  markers.sort((a, b) => a.time - b.time);\n  return { plots: [\n    { type: 'line', name: 'SMA 5', data: trendLine, color: '#00bfff', width: 1 },\n    { type: 'markers', name: 'Signals', data: markers }\n  ]};\n}";
-var DEFAULT_INDICATOR_CODE="// Custom Indicator\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  const period = 14;\n  if (data.length < period) return { plots: [] };\n  const upper = [], middle = [], lower = [];\n  for (let i = period - 1; i < data.length; i++) {\n    let sum = 0, count = 0;\n    for (let j = 0; j < period; j++) { if (data[i-j] && data[i-j].close !== undefined) { sum += data[i-j].close; count++; } }\n    if (count === 0) continue;\n    const avg = sum / count;\n    let variance = 0;\n    for (let j = 0; j < period; j++) { if (data[i-j] && data[i-j].close !== undefined) { const diff = data[i-j].close - avg; variance += diff * diff; } }\n    const std = Math.sqrt(variance / count);\n    middle.push({ time: data[i].time, value: avg });\n    upper.push({ time: data[i].time, value: avg + 2 * std });\n    lower.push({ time: data[i].time, value: avg - 2 * std });\n  }\n  return { plots: [\n    { type: 'line', name: 'Upper Band', data: upper, color: '#00ff88', width: 1, lineStyle: 1 },\n    { type: 'line', name: 'Middle (SMA)', data: middle, color: '#00bfff', width: 2 },\n    { type: 'line', name: 'Lower Band', data: lower, color: '#ff4466', width: 1, lineStyle: 1 },\n    { type: 'fill', name: 'Channel Fill', upperData: upper, lowerData: lower, color: 'rgba(0,191,255,0.08)' }\n  ]};\n}";
+var MA10_CODE="// Moving Average 10\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var period = 10;\n  if (data.length < period) return { plots: [] };\n  var result = [];\n  for (var i = period - 1; i < data.length; i++) {\n    var sum = 0;\n    for (var j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 10', data: result, color: '#ffc452', width: 1 }] };\n}";
+var MA20_CODE="// Moving Average 20\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var period = 20;\n  if (data.length < period) return { plots: [] };\n  var result = [];\n  for (var i = period - 1; i < data.length; i++) {\n    var sum = 0;\n    for (var j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 20', data: result, color: '#ab82ff', width: 1 }] };\n}";
+var SIGNALS_EXAMPLE_CODE="// Trading Signals\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var lookback = 3;\n  if (data.length < lookback * 2 + 1) return { plots: [] };\n  var markers = [], trendLine = [];\n  for (var i = lookback; i < data.length - lookback; i++) {\n    var curr = data[i];\n    if (!curr) continue;\n    var isLow = true, isHigh = true;\n    for (var j = 1; j <= lookback; j++) {\n      if (data[i-j].low < curr.low || data[i+j].low < curr.low) isLow = false;\n      if (data[i-j].high > curr.high || data[i+j].high > curr.high) isHigh = false;\n    }\n    if (isLow) markers.push({ time: curr.time, position: 'belowBar', color: '#00ff88', shape: 'arrowUp', text: 'BUY' });\n    if (isHigh) markers.push({ time: curr.time, position: 'aboveBar', color: '#ff4466', shape: 'arrowDown', text: 'SELL' });\n    var sum = 0, count = 0;\n    for (var j = 0; j < 5 && i-j >= 0; j++) { sum += data[i-j].close; count++; }\n    if (count > 0) trendLine.push({ time: curr.time, value: sum / count });\n  }\n  markers.sort(function(a,b){return a.time-b.time;});\n  return { plots: [{ type:'line',name:'SMA 5',data:trendLine,color:'#00bfff',width:1 },{ type:'markers',name:'Signals',data:markers }] };\n}";
+var DEFAULT_INDICATOR_CODE="// Custom Indicator\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var period = 14;\n  if (data.length < period) return { plots: [] };\n  var upper=[],middle=[],lower=[];\n  for (var i=period-1;i<data.length;i++) {\n    var sum=0,count=0;\n    for(var j=0;j<period;j++){sum+=data[i-j].close;count++;}\n    if(!count)continue;\n    var avg=sum/count,variance=0;\n    for(var j=0;j<period;j++){var d=data[i-j].close-avg;variance+=d*d;}\n    var std=Math.sqrt(variance/count);\n    middle.push({time:data[i].time,value:avg});\n    upper.push({time:data[i].time,value:avg+2*std});\n    lower.push({time:data[i].time,value:avg-2*std});\n  }\n  return{plots:[{type:'line',name:'Upper',data:upper,color:'#00ff88',width:1,lineStyle:1},{type:'line',name:'Middle',data:middle,color:'#00bfff',width:2},{type:'line',name:'Lower',data:lower,color:'#ff4466',width:1,lineStyle:1},{type:'fill',name:'Fill',upperData:upper,lowerData:lower,color:'rgba(0,191,255,0.08)'}]};\n}";
 
-var nowSec = Math.floor(Date.now() / 1000);
-var SIGNALS_DATA = [
-  {id:1, symbol:'BTC/USDT', type:'buy', entry:67234.50, duration:120, startTime: nowSec - 30, result:null, profit:null, isNew:false},
-  {id:2, symbol:'ETH/USDT', type:'buy', entry:3456.20, duration:180, startTime: nowSec - 90, result:null, profit:null, isNew:false},
-  {id:3, symbol:'SOL/USDT', type:'sell', entry:178.50, duration:90, startTime: nowSec - 60, result:null, profit:null, isNew:false},
-  {id:4, symbol:'XRP/USDT', type:'buy', entry:0.5432, duration:240, startTime: nowSec - 10, result:null, profit:null, isNew:true},
-  {id:5, symbol:'AVAX/USDT', type:'buy', entry:38.76, duration:60, startTime: nowSec - 45, result:null, profit:null, isNew:true},
-  {id:6, symbol:'DOGE/USDT', type:'sell', entry:0.1654, duration:150, startTime: nowSec - 120, result:null, profit:null, isNew:false}
+var nowSec=Math.floor(Date.now()/1000);
+var SIGNALS_DATA=[
+  {id:1,symbol:'BTC/USDT',type:'buy',entry:67234.50,duration:120,startTime:nowSec-30,result:null,profit:null,isNew:false},
+  {id:2,symbol:'ETH/USDT',type:'buy',entry:3456.20,duration:180,startTime:nowSec-90,result:null,profit:null,isNew:false},
+  {id:3,symbol:'SOL/USDT',type:'sell',entry:178.50,duration:90,startTime:nowSec-60,result:null,profit:null,isNew:false},
+  {id:4,symbol:'XRP/USDT',type:'buy',entry:0.5432,duration:240,startTime:nowSec-10,result:null,profit:null,isNew:true},
+  {id:5,symbol:'AVAX/USDT',type:'buy',entry:38.76,duration:60,startTime:nowSec-45,result:null,profit:null,isNew:true},
+  {id:6,symbol:'DOGE/USDT',type:'sell',entry:0.1654,duration:150,startTime:nowSec-120,result:null,profit:null,isNew:false}
 ];
 
-var audioCtx = null;
-function playTradeSound() {
-  try {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    var now = audioCtx.currentTime;
-    var filter = audioCtx.createBiquadFilter();
-    filter.type = 'lowpass'; filter.frequency.value = 1800; filter.Q.value = 2;
-    var masterGain = audioCtx.createGain();
-    masterGain.gain.value = 0.6;
-    filter.connect(masterGain); masterGain.connect(audioCtx.destination);
-    var s1 = audioCtx.createOscillator();
-    s1.type = 'triangle'; s1.frequency.value = 520;
-    var s1g = audioCtx.createGain();
-    s1g.gain.setValueAtTime(0, now);
-    s1g.gain.linearRampToValueAtTime(0.5, now + 0.005);
-    s1g.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-    s1.connect(s1g); s1g.connect(filter);
-    s1.start(now); s1.stop(now + 0.12);
-    var s2Delay = 0.12, s2Dur = 0.88;
-    var freqs = [261.63, 329.63];
-    var pans = [-0.4, 0.4];
-    freqs.forEach(function(freq, idx) {
-      var o1 = audioCtx.createOscillator(); o1.type = 'sine'; o1.frequency.value = freq;
-      var o2 = audioCtx.createOscillator(); o2.type = 'sine'; o2.frequency.value = freq; o2.detune.value = 6;
-      var pan = audioCtx.createStereoPanner(); pan.pan.value = pans[idx];
-      var g = audioCtx.createGain();
-      g.gain.setValueAtTime(0, now + s2Delay);
-      g.gain.linearRampToValueAtTime(0.22, now + s2Delay + 0.09);
-      g.gain.exponentialRampToValueAtTime(0.001, now + s2Delay + s2Dur);
-      o1.connect(g); o2.connect(g); g.connect(pan); pan.connect(filter);
-      o1.start(now + s2Delay); o2.start(now + s2Delay);
-      o1.stop(now + s2Delay + s2Dur); o2.stop(now + s2Delay + s2Dur);
+// ===== NEW SMOOTH SOUND (Short & Clean) =====
+var audioCtx=null;
+function playTradeSound(){
+  try{
+    if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended') audioCtx.resume();
+    var now=audioCtx.currentTime;
+
+    var masterGain=audioCtx.createGain();
+    masterGain.gain.value=0.5;
+    masterGain.connect(audioCtx.destination);
+
+    var filter=audioCtx.createBiquadFilter();
+    filter.type='lowpass';
+    filter.frequency.setValueAtTime(4000,now);
+    filter.frequency.exponentialRampToValueAtTime(1500,now+0.2);
+    filter.Q.value=0.5;
+    filter.connect(masterGain);
+
+    // Stage 1: Rising start (0.15s)
+    var s1Osc=audioCtx.createOscillator();
+    s1Osc.type='sine';
+    s1Osc.frequency.setValueAtTime(392.00,now);
+    s1Osc.frequency.exponentialRampToValueAtTime(523.25,now+0.06);
+
+    var s1Gain=audioCtx.createGain();
+    s1Gain.gain.setValueAtTime(0,now);
+    s1Gain.gain.linearRampToValueAtTime(0.3,now+0.02);
+    s1Gain.gain.exponentialRampToValueAtTime(0.001,now+0.14);
+    s1Gain.gain.linearRampToValueAtTime(0,now+0.16);
+
+    s1Osc.connect(s1Gain);
+    s1Gain.connect(filter);
+    s1Osc.start(now);
+    s1Osc.stop(now+0.2);
+
+    // Stage 2: Short pleasant ending (0.1s)
+    var s2Delay=0.08;
+    var s2Attack=0.02;
+    var s2FadeOut=0.08;
+    var s2Freqs=[523.25,659.25];
+
+    s2Freqs.forEach(function(freq){
+      var osc=audioCtx.createOscillator();
+      osc.type='sine';
+      osc.frequency.value=freq;
+
+      var gain=audioCtx.createGain();
+      gain.gain.setValueAtTime(0,now+s2Delay);
+      gain.gain.linearRampToValueAtTime(0.15,now+s2Delay+s2Attack);
+      gain.gain.exponentialRampToValueAtTime(0.001,now+s2Delay+s2Attack+s2FadeOut);
+      gain.gain.linearRampToValueAtTime(0,now+s2Delay+s2Attack+s2FadeOut+0.02);
+
+      osc.connect(gain);
+      gain.connect(filter);
+      osc.start(now+s2Delay);
+      osc.stop(now+s2Delay+s2Attack+s2FadeOut+0.05);
     });
-  } catch(e) {}
+  }catch(e){}
 }
 
 function formatPrice(p){if(p>=1000)return p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(p>=1)return p.toFixed(2);return p.toFixed(4);}
-function formatTime(sec){var d=new Date(sec*1000);var h=d.getHours().toString().padStart(2,'0');var m=d.getMinutes().toString().padStart(2,'0');return h+':'+m;}
-function formatCountdown(remaining){if(remaining<=0)return '0:00';var m=Math.floor(remaining/60);var s=remaining%60;return m+':'+s.toString().padStart(2,'0');}
-function updateSymbolDisplay(){var sym=null;for(var i=0;i<SYMBOLS.length;i++){if(SYMBOLS[i].symbol===currentSymbol){sym=SYMBOLS[i];break;}}if(!sym)sym=SYMBOLS[0];document.getElementById('currentSymbol').textContent=sym.symbol;document.getElementById('currentPrice').textContent=formatPrice(sym.price);var changeEl=document.getElementById('currentChange');changeEl.textContent=(sym.change>=0?'+':'')+sym.change.toFixed(2)+'%';changeEl.className='symbol-change '+(sym.change>=0?'positive':'negative');}
-function buildSymbolGrid(){var grid=document.getElementById('symbolGrid'),noResults=document.getElementById('noResults');grid.innerHTML='';var query=searchQuery.trim().toUpperCase();var filtered=SYMBOLS.filter(function(s){return !query||s.symbol.toUpperCase().indexOf(query)!==-1;});if(filtered.length===0){noResults.classList.add('visible');return;}else{noResults.classList.remove('visible');}filtered.forEach(function(s,i){var card=document.createElement('div');card.className='item-card'+(s.symbol===currentSymbol?' active':'');card.style.animationDelay=(i*0.03)+'s';card.innerHTML='<span class="item-symbol">'+s.symbol+'</span><span class="item-change '+(s.change>=0?'positive':'negative')+'">'+(s.change>=0?'+':'')+s.change.toFixed(2)+'%</span>';card.addEventListener('click',function(){currentSymbol=s.symbol;updateSymbolDisplay();refreshChart();closeAllMenus();});grid.appendChild(card);});}
-function buildTfDropdown(){var grid=document.getElementById('tfOptionsGrid');grid.innerHTML='';TIMEFRAMES.forEach(function(t){var opt=document.createElement('div');opt.className='tf-option'+(t.tf===currentTimeframe?' active':'');opt.innerHTML='<span>'+t.tf+'</span><span class="tf-label">'+t.label+'</span>';opt.addEventListener('click',function(e){e.stopPropagation();currentTimeframe=t.tf;document.getElementById('currentTimeframe').textContent=t.tf;refreshChart();closeAllMenus();});grid.appendChild(opt);});}
+function formatTime(sec){var d=new Date(sec*1000);return d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');}
+function formatCountdown(r){if(r<=0)return'0:00';return Math.floor(r/60)+':'+(r%60).toString().padStart(2,'0');}
+
+function updateSymbolDisplay(){var sym=null;for(var i=0;i<SYMBOLS.length;i++){if(SYMBOLS[i].symbol===currentSymbol){sym=SYMBOLS[i];break;}}if(!sym)sym=SYMBOLS[0];document.getElementById('currentSymbol').textContent=sym.symbol;document.getElementById('currentPrice').textContent=formatPrice(sym.price);var ce=document.getElementById('currentChange');ce.textContent=(sym.change>=0?'+':'')+sym.change.toFixed(2)+'%';ce.className='symbol-change '+(sym.change>=0?'positive':'negative');}
+
+function buildSymbolGrid(){var grid=document.getElementById('symbolGrid'),nr=document.getElementById('noResults');grid.innerHTML='';var q=searchQuery.trim().toUpperCase();var f=SYMBOLS.filter(function(s){return!q||s.symbol.toUpperCase().indexOf(q)!==-1;});if(!f.length){nr.classList.add('visible');return;}nr.classList.remove('visible');f.forEach(function(s,i){var c=document.createElement('div');c.className='item-card'+(s.symbol===currentSymbol?' active':'');c.style.animationDelay=(i*0.03)+'s';c.innerHTML='<span class="item-symbol">'+s.symbol+'</span><span class="item-change '+(s.change>=0?'positive':'negative')+'">'+(s.change>=0?'+':'')+s.change.toFixed(2)+'%</span>';c.addEventListener('click',function(){currentSymbol=s.symbol;updateSymbolDisplay();refreshChart();closeAllMenus();});grid.appendChild(c);});}
+
+function buildTfDropdown(){var grid=document.getElementById('tfOptionsGrid');grid.innerHTML='';TIMEFRAMES.forEach(function(t){var o=document.createElement('div');o.className='tf-option'+(t.tf===currentTimeframe?' active':'');o.innerHTML='<span>'+t.tf+'</span><span class="tf-label">'+t.label+'</span>';o.addEventListener('click',function(e){e.stopPropagation();currentTimeframe=t.tf;document.getElementById('currentTimeframe').textContent=t.tf;refreshChart();closeAllMenus();});grid.appendChild(o);});}
+
 function closeAllMenus(){document.getElementById('symbolMenu').classList.remove('visible');document.getElementById('symbolBtn').classList.remove('open');document.getElementById('tfDropdown').classList.remove('visible');document.getElementById('timeframeBtn').classList.remove('open');searchQuery='';var si=document.getElementById('symbolSearch');if(si)si.value='';}
-document.getElementById('symbolBtn').addEventListener('click',function(e){e.stopPropagation();var menu=document.getElementById('symbolMenu');document.getElementById('tfDropdown').classList.remove('visible');document.getElementById('timeframeBtn').classList.remove('open');if(menu.classList.contains('visible')){closeAllMenus();}else{menu.classList.add('visible');document.getElementById('symbolBtn').classList.add('open');buildSymbolGrid();setTimeout(function(){document.getElementById('symbolSearch').focus();},100);}});
-document.getElementById('timeframeBtn').addEventListener('click',function(e){e.stopPropagation();var dropdown=document.getElementById('tfDropdown');document.getElementById('symbolMenu').classList.remove('visible');document.getElementById('symbolBtn').classList.remove('open');if(dropdown.classList.contains('visible')){closeAllMenus();}else{buildTfDropdown();dropdown.classList.add('visible');document.getElementById('timeframeBtn').classList.add('open');}});
+
+document.getElementById('symbolBtn').addEventListener('click',function(e){e.stopPropagation();var m=document.getElementById('symbolMenu');document.getElementById('tfDropdown').classList.remove('visible');document.getElementById('timeframeBtn').classList.remove('open');if(m.classList.contains('visible'))closeAllMenus();else{m.classList.add('visible');document.getElementById('symbolBtn').classList.add('open');buildSymbolGrid();setTimeout(function(){document.getElementById('symbolSearch').focus();},100);}});
+document.getElementById('timeframeBtn').addEventListener('click',function(e){e.stopPropagation();var d=document.getElementById('tfDropdown');document.getElementById('symbolMenu').classList.remove('visible');document.getElementById('symbolBtn').classList.remove('open');if(d.classList.contains('visible'))closeAllMenus();else{buildTfDropdown();d.classList.add('visible');document.getElementById('timeframeBtn').classList.add('open');}});
 document.getElementById('tfClose').addEventListener('click',function(e){e.stopPropagation();closeAllMenus();});
-document.querySelectorAll('.close-btn').forEach(function(btn){btn.addEventListener('click',function(){closeAllMenus();});});
+document.querySelectorAll('.close-btn').forEach(function(b){b.addEventListener('click',function(){closeAllMenus();});});
 document.getElementById('symbolSearch').addEventListener('input',function(e){searchQuery=e.target.value;buildSymbolGrid();});
 document.getElementById('symbolSearch').addEventListener('click',function(e){e.stopPropagation();});
 document.addEventListener('click',function(e){if(!e.target.closest('.top-btn')&&!e.target.closest('.overlay-menu')&&!e.target.closest('.tf-dropdown')&&!e.target.closest('.editor-page')&&!e.target.closest('.modal-overlay')&&!e.target.closest('.signals-page')&&!e.target.closest('.indicators-page')&&!e.target.closest('.bottom-bar')&&!e.target.closest('.floating-indicators'))closeAllMenus();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(document.getElementById('newIndicatorModal').classList.contains('visible'))closeNewIndicatorModal();else if(document.getElementById('deleteConfirmModal').classList.contains('visible'))closeDeleteConfirmModal();else closeAllMenus();}});
 
-function generateCandleData(numCandles,basePrice,volatility,intervalSeconds){var data=[],price=basePrice;var now=Math.floor(Date.now()/1000);var startTime=now-numCandles*intervalSeconds;for(var i=0;i<numCandles;i++){var time=startTime+i*intervalSeconds;var trendBias=Math.sin(i/25)*0.5+Math.sin(i/80)*0.3+0.05;var change=(Math.random()-0.5+trendBias*0.1)*volatility;var open=price,close=price+change;var high=Math.max(open,close)+Math.random()*volatility*0.7;var low=Math.min(open,close)-Math.random()*volatility*0.7;data.push({time:time,open:Math.round(open*100)/100,high:Math.round(high*100)/100,low:Math.round(low*100)/100,close:Math.round(close*100)/100,volume:Math.round(Math.random()*1500+300)});price=close;}return data;}
-function getSymbolData(symbol){for(var i=0;i<SYMBOLS.length;i++){if(SYMBOLS[i].symbol===symbol)return SYMBOLS[i];}return SYMBOLS[0];}
-function getTimeframeData(tf){for(var i=0;i<TIMEFRAMES.length;i++){if(TIMEFRAMES[i].tf===tf)return TIMEFRAMES[i];}return TIMEFRAMES[0];}
+function generateCandleData(n,bp,v,is){var d=[],p=bp;var now=Math.floor(Date.now()/1000),st=now-n*is;for(var i=0;i<n;i++){var t=st+i*is;var tb=Math.sin(i/25)*0.5+Math.sin(i/80)*0.3+0.05;var ch=(Math.random()-0.5+tb*0.1)*v;var o=p,c=p+ch;var h=Math.max(o,c)+Math.random()*v*0.7;var l=Math.min(o,c)-Math.random()*v*0.7;d.push({time:t,open:Math.round(o*100)/100,high:Math.round(h*100)/100,low:Math.round(l*100)/100,close:Math.round(c*100)/100,volume:Math.round(Math.random()*1500+300)});p=c;}return d;}
+function getSymbolData(s){for(var i=0;i<SYMBOLS.length;i++){if(SYMBOLS[i].symbol===s)return SYMBOLS[i];}return SYMBOLS[0];}
+function getTimeframeData(t){for(var i=0;i<TIMEFRAMES.length;i++){if(TIMEFRAMES[i].tf===t)return TIMEFRAMES[i];}return TIMEFRAMES[0];}
+
 var chart,candleSeries;var lastCandleData=null,currentChartData=[],currentMarkers=[];
-function initChart(){var container=document.getElementById('tvChart');chart=LightweightCharts.createChart(container,{width:container.clientWidth,height:container.clientHeight,layout:{background:{type:'solid',color:'#000000'},textColor:'#888',fontFamily:'-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif',fontSize:11},grid:{vertLines:{color:'#1a1a1a'},horzLines:{color:'#1a1a1a'}},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,vertLine:{color:'#555',width:1,style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:'#333'},horzLine:{color:'#555',width:1,style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:'#333'}},rightPriceScale:{visible:true,borderVisible:false,minimumWidth:60,scaleMargins:{top:0.15,bottom:0.05},entireTextOnly:true,borderColor:'transparent'},leftPriceScale:{visible:false},timeScale:{borderColor:'#1a1a1a',timeVisible:true,secondsVisible:false,rightOffset:5,barSpacing:10,minBarSpacing:2,fixLeftEdge:false,fixRightEdge:false,borderVisible:true},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{axisPressedMouseMove:{time:true,price:true},mouseWheel:true,pinch:true}});candleSeries=chart.addCandlestickSeries({upColor:'#00ff88',downColor:'#ff4466',borderUpColor:'#00ff88',borderDownColor:'#ff4466',wickUpColor:'#00ff88',wickDownColor:'#ff4466',priceScaleId:'right',priceLineVisible:true,lastValueVisible:true});loadData();window.addEventListener('resize',function(){chart.applyOptions({width:container.clientWidth,height:container.clientHeight});});startLiveSimulation();}
-function loadData(){var sym=getSymbolData(currentSymbol),tf=getTimeframeData(currentTimeframe);var volatility=sym.price*0.005;var generated=generateCandleData(300,sym.price,volatility,tf.seconds);currentChartData=generated;candleSeries.setData(generated);lastCandleData=generated[generated.length-1];chart.timeScale().fitContent();rerunAllIndicators();}
+function initChart(){var c=document.getElementById('tvChart');chart=LightweightCharts.createChart(c,{width:c.clientWidth,height:c.clientHeight,layout:{background:{type:'solid',color:'#000'},textColor:'#888',fontSize:11},grid:{vertLines:{color:'#1a1a1a'},horzLines:{color:'#1a1a1a'}},crosshair:{mode:LightweightCharts.CrosshairMode.Normal},rightPriceScale:{visible:true,borderVisible:false,minimumWidth:60,scaleMargins:{top:0.15,bottom:0.05}},leftPriceScale:{visible:false},timeScale:{borderColor:'#1a1a1a',timeVisible:true,secondsVisible:false,rightOffset:5,barSpacing:10},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true}});candleSeries=chart.addCandlestickSeries({upColor:'#00ff88',downColor:'#ff4466',borderUpColor:'#00ff88',borderDownColor:'#ff4466',wickUpColor:'#00ff88',wickDownColor:'#ff4466',priceScaleId:'right',priceLineVisible:true,lastValueVisible:true});loadData();window.addEventListener('resize',function(){chart.applyOptions({width:c.clientWidth,height:c.clientHeight});});startLiveSimulation();}
+function loadData(){var sym=getSymbolData(currentSymbol),tf=getTimeframeData(currentTimeframe);var v=sym.price*0.005;var g=generateCandleData(300,sym.price,v,tf.seconds);currentChartData=g;candleSeries.setData(g);lastCandleData=g[g.length-1];chart.timeScale().fitContent();rerunAllIndicators();}
 function refreshChart(){loadData();}
-function startLiveSimulation(){setInterval(function(){if(!lastCandleData)return;var sym=getSymbolData(currentSymbol);var change=(Math.random()-0.5)*sym.price*0.001;var newClose=lastCandleData.close+change;var newHigh=Math.max(lastCandleData.high,newClose);var newLow=Math.min(lastCandleData.low,newClose);lastCandleData={time:lastCandleData.time,open:lastCandleData.open,high:Math.round(newHigh*100)/100,low:Math.round(newLow*100)/100,close:Math.round(newClose*100)/100,volume:lastCandleData.volume};candleSeries.update(lastCandleData);if(currentChartData.length>0)currentChartData[currentChartData.length-1]=Object.assign({},lastCandleData);sym.price=newClose;updateSymbolDisplay();updateMarkersForActiveIndicators();},1500);}
-function updateMarkersForActiveIndicators(){var allMarkers=[];indicators.forEach(function(ind){if(ind.active&&!ind.hidden){ind.plots.forEach(function(plot){if(plot.type==='markers'&&plot.visible){try{var fn=new Function('data',ind.code+'\n;return main(data);');var result=fn(currentChartData);var plots=normalizeResult(result);plots.forEach(function(p){if(p&&p.type==='markers'&&p.name===plot.name&&p.data){p.data.forEach(function(m){allMarkers.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''});});}});}catch(e){}}});}});allMarkers.sort(function(a,b){return a.time-b.time;});var uniqueMarkers=[],seen={};allMarkers.forEach(function(m){var key=m.time+'_'+m.position;if(!seen[key]){seen[key]=true;uniqueMarkers.push(m);}});candleSeries.setMarkers(uniqueMarkers);currentMarkers=uniqueMarkers;}
-function normalizeResult(result){if(!result)return[];if(result.plots&&Array.isArray(result.plots))return result.plots.map(normalizePlot);return [normalizePlot(result)];}
-function normalizePlot(plot){if(!plot)return null;return{type:plot.type||'line',name:plot.name||('Plot '+(plot.type||'line')),data:plot.data||[],color:plot.color||'#00ff88',width:plot.width!==undefined?plot.width:2,lineStyle:plot.lineStyle!==undefined?plot.lineStyle:0,visible:plot.visible!==false,upperData:plot.upperData||null,lowerData:plot.lowerData||null,shape:plot.shape,position:plot.position,text:plot.text,topColor:plot.topColor,bottomColor:plot.bottomColor,lineColor:plot.lineColor};}
-function createPlotSeries(plot,indicator){var series=null;switch(plot.type){case'line':series=chart.addLineSeries({color:plot.color,lineWidth:plot.width,lineStyle:plot.lineStyle||0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:true,title:plot.name});if(plot.data&&plot.data.length>0)series.setData(plot.data);break;case'area':series=chart.addAreaSeries({topColor:plot.topColor||plot.color,bottomColor:plot.bottomColor||hexToRgba(plot.color,0),lineColor:plot.lineColor||plot.color,lineWidth:plot.width,lineStyle:plot.lineStyle||0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:true,title:plot.name});if(plot.data&&plot.data.length>0)series.setData(plot.data);break;case'histogram':series=chart.addHistogramSeries({color:plot.color,priceFormat:{type:'price'},priceScaleId:'',lastValueVisible:true,title:plot.name});if(plot.data&&plot.data.length>0)series.setData(plot.data);break;case'markers':if(plot.data&&plot.data.length>0){var existingMarkers=currentMarkers.slice();var newMarkers=plot.data.map(function(m){return{time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''};});var allMk=existingMarkers.concat(newMarkers);allMk.sort(function(a,b){return a.time-b.time;});var uniqueMk=[],seen={};allMk.forEach(function(m){var key=m.time+'_'+m.position;if(!seen[key]){seen[key]=true;uniqueMk.push(m);}});candleSeries.setMarkers(uniqueMk);currentMarkers=uniqueMk;}series=null;break;case'fill':series=createFillOverlay(plot,indicator);break;default:return null;}return series;}
-function hexToRgba(hex,alpha){if(hex.startsWith('rgba')||hex.startsWith('rgb'))return hex;var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return'rgba('+r+','+g+','+b+','+alpha+')';}
-function createFillOverlay(plot,indicator){var chartContainer=document.getElementById('tvChart');var canvas=document.createElement('canvas');canvas.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:2;';chartContainer.style.position='relative';chartContainer.appendChild(canvas);var ctx=canvas.getContext('2d');var upperData=plot.upperData||[],lowerData=plot.lowerData||[];var fillColor=plot.color||'rgba(0,191,255,0.15)';var upperLine=chart.addLineSeries({color:'transparent',lineWidth:0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:false});var lowerLine=chart.addLineSeries({color:'transparent',lineWidth:0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:false});upperLine.setData(upperData);lowerLine.setData(lowerData);function resizeCanvas(){canvas.width=chartContainer.clientWidth;canvas.height=chartContainer.clientHeight;drawFill();}function drawFill(){ctx.clearRect(0,0,canvas.width,canvas.height);if(upperData.length===0||lowerData.length===0)return;ctx.fillStyle=fillColor;ctx.beginPath();var upperPoints=[],lowerPoints=[];for(var i=0;i<upperData.length;i++){var x=chart.timeScale().timeToCoordinate(upperData[i].time),y=upperLine.priceToCoordinate(upperData[i].value);if(x!==null&&y!==null)upperPoints.push({x:x,y:y});}for(var i=0;i<lowerData.length;i++){var x=chart.timeScale().timeToCoordinate(lowerData[i].time),y=lowerLine.priceToCoordinate(lowerData[i].value);if(x!==null&&y!==null)lowerPoints.push({x:x,y:y});}if(upperPoints.length<2||lowerPoints.length<2)return;ctx.moveTo(upperPoints[0].x,upperPoints[0].y);for(var i=1;i<upperPoints.length;i++)ctx.lineTo(upperPoints[i].x,upperPoints[i].y);for(var i=lowerPoints.length-1;i>=0;i--)ctx.lineTo(lowerPoints[i].x,lowerPoints[i].y);ctx.closePath();ctx.fill();}var timeRangeUnsub=chart.timeScale().subscribeVisibleTimeRangeChange(drawFill);var mouseMoveHandler=function(){requestAnimationFrame(drawFill);};chartContainer.addEventListener('mousemove',mouseMoveHandler);chartContainer.addEventListener('wheel',function(){setTimeout(drawFill,50);});window.addEventListener('resize',resizeCanvas);resizeCanvas();return{type:'fill',canvas:canvas,upperLine:upperLine,lowerLine:lowerLine,remove:function(){canvas.remove();try{chart.removeSeries(upperLine);}catch(e){}try{chart.removeSeries(lowerLine);}catch(e){}window.removeEventListener('resize',resizeCanvas);chartContainer.removeEventListener('mousemove',mouseMoveHandler);try{timeRangeUnsub();}catch(e){}},update:function(nU,nL){upperData=nU;lowerData=nL;upperLine.setData(nU);lowerLine.setData(nL);drawFill();},setVisible:function(v){canvas.style.display=v?'block':'none';}};}
+function startLiveSimulation(){setInterval(function(){if(!lastCandleData)return;var sym=getSymbolData(currentSymbol);var ch=(Math.random()-0.5)*sym.price*0.001;var nc=lastCandleData.close+ch;lastCandleData={time:lastCandleData.time,open:lastCandleData.open,high:Math.round(Math.max(lastCandleData.high,nc)*100)/100,low:Math.round(Math.min(lastCandleData.low,nc)*100)/100,close:Math.round(nc*100)/100,volume:lastCandleData.volume};candleSeries.update(lastCandleData);if(currentChartData.length>0)currentChartData[currentChartData.length-1]=Object.assign({},lastCandleData);sym.price=nc;updateSymbolDisplay();updateMarkersForActiveIndicators();},1500);}
+
+function updateMarkersForActiveIndicators(){var am=[];indicators.forEach(function(ind){if(ind.active&&!ind.hidden){ind.plots.forEach(function(plot){if(plot.type==='markers'&&plot.visible){try{var fn=new Function('data',ind.code+'\n;return main(data);');var r=fn(currentChartData);var ps=normalizeResult(r);ps.forEach(function(p){if(p&&p.type==='markers'&&p.name===plot.name&&p.data){p.data.forEach(function(m){am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''});});}});}catch(e){}}});}});am.sort(function(a,b){return a.time-b.time;});var um=[],seen={};am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});candleSeries.setMarkers(um);currentMarkers=um;}
+
+function normalizeResult(r){if(!r)return[];if(r.plots&&Array.isArray(r.plots))return r.plots.map(normalizePlot);return[normalizePlot(r)];}
+function normalizePlot(p){if(!p)return null;return{type:p.type||'line',name:p.name||'Plot',data:p.data||[],color:p.color||'#00ff88',width:p.width!==undefined?p.width:2,lineStyle:p.lineStyle||0,visible:p.visible!==false,upperData:p.upperData||null,lowerData:p.lowerData||null};}
+
+function createPlotSeries(plot,indicator){var series=null;switch(plot.type){case'line':series=chart.addLineSeries({color:plot.color,lineWidth:plot.width,lineStyle:plot.lineStyle||0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:true,title:plot.name});if(plot.data&&plot.data.length>0)series.setData(plot.data);break;case'area':series=chart.addAreaSeries({topColor:plot.color,bottomColor:hexToRgba(plot.color,0),lineColor:plot.color,lineWidth:plot.width,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:true,title:plot.name});if(plot.data&&plot.data.length>0)series.setData(plot.data);break;case'histogram':series=chart.addHistogramSeries({color:plot.color,lastValueVisible:true,title:plot.name});if(plot.data&&plot.data.length>0)series.setData(plot.data);break;case'markers':if(plot.data&&plot.data.length>0){var em=currentMarkers.slice();var nm=plot.data.map(function(m){return{time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''};});var am=em.concat(nm);am.sort(function(a,b){return a.time-b.time;});var um=[],seen={};am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});candleSeries.setMarkers(um);currentMarkers=um;}series=null;break;case'fill':series=createFillOverlay(plot,indicator);break;default:return null;}return series;}
+
+function hexToRgba(hex,a){if(hex.startsWith('rgba')||hex.startsWith('rgb'))return hex;var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return'rgba('+r+','+g+','+b+','+a+')';}
+
+function createFillOverlay(plot,indicator){var cc=document.getElementById('tvChart');var canvas=document.createElement('canvas');canvas.style.cssText='position:absolute;top:0;left:0;pointer-events:none;z-index:2;';cc.style.position='relative';cc.appendChild(canvas);var ctx=canvas.getContext('2d');var uD=plot.upperData||[],lD=plot.lowerData||[];var fc=plot.color||'rgba(0,191,255,0.15)';var uL=chart.addLineSeries({color:'transparent',lineWidth:0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:false});var lL=chart.addLineSeries({color:'transparent',lineWidth:0,crosshairMarkerVisible:false,priceLineVisible:false,lastValueVisible:false});uL.setData(uD);lL.setData(lD);
+function rc(){canvas.width=cc.clientWidth;canvas.height=cc.clientHeight;df();}
+function df(){ctx.clearRect(0,0,canvas.width,canvas.height);if(!uD.length||!lD.length)return;ctx.fillStyle=fc;ctx.beginPath();var up=[],lp=[];for(var i=0;i<uD.length;i++){var x=chart.timeScale().timeToCoordinate(uD[i].time),y=uL.priceToCoordinate(uD[i].value);if(x!==null&&y!==null)up.push({x:x,y:y});}for(var i=0;i<lD.length;i++){var x=chart.timeScale().timeToCoordinate(lD[i].time),y=lL.priceToCoordinate(lD[i].value);if(x!==null&&y!==null)lp.push({x:x,y:y});}if(up.length<2||lp.length<2)return;ctx.moveTo(up[0].x,up[0].y);for(var i=1;i<up.length;i++)ctx.lineTo(up[i].x,up[i].y);for(var i=lp.length-1;i>=0;i--)ctx.lineTo(lp[i].x,lp[i].y);ctx.closePath();ctx.fill();}
+var tu=chart.timeScale().subscribeVisibleTimeRangeChange(df);var mmh=function(){requestAnimationFrame(df);};cc.addEventListener('mousemove',mmh);cc.addEventListener('wheel',function(){setTimeout(df,50);});window.addEventListener('resize',rc);rc();
+return{type:'fill',canvas:canvas,upperLine:uL,lowerLine:lL,remove:function(){canvas.remove();try{chart.removeSeries(uL);}catch(e){}try{chart.removeSeries(lL);}catch(e){}window.removeEventListener('resize',rc);cc.removeEventListener('mousemove',mmh);try{tu();}catch(e){}},update:function(nu,nl){uD=nu;lD=nl;uL.setData(nu);lL.setData(nl);df();},setVisible:function(v){canvas.style.display=v?'block':'none';}};}
+
 initChart();updateSymbolDisplay();
 
-var signalsBadgeDismissed = false;
-
+var signalsBadgeDismissed=false;
 function navigateTo(page){
   currentPage=page;
-  document.querySelectorAll('.tool-btn[data-page]').forEach(function(btn){btn.classList.toggle('active',btn.getAttribute('data-page')===page);});
+  document.querySelectorAll('.tool-btn[data-page]').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-page')===page);});
   document.getElementById('editorPage').classList.remove('visible');
   document.getElementById('signalsPage').classList.remove('visible');
   document.getElementById('indicatorsPage').classList.remove('visible');
@@ -732,230 +571,117 @@ function navigateTo(page){
   if(page==='chart'){tc.classList.add('visible');cc.classList.add('visible');}
   else if(page==='editor'){tc.classList.remove('visible');cc.classList.remove('visible');document.getElementById('editorPage').classList.add('visible');setTimeout(function(){if(codeMirror)codeMirror.refresh();},100);}
   else if(page==='indicators'){tc.classList.remove('visible');cc.classList.remove('visible');buildIndicatorsPage();document.getElementById('indicatorsPage').classList.add('visible');}
-  else if(page==='signals'){
-    tc.classList.remove('visible');cc.classList.remove('visible');
-    buildSignalsPage();
-    document.getElementById('signalsPage').classList.add('visible');
-    signalsBadgeDismissed = true;
-    updateBadgeVisibility();
-  }
+  else if(page==='signals'){tc.classList.remove('visible');cc.classList.remove('visible');buildSignalsPage();document.getElementById('signalsPage').classList.add('visible');signalsBadgeDismissed=true;updateBadgeVisibility();}
 }
-document.querySelectorAll('.tool-btn[data-page]').forEach(function(btn){btn.addEventListener('click',function(){navigateTo(btn.getAttribute('data-page'));});});
+document.querySelectorAll('.tool-btn[data-page]').forEach(function(b){b.addEventListener('click',function(){navigateTo(b.getAttribute('data-page'));});});
 
-var TIMER_RADIUS = 36;
-var TIMER_CIRCUMFERENCE = 2 * Math.PI * TIMER_RADIUS;
-var signalsUpdateInterval = null;
+var TR=36,TC=2*Math.PI*TR,sUI=null;
+function getSR(s){return Math.max(0,s.duration-(Math.floor(Date.now()/1000)-s.startTime));}
+function resolveSignal(s){if(s.result!==null)return;s.result=Math.random()<0.65?'win':'lose';var bp=Math.random()*1.5+0.3;s.profit=s.result==='win'?bp:-(bp*0.6);playTradeSound();}
 
-function getSignalRemaining(sig) {
-  var now = Math.floor(Date.now() / 1000);
-  var elapsed = now - sig.startTime;
-  return Math.max(0, sig.duration - elapsed);
+function updateSignalsStats(){
+  var w=0,l=0,p=0;
+  SIGNALS_DATA.forEach(function(s){if(s.result==='win')w++;else if(s.result==='lose')l++;else p++;});
+  var t=w+l,wr=t>0?Math.round(w/t*100):0;
+  document.getElementById('signalsStats').innerHTML='<div class="stat-chip active-stat"><span class="stat-icon">◷</span><span>'+p+' Active</span></div><div class="stat-chip win-stat"><span class="stat-icon">✓</span><span>'+w+' Wins</span></div><div class="stat-chip loss-stat"><span class="stat-icon">✗</span><span>'+l+' Losses</span></div><div class="stat-chip rate-stat"><span class="stat-icon">%</span><span>'+wr+'% Rate</span></div>';
 }
 
-function getSignalProgress(sig) {
-  if (sig.duration === 0) return 0;
-  return getSignalRemaining(sig) / sig.duration;
+function updateBadgeVisibility(){
+  var b=document.getElementById('signalsBadge');if(!b)return;
+  if(signalsBadgeDismissed){b.classList.add('hidden');}
+  else{var nc=0;SIGNALS_DATA.forEach(function(s){if(s.isNew)nc++;});if(nc>0){b.textContent=nc;b.classList.remove('hidden');}else{b.classList.add('hidden');}}
 }
 
-function resolveSignal(sig) {
-  if (sig.result !== null) return;
-  var isWin = Math.random() < 0.65;
-  sig.result = isWin ? 'win' : 'lose';
-  var basePct = Math.random() * 1.5 + 0.3;
-  sig.profit = isWin ? basePct : -(basePct * 0.6);
-  playTradeSound();
-}
-
-function updateSignalsStats() {
-  var wins = 0, losses = 0, pending = 0;
-  SIGNALS_DATA.forEach(function(sig) {
-    if (sig.result === 'win') wins++;
-    else if (sig.result === 'lose') losses++;
-    else pending++;
-  });
-  var total = wins + losses;
-  var winRate = total > 0 ? Math.round((wins / total) * 100) : 0;
-  var stats = document.getElementById('signalsStats');
-  stats.innerHTML =
-    '<div class="stat-chip active-stat"><span class="stat-icon">◷</span><span>' + pending + ' Active</span></div>' +
-    '<div class="stat-chip win-stat"><span class="stat-icon">✓</span><span>' + wins + ' Wins</span></div>' +
-    '<div class="stat-chip loss-stat"><span class="stat-icon">✗</span><span>' + losses + ' Losses</span></div>' +
-    '<div class="stat-chip rate-stat"><span class="stat-icon">%</span><span>' + winRate + '% Rate</span></div>';
-}
-
-function updateBadgeVisibility() {
-  var badge = document.getElementById('signalsBadge');
-  if (!badge) return;
-  if (signalsBadgeDismissed) {
-    badge.classList.add('hidden');
-  } else {
-    var newCount = 0;
-    SIGNALS_DATA.forEach(function(sig) { if (sig.isNew) newCount++; });
-    if (newCount > 0) {
-      badge.textContent = newCount;
-      badge.classList.remove('hidden');
-    } else {
-      badge.classList.add('hidden');
-    }
-  }
-}
-
-function buildSignalsPage() {
-  if (signalsUpdateInterval) { clearInterval(signalsUpdateInterval); signalsUpdateInterval = null; }
-  var grid = document.getElementById('signalsGrid');
-  grid.innerHTML = '';
-
-  SIGNALS_DATA.forEach(function(sig, i) {
-    var remaining = getSignalRemaining(sig);
-    var progress = getSignalProgress(sig);
-    var dashOffset = TIMER_CIRCUMFERENCE * (1 - progress);
-    var isBuy = sig.type === 'buy';
-    var cardClass = isBuy ? 'buy-card' : 'sell-card';
-
-    if (remaining <= 0 && sig.result === null) resolveSignal(sig);
-
-    var card = document.createElement('div');
-    card.className = 'signal-card ' + cardClass + (sig.result !== null ? ' expired' : '');
-    card.style.animationDelay = (i * 0.06) + 's';
-    card.setAttribute('data-signal-id', sig.id);
-
-    var timerDashOffset = sig.result !== null ? TIMER_CIRCUMFERENCE : dashOffset;
-    var countdownText = sig.result !== null ? '0:00' : formatCountdown(remaining);
-
-    var newBadgeHTML = sig.isNew ? '<span class="signal-new-badge">NEW</span>' : '';
-
-    card.innerHTML =
-      '<div class="signal-card-inner">' +
-        '<div class="signal-timer-wrap">' +
-          '<svg class="signal-timer-svg" viewBox="0 0 86 86">' +
-            '<circle class="signal-timer-bg" cx="43" cy="43" r="' + TIMER_RADIUS + '"/>' +
-            '<circle class="signal-timer-progress" cx="43" cy="43" r="' + TIMER_RADIUS + '" stroke-dasharray="' + TIMER_CIRCUMFERENCE + '" stroke-dashoffset="' + timerDashOffset + '"/>' +
-          '</svg>' +
-          '<div class="signal-timer-center">' +
-            '<div class="signal-timer-count">' + countdownText + '</div>' +
-            '<div class="signal-timer-label">' + (sig.result !== null ? 'Closed' : 'Left') + '</div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="signal-info">' +
-          '<div class="signal-top-row">' +
-            '<span class="signal-symbol-name">' + sig.symbol + '</span>' +
-            '<span class="signal-type-badge">' + (isBuy ? '▲ BUY' : '▼ SELL') + '</span>' +
-          '</div>' +
-          '<div class="signal-entry-row">' +
-            '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' +
-            '<span class="val">' + formatTime(sig.startTime) + '</span>' +
-            '<span class="sep">|</span>' +
-            '<svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>' +
-            '<span class="val">' + formatPrice(sig.entry) + '</span>' +
-          '</div>' +
-          '<div class="signal-open-hint">' +
-            '<svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>' +
-            '<span>Tap to open chart</span>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-      newBadgeHTML +
-      '<div class="signal-result-overlay ' + (sig.result || '') + '">' +
-        '<div class="signal-result-icon">' +
-          (sig.result === 'win'
-            ? '<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'
-            : sig.result === 'lose'
-            ? '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
-            : '') +
-        '</div>' +
-        '<div class="signal-result-text">' + (sig.result === 'win' ? 'PROFIT' : sig.result === 'lose' ? 'LOSS' : '') + '</div>' +
-        '<div class="signal-result-profit">' + (sig.profit !== null ? (sig.profit >= 0 ? '+' : '') + sig.profit.toFixed(2) + '%' : '') + '</div>' +
-      '</div>';
-
-    card.addEventListener('click', function() {
-      SIGNALS_DATA.forEach(function(s) { s.isNew = false; });
-      signalsBadgeDismissed = true;
-      updateBadgeVisibility();
-      currentSymbol = sig.symbol;
-      updateSymbolDisplay();
-      refreshChart();
-      navigateTo('chart');
-    });
-
+function buildSignalsPage(){
+  if(sUI){clearInterval(sUI);sUI=null;}
+  var grid=document.getElementById('signalsGrid');grid.innerHTML='';
+  SIGNALS_DATA.forEach(function(sig,i){
+    var rem=getSR(sig),prog=sig.duration>0?rem/sig.duration:0;
+    var dOff=TC*(1-prog);var isBuy=sig.type==='buy';var cc=isBuy?'buy-card':'sell-card';
+    if(rem<=0&&sig.result===null)resolveSignal(sig);
+    var card=document.createElement('div');
+    card.className='signal-card '+cc+(sig.result!==null?' expired':'');
+    card.style.animationDelay=(i*0.06)+'s';
+    card.setAttribute('data-signal-id',sig.id);
+    var tdo=sig.result!==null?TC:dOff;
+    var ct=sig.result!==null?'0:00':formatCountdown(rem);
+    var nb=sig.isNew?'<span class="signal-new-badge">NEW</span>':'';
+    card.innerHTML='<div class="signal-card-inner"><div class="signal-timer-wrap"><svg class="signal-timer-svg" viewBox="0 0 86 86"><circle class="signal-timer-bg" cx="43" cy="43" r="'+TR+'"/><circle class="signal-timer-progress" cx="43" cy="43" r="'+TR+'" stroke-dasharray="'+TC+'" stroke-dashoffset="'+tdo+'"/></svg><div class="signal-timer-center"><div class="signal-timer-count">'+ct+'</div><div class="signal-timer-label">'+(sig.result!==null?'Closed':'Left')+'</div></div></div><div class="signal-info"><div class="signal-top-row"><span class="signal-symbol-name">'+sig.symbol+'</span><span class="signal-type-badge">'+(isBuy?'▲ BUY':'▼ SELL')+'</span></div><div class="signal-entry-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="val">'+formatTime(sig.startTime)+'</span><span class="sep">|</span><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="val">'+formatPrice(sig.entry)+'</span></div><div class="signal-open-hint"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Tap to open chart</span></div></div></div>'+nb+'<div class="signal-result-overlay '+(sig.result||'')+'"><div class="signal-result-icon">'+(sig.result==='win'?'<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>':sig.result==='lose'?'<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>':'')+'</div><div class="signal-result-text">'+(sig.result==='win'?'PROFIT':sig.result==='lose'?'LOSS':'')+'</div><div class="signal-result-profit">'+(sig.profit!==null?(sig.profit>=0?'+':'')+sig.profit.toFixed(2)+'%':'')+'</div></div>';
+    card.addEventListener('click',function(){SIGNALS_DATA.forEach(function(s){s.isNew=false;});signalsBadgeDismissed=true;updateBadgeVisibility();currentSymbol=sig.symbol;updateSymbolDisplay();refreshChart();navigateTo('chart');});
     grid.appendChild(card);
   });
-
-  updateSignalsStats();
-  startSignalsTimer();
+  updateSignalsStats();startSignalsTimer();
 }
 
-function startSignalsTimer() {
-  if (signalsUpdateInterval) clearInterval(signalsUpdateInterval);
-  signalsUpdateInterval = setInterval(function() {
-    var anyActive = false;
-    var needRebuild = false;
-    SIGNALS_DATA.forEach(function(sig) {
-      var card = document.querySelector('[data-signal-id="' + sig.id + '"]');
-      if (!card) return;
-      var remaining = getSignalRemaining(sig);
-      if (remaining <= 0 && sig.result === null) {
-        resolveSignal(sig);
-        needRebuild = true;
-        return;
-      }
-      if (sig.result !== null) return;
-      anyActive = true;
-      var progress = remaining / sig.duration;
-      var dashOffset = TIMER_CIRCUMFERENCE * (1 - progress);
-      var progressCircle = card.querySelector('.signal-timer-progress');
-      if (progressCircle) progressCircle.setAttribute('stroke-dashoffset', dashOffset);
-      var countEl = card.querySelector('.signal-timer-count');
-      if (countEl) countEl.textContent = formatCountdown(remaining);
+function startSignalsTimer(){
+  if(sUI)clearInterval(sUI);
+  sUI=setInterval(function(){
+    var any=false,need=false;
+    SIGNALS_DATA.forEach(function(sig){
+      var card=document.querySelector('[data-signal-id="'+sig.id+'"]');if(!card)return;
+      var rem=getSR(sig);
+      if(rem<=0&&sig.result===null){resolveSignal(sig);need=true;return;}
+      if(sig.result!==null)return;any=true;
+      var prog=rem/sig.duration,dOff=TC*(1-prog);
+      var pc=card.querySelector('.signal-timer-progress');if(pc)pc.setAttribute('stroke-dashoffset',dOff);
+      var ce=card.querySelector('.signal-timer-count');if(ce)ce.textContent=formatCountdown(rem);
     });
     updateSignalsStats();
-    if (needRebuild) { buildSignalsPage(); return; }
-    if (!anyActive) { clearInterval(signalsUpdateInterval); signalsUpdateInterval = null; }
-  }, 1000);
+    if(need){buildSignalsPage();return;}
+    if(!any){clearInterval(sUI);sUI=null;}
+  },1000);
 }
 
-setInterval(function() {
-  var syms = ['BTC/USDT','ETH/USDT','SOL/USDT','XRP/USDT','AVAX/USDT','DOGE/USDT','LINK/USDT','ADA/USDT','NEAR/USDT','APT/USDT'];
-  var sym = syms[Math.floor(Math.random() * syms.length)];
-  var symData = getSymbolData(sym);
-  var type = Math.random() < 0.5 ? 'buy' : 'sell';
-  var entry = symData.price;
-  var newSig = {
-    id: Date.now(),
-    symbol: sym,
-    type: type,
-    entry: entry,
-    duration: Math.floor(Math.random() * 180) + 60,
-    startTime: Math.floor(Date.now() / 1000),
-    result: null,
-    profit: null,
-    isNew: true
-  };
-  SIGNALS_DATA.unshift(newSig);
-  playTradeSound();
-  signalsBadgeDismissed = false;
-  updateBadgeVisibility();
-  updateSignalsStats();
-  if (currentPage === 'signals') buildSignalsPage();
-}, 20000);
+setInterval(function(){
+  var syms=['BTC/USDT','ETH/USDT','SOL/USDT','XRP/USDT','AVAX/USDT','DOGE/USDT','LINK/USDT','ADA/USDT','NEAR/USDT','APT/USDT'];
+  var sym=syms[Math.floor(Math.random()*syms.length)];
+  var sd=getSymbolData(sym);
+  var type=Math.random()<0.5?'buy':'sell';
+  SIGNALS_DATA.unshift({id:Date.now(),symbol:sym,type:type,entry:sd.price,duration:Math.floor(Math.random()*180)+60,startTime:Math.floor(Date.now()/1000),result:null,profit:null,isNew:true});
+  playTradeSound();signalsBadgeDismissed=false;updateBadgeVisibility();updateSignalsStats();
+  if(currentPage==='signals')buildSignalsPage();
+},20000);
 
-function buildIndicatorsPage(){var grid=document.getElementById('indicatorsPageGrid');grid.innerHTML='';if(indicators.length===0){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:60px 20px;color:#888;font-size:13px">No indicators yet. Click Editor to create one.</div>';return;}indicators.forEach(function(ind,i){var card=document.createElement('div');card.className='ind-page-card';card.style.animationDelay=(i*0.05)+'s';var pc=ind.plots?ind.plots.length:0;card.innerHTML='<div class="ind-page-card-header"><span class="ind-page-name">'+ind.name+'</span><span class="ind-page-status '+(ind.active?'':'inactive')+'"></span></div><div class="ind-page-desc">'+pc+' plot(s). '+(ind.active?'Currently drawn on chart.':'Not active.')+'</div><div class="ind-page-actions"><button class="ind-page-btn edit" data-id="'+ind.id+'">Edit</button><button class="ind-page-btn toggle '+(ind.active?'active':'')+'" data-id="'+ind.id+'">'+(ind.active?'Running':'Run')+'</button><button class="ind-page-btn delete-btn" data-id="'+ind.id+'" title="Delete">&#10005;</button></div>';grid.appendChild(card);});grid.querySelectorAll('.ind-page-btn.edit').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();loadIndicator(parseInt(btn.getAttribute('data-id')));navigateTo('editor');});});grid.querySelectorAll('.ind-page-btn.toggle').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();loadIndicator(parseInt(btn.getAttribute('data-id')));toggleCurrentIndicator();buildIndicatorsPage();});});grid.querySelectorAll('.ind-page-btn.delete-btn').forEach(function(btn){btn.addEventListener('click',function(e){e.stopPropagation();openDeleteConfirm(parseInt(btn.getAttribute('data-id')));});});}
+function buildIndicatorsPage(){
+  var grid=document.getElementById('indicatorsPageGrid');grid.innerHTML='';
+  var badge=document.getElementById('indicatorsCountBadge');
+  if(badge)badge.textContent=indicators.length+' indicators';
+  var q=(indicatorsSearchQuery||'').trim().toUpperCase();
+  var filtered=indicators.filter(function(ind){return!q||ind.name.toUpperCase().indexOf(q)!==-1;});
+  if(!indicators.length){grid.innerHTML='<div class="ind-no-results">No indicators yet. Click Editor → New to create one.</div>';return;}
+  if(!filtered.length){grid.innerHTML='<div class="ind-no-results">No indicators matching "'+(indicatorsSearchQuery||'')+'"</div>';return;}
+  filtered.forEach(function(ind,i){
+    var card=document.createElement('div');card.className='ind-page-card';card.style.animationDelay=(i*0.05)+'s';
+    var pc=ind.plots?ind.plots.length:0;
+    card.innerHTML='<div class="ind-page-card-header"><span class="ind-page-name">'+ind.name+'</span><span class="ind-page-status '+(ind.active?'':'inactive')+'"></span></div><div class="ind-page-desc">'+pc+' plot(s). '+(ind.active?'Currently drawn on chart.':'Not active.')+'</div><div class="ind-page-actions"><button class="ind-page-btn edit" data-id="'+ind.id+'">Edit</button><button class="ind-page-btn toggle '+(ind.active?'active':'')+'" data-id="'+ind.id+'">'+(ind.active?'Running':'Run')+'</button><button class="ind-page-btn delete-btn" data-id="'+ind.id+'" title="Delete">✕</button></div>';
+    grid.appendChild(card);
+  });
+  grid.querySelectorAll('.ind-page-btn.edit').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();loadIndicator(parseInt(b.getAttribute('data-id')));navigateTo('editor');});});
+  grid.querySelectorAll('.ind-page-btn.toggle').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();loadIndicator(parseInt(b.getAttribute('data-id')));toggleCurrentIndicator();buildIndicatorsPage();});});
+  grid.querySelectorAll('.ind-page-btn.delete-btn').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();openDeleteConfirm(parseInt(b.getAttribute('data-id')));});});
+}
+
+document.getElementById('indicatorsSearch').addEventListener('input',function(e){indicatorsSearchQuery=e.target.value;buildIndicatorsPage();});
 
 var sidebarList=document.getElementById('sidebarList'),editorConsole=document.getElementById('editorConsole'),consoleOutput=document.getElementById('consoleOutput'),indListWrapper=document.getElementById('indListWrapper'),toggleIndicatorsArrow=document.getElementById('toggleIndicatorsArrow'),indicatorsListWrapper=document.getElementById('indicatorsListWrapper'),indicatorsListBody=document.getElementById('indicatorsListBody'),indicatorsListCount=document.getElementById('indicatorsListCount'),currentIndicatorName=document.getElementById('currentIndicatorName'),toggleListBtn=document.getElementById('toggleListBtn');
 var consoleResizeHandle=document.getElementById('consoleResizeHandle'),consoleHeader=document.getElementById('consoleHeader'),isResizingConsole=false,consoleStartY=0,consoleStartHeight=0;
-function startConsoleResize(clientY){if(!editorConsole.classList.contains('visible'))return;isResizingConsole=true;consoleStartY=clientY;consoleStartHeight=editorConsole.offsetHeight;document.body.style.cursor='ns-resize';document.body.style.userSelect='none';}
-consoleResizeHandle.addEventListener('mousedown',function(e){e.preventDefault();startConsoleResize(e.clientY);});
-consoleHeader.addEventListener('mousedown',function(e){if(e.target.closest('.console-clear')||e.target.closest('.console-close'))return;e.preventDefault();startConsoleResize(e.clientY);});
-consoleResizeHandle.addEventListener('touchstart',function(e){startConsoleResize(e.touches[0].clientY);},{passive:true});
-consoleHeader.addEventListener('touchstart',function(e){if(e.target.closest('.console-clear')||e.target.closest('.console-close'))return;startConsoleResize(e.touches[0].clientY);},{passive:true});
-document.addEventListener('mousemove',function(e){if(!isResizingConsole)return;var dY=consoleStartY-e.clientY;var nH=Math.max(60,Math.min(window.innerHeight*0.7,consoleStartHeight+dY));editorConsole.style.setProperty('--console-height',nH+'px');});
-document.addEventListener('touchmove',function(e){if(!isResizingConsole)return;var dY=consoleStartY-e.touches[0].clientY;var nH=Math.max(60,Math.min(window.innerHeight*0.7,consoleStartHeight+dY));editorConsole.style.setProperty('--console-height',nH+'px');},{passive:true});
+function startCR(cY){if(!editorConsole.classList.contains('visible'))return;isResizingConsole=true;consoleStartY=cY;consoleStartHeight=editorConsole.offsetHeight;document.body.style.cursor='ns-resize';document.body.style.userSelect='none';}
+consoleResizeHandle.addEventListener('mousedown',function(e){e.preventDefault();startCR(e.clientY);});
+consoleHeader.addEventListener('mousedown',function(e){if(e.target.closest('.console-clear')||e.target.closest('.console-close'))return;e.preventDefault();startCR(e.clientY);});
+consoleResizeHandle.addEventListener('touchstart',function(e){startCR(e.touches[0].clientY);},{passive:true});
+consoleHeader.addEventListener('touchstart',function(e){if(e.target.closest('.console-clear')||e.target.closest('.console-close'))return;startCR(e.touches[0].clientY);},{passive:true});
+document.addEventListener('mousemove',function(e){if(!isResizingConsole)return;var nH=Math.max(60,Math.min(window.innerHeight*0.7,consoleStartHeight+(consoleStartY-e.clientY)));editorConsole.style.setProperty('--console-height',nH+'px');});
+document.addEventListener('touchmove',function(e){if(!isResizingConsole)return;var nH=Math.max(60,Math.min(window.innerHeight*0.7,consoleStartHeight+(consoleStartY-e.touches[0].clientY)));editorConsole.style.setProperty('--console-height',nH+'px');},{passive:true});
 document.addEventListener('mouseup',function(){if(isResizingConsole){isResizingConsole=false;document.body.style.cursor='';document.body.style.userSelect='';}});
 document.addEventListener('touchend',function(){if(isResizingConsole)isResizingConsole=false;});
 
 function initCodeMirror(){codeMirror=CodeMirror.fromTextArea(document.getElementById('codeEditor'),{mode:'javascript',theme:'material-darker',lineNumbers:true,matchBrackets:true,autoCloseBrackets:true,styleActiveLine:true,indentUnit:2,tabSize:2,indentWithTabs:false,lineWrapping:false,extraKeys:{'Ctrl-Enter':function(){toggleCurrentIndicator();},'Cmd-Enter':function(){toggleCurrentIndicator();}}});codeMirror.on('change',function(cm){if(currentIndicatorId!==null){var ind=findIndicator(currentIndicatorId);if(ind)ind.code=cm.getValue();}});}
 function findIndicator(id){for(var i=0;i<indicators.length;i++){if(indicators[i].id===id)return indicators[i];}return null;}
-function updateSidebar(){sidebarList.innerHTML='';if(indicators.length===0){sidebarList.innerHTML='<div style="padding:14px 10px;color:#888;font-size:11px;text-align:center">No indicators yet.<br>Click + New to create</div>';return;}indicators.forEach(function(ind){var item=document.createElement('div');item.className='sidebar-item'+(ind.id===currentIndicatorId?' active':'');item.innerHTML='<svg class="item-icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span class="item-name">'+ind.name+'</span><span class="item-status '+(ind.active?'':'inactive')+'"></span><button class="sidebar-delete-btn" data-id="'+ind.id+'" title="Delete"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';item.addEventListener('click',function(e){if(e.target.closest('.sidebar-delete-btn'))return;loadIndicator(ind.id);});item.querySelector('.sidebar-delete-btn').addEventListener('click',function(e){e.stopPropagation();openDeleteConfirm(ind.id);});sidebarList.appendChild(item);});}
-function updateIndicatorsList(){indicatorsListBody.innerHTML='';indicatorsListCount.textContent=indicators.length+' total';if(indicators.length===0){indicatorsListBody.innerHTML='<div style="color:#888;font-size:11px;padding:6px">No indicators yet</div>';return;}indicators.forEach(function(ind){var item=document.createElement('div');item.className='ind-list-item'+(ind.id===currentIndicatorId?' active':'')+(ind.hidden?' hidden-ind':'');item.setAttribute('data-id',ind.id);var color=ind.color||'#00ff88';item.innerHTML='<span class="ind-list-color" style="background:'+color+'"></span><span class="ind-list-name">'+ind.name+'</span><span class="ind-list-status '+(ind.active&&!ind.hidden?'':'inactive')+'"></span>';item.addEventListener('click',function(){loadIndicator(ind.id);});indicatorsListBody.appendChild(item);});}
+
+function updateSidebar(){sidebarList.innerHTML='';if(!indicators.length){sidebarList.innerHTML='<div style="padding:14px 10px;color:#888;font-size:11px;text-align:center">No indicators yet.<br>Click + New to create</div>';return;}indicators.forEach(function(ind){var item=document.createElement('div');item.className='sidebar-item'+(ind.id===currentIndicatorId?' active':'');item.innerHTML='<svg class="item-icon" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span class="item-name">'+ind.name+'</span><span class="item-status '+(ind.active?'':'inactive')+'"></span><button class="sidebar-delete-btn" data-id="'+ind.id+'" title="Delete"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>';item.addEventListener('click',function(e){if(e.target.closest('.sidebar-delete-btn'))return;loadIndicator(ind.id);});item.querySelector('.sidebar-delete-btn').addEventListener('click',function(e){e.stopPropagation();openDeleteConfirm(ind.id);});sidebarList.appendChild(item);});}
+
+function updateIndicatorsList(){indicatorsListBody.innerHTML='';indicatorsListCount.textContent=indicators.length+' total';if(!indicators.length){indicatorsListBody.innerHTML='<div style="color:#888;font-size:11px;padding:6px">No indicators yet</div>';return;}indicators.forEach(function(ind){var item=document.createElement('div');item.className='ind-list-item'+(ind.id===currentIndicatorId?' active':'')+(ind.hidden?' hidden-ind':'');item.setAttribute('data-id',ind.id);var color=ind.color||'#00ff88';item.innerHTML='<span class="ind-list-color" style="background:'+color+'"></span><span class="ind-list-name">'+ind.name+'</span><span class="ind-list-status '+(ind.active&&!ind.hidden?'':'inactive')+'"></span>';item.addEventListener('click',function(){loadIndicator(ind.id);});indicatorsListBody.appendChild(item);});}
+
 function toggleIndicatorsList(){var c=indicatorsListWrapper.classList.contains('collapsed');if(c){indicatorsListWrapper.classList.remove('collapsed');toggleListBtn.classList.remove('collapsed');}else{indicatorsListWrapper.classList.add('collapsed');toggleListBtn.classList.add('collapsed');}}
 toggleListBtn.addEventListener('click',toggleIndicatorsList);
 function toggleIndicatorsOnChart(){indicatorsOnChartHidden=!indicatorsOnChartHidden;if(indicatorsOnChartHidden){indListWrapper.classList.add('hidden');toggleIndicatorsArrow.classList.add('collapsed');}else{indListWrapper.classList.remove('hidden');toggleIndicatorsArrow.classList.remove('collapsed');}}
@@ -963,12 +689,14 @@ toggleIndicatorsArrow.addEventListener('click',toggleIndicatorsOnChart);
 function updateCurrentIndicatorDisplay(){if(currentIndicatorId===null){currentIndicatorName.textContent='No indicator';document.getElementById('ciSettings').style.display='none';document.getElementById('ciDelete').style.display='none';return;}var ind=findIndicator(currentIndicatorId);if(!ind)return;currentIndicatorName.textContent=ind.name;document.getElementById('ciSettings').style.display='';document.getElementById('ciDelete').style.display='';}
 
 var expandedIndicators={};
-function updateFloatingIndicators(){indListWrapper.innerHTML='';var shown=indicators.filter(function(ind){return ind.active||ind.hidden;});if(shown.length===0){toggleIndicatorsArrow.style.display='none';return;}toggleIndicatorsArrow.style.display='';shown.forEach(function(ind){var group=document.createElement('div');group.className='floating-indicator-group';var isExp=expandedIndicators[ind.id]!==false;var header=document.createElement('div');header.className='floating-indicator-header'+(isExp?' expanded':'');var aH='<div class="ind-actions"><button class="ind-action settings-ind" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="ind-action toggle-ind" title="'+(ind.hidden?'Show':'Hide')+'">'+(ind.hidden?'<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>':'<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>')+'</button><button class="ind-action delete-ind" title="Remove from chart"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';header.innerHTML='<svg class="expand-icon" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg><span class="ind-name">'+ind.name+(ind.hidden?' (hidden)':'')+'</span>'+aH;header.addEventListener('click',function(e){if(e.target.closest('.ind-action'))return;expandedIndicators[ind.id]=!isExp;updateFloatingIndicators();});header.querySelector('.settings-ind').addEventListener('click',function(e){e.stopPropagation();openIndicatorSettings(ind.id);});header.querySelector('.toggle-ind').addEventListener('click',function(e){e.stopPropagation();toggleIndicatorVisibility(ind.id);});header.querySelector('.delete-ind').addEventListener('click',function(e){e.stopPropagation();removeFromChartOnly(ind.id);});group.appendChild(header);if(isExp&&ind.plots){ind.plots.forEach(function(plot){var pi=document.createElement('div');pi.className='floating-plot-item'+(plot.visible?'':' hidden-plot');var cl=plot.color||'#00ff88';if(plot.type==='fill')cl=plot.color||'rgba(0,191,255,0.3)';pi.innerHTML='<span class="plot-color" style="background:'+cl+'"></span><span class="plot-name">'+plot.name+' <span style="color:#888;font-size:9px">('+plot.type+')</span></span><div class="plot-actions"><button class="plot-action toggle-plot" title="'+(plot.visible?'Hide':'Show')+'">'+(plot.visible?'<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>':'<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>')+'</button></div>';pi.querySelector('.toggle-plot').addEventListener('click',function(e){e.stopPropagation();togglePlotVisibility(ind.id,plot.name);});group.appendChild(pi);});}indListWrapper.appendChild(group);});}
+function updateFloatingIndicators(){indListWrapper.innerHTML='';var shown=indicators.filter(function(ind){return ind.active||ind.hidden;});if(!shown.length){toggleIndicatorsArrow.style.display='none';return;}toggleIndicatorsArrow.style.display='';shown.forEach(function(ind){var group=document.createElement('div');group.className='floating-indicator-group';var isExp=expandedIndicators[ind.id]!==false;var header=document.createElement('div');header.className='floating-indicator-header'+(isExp?' expanded':'');var aH='<div class="ind-actions"><button class="ind-action settings-ind" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="ind-action toggle-ind" title="'+(ind.hidden?'Show':'Hide')+'">'+(ind.hidden?'<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>':'<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>')+'</button><button class="ind-action delete-ind" title="Remove from chart"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>';header.innerHTML='<svg class="expand-icon" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg><span class="ind-name">'+ind.name+(ind.hidden?' (hidden)':'')+'</span>'+aH;header.addEventListener('click',function(e){if(e.target.closest('.ind-action'))return;expandedIndicators[ind.id]=!isExp;updateFloatingIndicators();});header.querySelector('.settings-ind').addEventListener('click',function(e){e.stopPropagation();openIndicatorSettings(ind.id);});header.querySelector('.toggle-ind').addEventListener('click',function(e){e.stopPropagation();toggleIndicatorVisibility(ind.id);});header.querySelector('.delete-ind').addEventListener('click',function(e){e.stopPropagation();removeFromChartOnly(ind.id);});group.appendChild(header);if(isExp&&ind.plots){ind.plots.forEach(function(plot){var pi=document.createElement('div');pi.className='floating-plot-item'+(plot.visible?'':' hidden-plot');var cl=plot.color||'#00ff88';if(plot.type==='fill')cl=plot.color||'rgba(0,191,255,0.3)';pi.innerHTML='<span class="plot-color" style="background:'+cl+'"></span><span class="plot-name">'+plot.name+' <span style="color:#888;font-size:9px">('+plot.type+')</span></span><div class="plot-actions"><button class="plot-action toggle-plot" title="'+(plot.visible?'Hide':'Show')+'">'+(plot.visible?'<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>':'<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>')+'</button></div>';pi.querySelector('.toggle-plot').addEventListener('click',function(e){e.stopPropagation();togglePlotVisibility(ind.id,plot.name);});group.appendChild(pi);});}indListWrapper.appendChild(group);});}
+
 function togglePlotVisibility(indId,plotName){var ind=findIndicator(indId);if(!ind)return;var plot=null;for(var i=0;i<ind.plots.length;i++){if(ind.plots[i].name===plotName){plot=ind.plots[i];break;}}if(!plot)return;plot.visible=!plot.visible;if(plot.seriesRef){if(plot.type==='fill'&&plot.seriesRef.setVisible)plot.seriesRef.setVisible(plot.visible);else if(plot.seriesRef.applyOptions)plot.seriesRef.applyOptions({visible:plot.visible});}if(plot.type==='markers'&&!plot.visible)rebuildAllMarkers();updateFloatingIndicators();}
 function toggleIndicatorVisibility(id){var ind=findIndicator(id);if(!ind)return;if(ind.hidden){ind.hidden=false;rerunIndicator(ind);}else{ind.hidden=true;ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});ind.plots=[];rebuildAllMarkers();}updateFloatingIndicators();updateSidebar();updateIndicatorsList();}
 function openIndicatorSettings(id){var ind=findIndicator(id);if(!ind)return;var nc=prompt('Enter color for "'+ind.name+'" (hex, e.g. #00ff88):',ind.color||'#00ff88');if(nc&&/^#([0-9A-Fa-f]{3}){1,2}$/.test(nc)){ind.color=nc;ind.plots.forEach(function(plot){if(plot.seriesRef&&plot.seriesRef.applyOptions&&plot.type!=='fill'){try{plot.seriesRef.applyOptions({color:nc});}catch(e){}}});updateFloatingIndicators();updateIndicatorsList();}}
 function removeFromChartOnly(id){var ind=findIndicator(id);if(!ind)return;ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});ind.plots=[];ind.active=false;ind.hidden=false;rebuildAllMarkers();updateFloatingIndicators();updateSidebar();updateIndicatorsList();updateRunButton();}
 function deleteIndicatorFull(id){var ind=findIndicator(id);if(!ind)return;ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});indicators=indicators.filter(function(i){return i.id!==id;});if(currentIndicatorId===id){if(indicators.length>0)loadIndicator(indicators[0].id);else{currentIndicatorId=null;codeMirror.setValue('');}}rebuildAllMarkers();updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateCurrentIndicatorDisplay();updateRunButton();}
+
 var deleteConfirmModal=document.getElementById('deleteConfirmModal'),deleteConfirmDesc=document.getElementById('deleteConfirmDesc'),deleteConfirmBtn=document.getElementById('deleteConfirmBtn'),deleteCancelBtn=document.getElementById('deleteCancelBtn');
 function openDeleteConfirm(id){var ind=findIndicator(id);if(!ind)return;pendingDeleteId=id;deleteConfirmDesc.textContent='Are you sure you want to delete "'+ind.name+'"?';deleteConfirmModal.classList.add('visible');}
 function closeDeleteConfirmModal(){deleteConfirmModal.classList.remove('visible');pendingDeleteId=null;}
@@ -979,12 +707,12 @@ deleteConfirmModal.addEventListener('click',function(e){if(e.target===deleteConf
 function loadIndicator(id){var ind=findIndicator(id);if(!ind)return;currentIndicatorId=id;codeMirror.setValue(ind.code);updateSidebar();updateIndicatorsList();updateCurrentIndicatorDisplay();updateRunButton();setTimeout(function(){codeMirror.refresh();},50);}
 function createIndicator(name,code){var id=++indicatorIdCounter;var ni={id:id,name:name,code:code||DEFAULT_INDICATOR_CODE,active:false,hidden:false,color:null,plots:[],isMarkerIndicator:false};indicators.push(ni);loadIndicator(id);return ni;}
 function removeIndicatorSeries(ind){ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});ind.plots=[];ind.active=false;ind.hidden=false;ind.isMarkerIndicator=false;}
-function rebuildAllMarkers(){var am=[];indicators.forEach(function(ind){if(ind.active&&!ind.hidden){ind.plots.forEach(function(plot){if(plot.type==='markers'&&plot.visible&&plot.data){plot.data.forEach(function(m){am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''});});}});}});am.sort(function(a,b){return a.time-b.time;});var um=[],seen={};am.forEach(function(m){var key=m.time+'_'+m.position;if(!seen[key]){seen[key]=true;um.push(m);}});candleSeries.setMarkers(um);currentMarkers=um;}
+function rebuildAllMarkers(){var am=[];indicators.forEach(function(ind){if(ind.active&&!ind.hidden){ind.plots.forEach(function(plot){if(plot.type==='markers'&&plot.visible&&plot.data){plot.data.forEach(function(m){am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''});});}});}});am.sort(function(a,b){return a.time-b.time;});var um=[],seen={};am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});candleSeries.setMarkers(um);currentMarkers=um;}
 function clearConsole(){consoleOutput.innerHTML='';}
 function logToConsole(msg,type){type=type||'info';var line=document.createElement('div');line.className='console-line '+type;var prefix=type==='error'?'✗':(type==='success'?'✓':'›');line.innerHTML='<span class="prefix">'+prefix+'</span><span class="msg">'+escapeHtml(msg)+'</span>';consoleOutput.appendChild(line);consoleOutput.scrollTop=consoleOutput.scrollHeight;editorConsole.classList.add('visible');}
 function escapeHtml(str){var d=document.createElement('div');d.textContent=str;return d.innerHTML;}
 function toggleCurrentIndicator(){if(currentIndicatorId===null)return;var ind=findIndicator(currentIndicatorId);if(!ind)return;if(ind.active&&!ind.hidden)stopIndicator(ind);else runIndicator(ind);}
-function runIndicator(ind){ind.code=codeMirror.getValue();logToConsole('Running: '+ind.name+'.js','info');ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});ind.plots=[];ind.hidden=false;try{var fn=new Function('data',ind.code+'\n;return main(data);');var result=fn(currentChartData);if(!result)throw new Error('Indicator must return a result object');var plots=normalizeResult(result);if(plots.length===0)throw new Error('No plots returned');var pc=0,pn=[];plots.forEach(function(plot){if(!plot)return;pc++;if(!plot.name||plot.name.startsWith('Plot '))plot.name=plot.name||('Plot '+pc);var sr=createPlotSeries(plot,ind);pn.push(plot.name+' ('+plot.type+')');ind.plots.push({id:ind.id+'_'+pc,name:plot.name,type:plot.type,color:plot.color,width:plot.width,lineStyle:plot.lineStyle,visible:true,seriesRef:sr,data:plot.data,upperData:plot.upperData,lowerData:plot.lowerData});});ind.active=true;ind.isMarkerIndicator=plots.some(function(p){return p&&p.type==='markers';});logToConsole('✓ '+ind.name+' loaded — '+plots.length+' plot(s): '+pn.join(', '),'success');navigateTo('chart');}catch(err){logToConsole(err.message,'error');ind.active=false;ind.isMarkerIndicator=false;}updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateRunButton();}
+function runIndicator(ind){ind.code=codeMirror.getValue();logToConsole('Running: '+ind.name+'.js','info');ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});ind.plots=[];ind.hidden=false;try{var fn=new Function('data',ind.code+'\n;return main(data);');var result=fn(currentChartData);if(!result)throw new Error('Indicator must return a result object');var plots=normalizeResult(result);if(!plots.length)throw new Error('No plots returned');var pc=0,pn=[];plots.forEach(function(plot){if(!plot)return;pc++;if(!plot.name||plot.name.startsWith('Plot '))plot.name=plot.name||('Plot '+pc);var sr=createPlotSeries(plot,ind);pn.push(plot.name+' ('+plot.type+')');ind.plots.push({id:ind.id+'_'+pc,name:plot.name,type:plot.type,color:plot.color,width:plot.width,lineStyle:plot.lineStyle,visible:true,seriesRef:sr,data:plot.data,upperData:plot.upperData,lowerData:plot.lowerData});});ind.active=true;ind.isMarkerIndicator=plots.some(function(p){return p&&p.type==='markers';});logToConsole('✓ '+ind.name+' loaded — '+plots.length+' plot(s): '+pn.join(', '),'success');navigateTo('chart');}catch(err){logToConsole(err.message,'error');ind.active=false;ind.isMarkerIndicator=false;}updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateRunButton();}
 function stopIndicator(ind){removeIndicatorSeries(ind);rebuildAllMarkers();logToConsole('Stopped: '+ind.name,'info');updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateRunButton();}
 function updateRunButton(){var btn=document.getElementById('editorRun'),pi=btn.querySelector('.run-icon-play'),si=btn.querySelector('.run-icon-stop'),lb=btn.querySelector('.run-label');if(currentIndicatorId===null){btn.classList.remove('running');pi.style.display='';si.style.display='none';lb.textContent='Run';return;}var ind=findIndicator(currentIndicatorId);if(!ind)return;if(ind.active&&!ind.hidden){btn.classList.add('running');pi.style.display='none';si.style.display='';lb.textContent='Stop';}else{btn.classList.remove('running');pi.style.display='';si.style.display='none';lb.textContent='Run';}}
 function rerunIndicator(ind){try{var fn=new Function('data',ind.code+'\n;return main(data);');var result=fn(currentChartData);if(!result)return;var plots=normalizeResult(result);ind.plots.forEach(function(plot){if(plot.seriesRef){try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else chart.removeSeries(plot.seriesRef);}catch(e){}}});ind.plots=[];plots.forEach(function(plot){if(!plot)return;var sr=createPlotSeries(plot,ind);ind.plots.push({id:ind.id+'_'+plot.name,name:plot.name,type:plot.type,color:plot.color,width:plot.width,lineStyle:plot.lineStyle,visible:true,seriesRef:sr,data:plot.data,upperData:plot.upperData,lowerData:plot.lowerData});});}catch(e){}}
