@@ -11,7 +11,7 @@
 html,body{width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:monospace}
 
 .logo-container{
-  width:280px;height:280px;position:relative;z-index:5;
+  width:340px;height:340px;position:relative;z-index:5;
   transition:transform 3s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.5s ease, z-index 0.3s ease 2.5s;
 }
 .logo-container svg{width:100%;height:100%;overflow:visible;display:block}
@@ -559,7 +559,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   flex-shrink:0;
 }
 
-/* Current indicator display (replaces filename) */
 .current-indicator-display{
   display:flex;
   align-items:center;
@@ -672,7 +671,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   box-shadow:0 0 20px rgba(255,68,102,0.4);
 }
 
-/* ============ INDICATORS LIST (collapsible) ============ */
+/* ============ INDICATORS LIST ============ */
 .indicators-list-wrapper{
   background:rgba(8,14,24,0.95);
   border-bottom:1px solid rgba(0,210,255,0.1);
@@ -774,7 +773,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   box-shadow:none;
 }
 
-/* Toggle list button (under toolbar) */
 .toggle-list-btn{
   position:absolute;
   top:100%;
@@ -811,102 +809,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 .toggle-list-btn.collapsed svg{
   transform:rotate(180deg);
-}
-
-/* Tabs bar (for editor tabs) */
-.indicators-tabs{
-  display:flex;
-  align-items:center;
-  gap:2px;
-  padding:6px 10px;
-  background:rgba(8,14,24,0.95);
-  border-bottom:1px solid rgba(0,210,255,0.1);
-  overflow-x:auto;
-  flex-shrink:0;
-  direction:ltr;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(0,210,255,0.2) transparent;
-}
-.indicators-tabs::-webkit-scrollbar{height:4px}
-.indicators-tabs::-webkit-scrollbar-track{background:transparent}
-.indicators-tabs::-webkit-scrollbar-thumb{background:rgba(0,210,255,0.2);border-radius:2px}
-.tab-item{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  padding:6px 12px;
-  background:transparent;
-  border:1px solid rgba(0,210,255,0.1);
-  border-radius:6px;
-  color:rgba(0,210,255,0.6);
-  font-family:monospace;
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:0.5px;
-  cursor:pointer;
-  transition:all 0.2s ease;
-  white-space:nowrap;
-  flex-shrink:0;
-  position:relative;
-}
-.tab-item:hover{
-  background:rgba(0,210,255,0.06);
-  color:#00d2ff;
-  border-color:rgba(0,210,255,0.2);
-}
-.tab-item.active{
-  background:rgba(0,210,255,0.1);
-  color:#00f0ff;
-  border-color:rgba(0,240,255,0.4);
-}
-.tab-item.active::before{
-  content:'';
-  position:absolute;
-  bottom:-6px;
-  left:50%;
-  transform:translateX(-50%);
-  width:60%;
-  height:2px;
-  background:#00f0ff;
-  border-radius:1px;
-  box-shadow:0 0 6px #00f0ff;
-}
-.tab-status{
-  width:5px;height:5px;
-  border-radius:50%;
-  background:#00ff88;
-  box-shadow:0 0 5px #00ff88;
-  flex-shrink:0;
-}
-.tab-status.inactive{
-  background:rgba(0,210,255,0.3);
-  box-shadow:none;
-}
-.tab-close{
-  width:14px;height:14px;
-  display:flex;align-items:center;justify-content:center;
-  border-radius:3px;
-  color:rgba(0,210,255,0.4);
-  transition:all 0.2s ease;
-  margin-left:2px;
-}
-.tab-close:hover{
-  background:rgba(255,68,102,0.15);
-  color:#ff4466;
-}
-.tab-close svg{
-  width:10px;height:10px;
-  stroke:currentColor;
-  fill:none;
-  stroke-width:2.5;
-  stroke-linecap:round;
-}
-.tabs-empty{
-  color:rgba(0,210,255,0.3);
-  font-size:10px;
-  font-family:monospace;
-  letter-spacing:0.5px;
-  padding:4px 8px;
 }
 
 .editor-body{
@@ -1358,7 +1260,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   color:#00ff88;
 }
 
-/* New indicator modal */
 .modal-overlay{
   position:fixed;
   top:0;left:0;
@@ -1485,7 +1386,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   letter-spacing:0.5px;
 }
 
-/* Bottom dock bar */
 .bottom-bar{
   position:fixed;
   bottom:8px;
@@ -1592,13 +1492,12 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   50%{transform:scale(1.1)}
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .editor-sidebar{width:180px}
 }
 
 @media (max-width: 600px) {
-  .logo-container{width:220px;height:220px}
+  .logo-container{width:260px;height:260px}
   .logo-container.expanded{transform:scale(1.5)}
   .chart-container{height:calc(100% - 50px)}
   .bottom-bar{
@@ -1632,8 +1531,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .editor-btn{padding:6px 10px;font-size:10px}
   .editor-btn span.btn-text{display:none}
   .CodeMirror{font-size:11px !important}
-  .indicators-tabs{padding:4px 8px}
-  .tab-item{padding:5px 10px;font-size:10px}
   .signals-grid{grid-template-columns:1fr}
   .indicators-page-grid{grid-template-columns:repeat(auto-fill, minmax(180px, 1fr))}
   .active-indicator-item{padding:3px 6px 3px 8px}
@@ -1647,7 +1544,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 
 @media (max-width: 380px) {
-  .logo-container{width:180px;height:180px}
+  .logo-container{width:220px;height:220px}
   .logo-container.expanded{transform:scale(1.4)}
   .chart-container{height:calc(100% - 45px)}
   .bottom-bar{gap:3px;padding:3px 10px;bottom:4px}
@@ -1721,7 +1618,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   <div class="no-results" id="noResults">No markets found</div>
 </div>
 
-<!-- ============ SIGNALS PAGE ============ -->
 <div class="signals-page" id="signalsPage">
   <div class="signals-header">
     <div class="signals-title">
@@ -1736,7 +1632,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   <div class="signals-grid" id="signalsGrid"></div>
 </div>
 
-<!-- ============ INDICATORS PAGE ============ -->
 <div class="indicators-page" id="indicatorsPage">
   <div class="indicators-page-header">
     <div class="indicators-page-title">Indicators Library</div>
@@ -1744,7 +1639,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   <div class="indicators-page-grid" id="indicatorsPageGrid"></div>
 </div>
 
-<!-- ============ EDITOR PAGE ============ -->
 <div class="editor-page" id="editorPage">
   <div class="editor-toolbar">
     <div class="editor-toolbar-left">
@@ -1753,7 +1647,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
         <span class="btn-text">Back</span>
       </button>
       
-      <!-- Current indicator display (name + actions) -->
       <div class="current-indicator-display" id="currentIndicatorDisplay">
         <span class="current-indicator-name" id="currentIndicatorName">RSI</span>
         <div class="current-indicator-actions">
@@ -1779,7 +1672,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
     </div>
   </div>
   
-  <!-- Collapsible indicators list -->
   <div class="indicators-list-wrapper" id="indicatorsListWrapper">
     <div class="indicators-list-header">
       <span class="indicators-list-title">All Indicators</span>
@@ -1788,7 +1680,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
     <div class="indicators-list-body" id="indicatorsListBody"></div>
   </div>
   
-  <!-- Toggle button (slides up when collapsed) -->
   <button class="toggle-list-btn" id="toggleListBtn" title="Toggle indicators list">
     <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
@@ -1815,7 +1706,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   </div>
 </div>
 
-<!-- New Indicator Modal -->
 <div class="modal-overlay" id="newIndicatorModal">
   <div class="modal">
     <div class="modal-title">New Indicator</div>
@@ -1936,7 +1826,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
 
 <script>
-// ============ DATA ============
 var SYMBOLS = [
   {symbol:'BTC/USDT', price:67234.50, change:2.45},
   {symbol:'ETH/USDT', price:3456.20, change:1.82},
@@ -1972,7 +1861,6 @@ var currentTimeframe = '1H';
 var searchQuery = '';
 var currentPage = 'chart';
 
-// ============ EDITOR STATE ============
 var indicators = [];
 var currentIndicatorId = null;
 var indicatorIdCounter = 0;
@@ -2215,7 +2103,6 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// ============ CHART ============
 function generateCandleData(numCandles, basePrice, volatility, intervalSeconds) {
   var data = [];
   var price = basePrice;
@@ -2436,7 +2323,6 @@ function startLiveSimulation() {
 initChart();
 updateSymbolDisplay();
 
-// ============ PAGE NAVIGATION ============
 function navigateTo(page) {
   currentPage = page;
   
@@ -2476,7 +2362,6 @@ document.querySelectorAll('.tool-btn[data-page]').forEach(function(btn) {
   });
 });
 
-// ============ SIGNALS PAGE ============
 function buildSignalsPage() {
   var grid = document.getElementById('signalsGrid');
   grid.innerHTML = '';
@@ -2499,7 +2384,6 @@ function buildSignalsPage() {
   });
 }
 
-// ============ INDICATORS PAGE ============
 function buildIndicatorsPage() {
   var grid = document.getElementById('indicatorsPageGrid');
   grid.innerHTML = '';
@@ -2546,7 +2430,6 @@ function buildIndicatorsPage() {
   });
 }
 
-// ============ EDITOR LOGIC (CodeMirror) ============
 var editorPage = document.getElementById('editorPage');
 var sidebarList = document.getElementById('sidebarList');
 var editorConsole = document.getElementById('editorConsole');
@@ -2611,7 +2494,6 @@ function updateSidebar() {
   });
 }
 
-// Update indicators list (collapsible panel under toolbar)
 function updateIndicatorsList() {
   indicatorsListBody.innerHTML = '';
   indicatorsListCount.textContent = indicators.length + ' total';
@@ -2641,7 +2523,6 @@ function updateIndicatorsList() {
   });
 }
 
-// Toggle indicators list visibility
 function toggleIndicatorsList() {
   indicatorsListCollapsed = !indicatorsListCollapsed;
   if (indicatorsListCollapsed) {
@@ -2655,7 +2536,6 @@ function toggleIndicatorsList() {
 
 toggleListBtn.addEventListener('click', toggleIndicatorsList);
 
-// Update current indicator display (name + actions in toolbar)
 function updateCurrentIndicatorDisplay() {
   if (currentIndicatorId === null) {
     currentIndicatorName.textContent = 'No indicator';
@@ -2672,7 +2552,6 @@ function updateCurrentIndicatorDisplay() {
   document.getElementById('ciDelete').style.display = '';
 }
 
-// Build active indicators chips (under symbol button on chart page)
 function updateActiveIndicatorsBar() {
   activeIndicatorsBar.innerHTML = '';
   
@@ -3023,7 +2902,6 @@ function rerunAllIndicators() {
   });
 }
 
-// Editor toolbar events
 document.getElementById('editorBack').addEventListener('click', function() {
   navigateTo('chart');
 });
@@ -3037,7 +2915,6 @@ document.getElementById('consoleClear').addEventListener('click', function() {
   editorConsole.classList.remove('visible');
 });
 
-// Current indicator actions (in toolbar)
 document.getElementById('ciSettings').addEventListener('click', function() {
   if (currentIndicatorId !== null) {
     openIndicatorSettings(currentIndicatorId);
@@ -3050,7 +2927,6 @@ document.getElementById('ciDelete').addEventListener('click', function() {
   }
 });
 
-// ============ NEW INDICATOR MODAL ============
 var newIndicatorModal = document.getElementById('newIndicatorModal');
 var newIndicatorInput = document.getElementById('newIndicatorInput');
 var newIndicatorFilename = document.getElementById('newIndicatorFilename');
@@ -3122,7 +2998,6 @@ function confirmNewIndicator() {
   logToConsole('Created new indicator: ' + sanitized + '.js', 'success');
 }
 
-// ============ LOGO ANIMATION ============
 (function () {
   var dashEls = document.querySelectorAll(
     '.hexagon-border, .hexagon, .notch-fill, .notch-fill-inner'
@@ -3270,7 +3145,6 @@ function confirmNewIndicator() {
   play();
 })();
 
-// ============ INIT ============
 initCodeMirror();
 createIndicator('RSI', RSI_EXAMPLE_CODE);
 updateIndicatorsList();
