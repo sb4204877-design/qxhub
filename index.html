@@ -11,7 +11,8 @@
 html,body{width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:monospace}
 
 .logo-container{
-  width:380px;height:380px;position:relative;z-index:5;
+  width:440px;height:440px;position:relative;z-index:5;
+  transform-origin:50% 42.5%;
   transition:transform 3s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.5s ease, z-index 0.3s ease 2.5s;
 }
 .logo-container svg{width:100%;height:100%;overflow:visible;display:block}
@@ -572,7 +573,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   z-index:80;
   opacity:0;
   pointer-events:none;
-  transition:opacity 0.4s ease;
+  transition:opacity 0.3s ease;
   display:flex;
   flex-direction:column;
 }
@@ -699,7 +700,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   background:rgba(0,255,136,0.18);
   border-color:rgba(0,255,136,0.6);
   color:#00ff88;
-  box-shadow:0 0 15px rgba(0,255,136,0.2);
 }
 .editor-btn.primary:active{
   transform:scale(0.96);
@@ -708,13 +708,11 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   background:rgba(255,68,102,0.15);
   border-color:rgba(255,68,102,0.5);
   color:#ff4466;
-  box-shadow:0 0 15px rgba(255,68,102,0.3);
 }
 .editor-btn.primary.running:hover{
   background:rgba(255,68,102,0.25);
   border-color:rgba(255,68,102,0.7);
   color:#ff6680;
-  box-shadow:0 0 20px rgba(255,68,102,0.4);
 }
 
 /* ============ INDICATORS LIST ============ */
@@ -1093,7 +1091,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   z-index:75;
   opacity:0;
   pointer-events:none;
-  transition:opacity 0.4s ease;
+  transition:opacity 0.3s ease;
   overflow-y:auto;
   padding:30px 30px 90px;
   direction:ltr;
@@ -1229,7 +1227,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   z-index:75;
   opacity:0;
   pointer-events:none;
-  transition:opacity 0.4s ease;
+  transition:opacity 0.3s ease;
   overflow-y:auto;
   padding:30px 30px 90px;
   direction:ltr;
@@ -1368,7 +1366,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   padding:24px;
   transform:scale(0.9) translateY(20px);
   transition:transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow:0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,210,255,0.1);
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
 }
 .modal-overlay.visible .modal{
   transform:scale(1) translateY(0);
@@ -1455,7 +1453,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .modal-btn.primary:hover{
   background:rgba(0,240,255,0.18);
   border-color:rgba(0,240,255,0.6);
-  box-shadow:0 0 15px rgba(0,240,255,0.2);
 }
 .modal-error{
   color:#ff4466;
@@ -1519,7 +1516,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 .tool-btn.active svg{
   stroke:#00f0ff;
-  filter:drop-shadow(0 0 4px rgba(0,240,255,0.5));
 }
 .tool-btn.active .label{
   color:#00f0ff;
@@ -1565,12 +1561,6 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   align-items:center;
   justify-content:center;
   font-family:monospace;
-  box-shadow:0 0 8px rgba(255,68,102,0.6);
-  animation:badgePulse 2s infinite;
-}
-@keyframes badgePulse{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.1)}
 }
 
 /* Responsive */
@@ -1579,7 +1569,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 
 @media (max-width: 600px) {
-  .logo-container{width:300px;height:300px}
+  .logo-container{width:340px;height:340px}
   .logo-container.expanded{transform:scale(1.5)}
   .chart-container{height:calc(100% - 60px)}
   .bottom-bar{
@@ -1629,7 +1619,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 
 @media (max-width: 380px) {
-  .logo-container{width:260px;height:260px}
+  .logo-container{width:300px;height:300px}
   .logo-container.expanded{transform:scale(1.4)}
   .chart-container{height:calc(100% - 55px)}
   .bottom-bar{
@@ -1724,7 +1714,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
       </svg>
       <span>Trading Signals</span>
     </div>
-    <div class="signals-count">3 Active</div>
+    <div class="signals-count" id="signalsCount">3 Active</div>
   </div>
   <div class="signals-grid" id="signalsGrid"></div>
 </div>
@@ -1911,7 +1901,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
       <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
       <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
     </svg>
-    <span class="badge">3</span>
+    <span class="badge" id="signalsBadge">3</span>
     <span class="label">Signals</span>
   </button>
 </div>
@@ -1965,6 +1955,15 @@ var indicatorIdCounter = 0;
 var codeMirror = null;
 var indicatorsListCollapsed = false;
 var indicatorsOnChartHidden = false;
+
+var SIGNALS_DATA = [
+  {symbol:'BTC/USDT', type:'buy', entry:67234.50, target:69500, stop:66100, time:'2 min ago'},
+  {symbol:'ETH/USDT', type:'buy', entry:3456.20, target:3650, stop:3380, time:'8 min ago'},
+  {symbol:'SOL/USDT', type:'sell', entry:178.50, target:165, stop:185, time:'15 min ago'},
+  {symbol:'XRP/USDT', type:'buy', entry:0.5432, target:0.58, stop:0.52, time:'23 min ago'},
+  {symbol:'AVAX/USDT', type:'buy', entry:38.76, target:42.50, stop:36.80, time:'34 min ago'},
+  {symbol:'DOGE/USDT', type:'sell', entry:0.1654, target:0.148, stop:0.175, time:'42 min ago'}
+];
 
 // ============ NEW DEFAULT: SIGNALS INDICATOR (markers on candles) ============
 var SIGNALS_EXAMPLE_CODE = 
@@ -2056,15 +2055,6 @@ function main(data) {
     title: 'MA ' + period
   };
 }`;
-
-var SIGNALS_DATA = [
-  {symbol:'BTC/USDT', type:'buy', entry:67234.50, target:69500, stop:66100, time:'2 min ago'},
-  {symbol:'ETH/USDT', type:'buy', entry:3456.20, target:3650, stop:3380, time:'8 min ago'},
-  {symbol:'SOL/USDT', type:'sell', entry:178.50, target:165, stop:185, time:'15 min ago'},
-  {symbol:'XRP/USDT', type:'buy', entry:0.5432, target:0.58, stop:0.52, time:'23 min ago'},
-  {symbol:'AVAX/USDT', type:'buy', entry:38.76, target:42.50, stop:36.80, time:'34 min ago'},
-  {symbol:'DOGE/USDT', type:'sell', entry:0.1654, target:0.148, stop:0.175, time:'42 min ago'}
-];
 
 function formatPrice(p) {
   if (p >= 1000) return p.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
@@ -2280,6 +2270,7 @@ function getTimeframeData(tf) {
 var chart, candleSeries, ma10Series, ma20Series;
 var lastCandleData = null;
 var currentChartData = [];
+var liveTickCounter = 0;
 
 function initChart() {
   var container = document.getElementById('tvChart');
@@ -2294,8 +2285,8 @@ function initChart() {
       fontSize: 9
     },
     grid: {
-      vertLines: { color: 'rgba(0, 210, 255, 0.04)' },
-      horzLines: { color: 'rgba(0, 210, 255, 0.04)' }
+      vertLines: { color: 'rgba(0, 210, 255, 0.09)' },
+      horzLines: { color: 'rgba(0, 210, 255, 0.09)' }
     },
     crosshair: {
       mode: LightweightCharts.CrosshairMode.Normal,
@@ -2353,8 +2344,11 @@ function initChart() {
     wickUpColor: '#00ff88',
     wickDownColor: '#ff4466',
     priceScaleId: 'right',
-    priceLineVisible: false,
-    lastValueVisible: false
+    priceLineVisible: true,
+    priceLineWidth: 1,
+    priceLineColor: '#00f0ff',
+    priceLineStyle: LightweightCharts.LineStyle.Dashed,
+    lastValueVisible: true
   });
   
   loadData();
@@ -2409,11 +2403,16 @@ function refreshChart() {
   loadData();
 }
 
+// Live tick: updates current candle every 1.5s, and every ~15s forms
+// a brand-new candle + reruns indicators so fresh signals can appear.
 function startLiveSimulation() {
   setInterval(function() {
     if (!lastCandleData) return;
     var sym = getSymbolData(currentSymbol);
-    var change = (Math.random() - 0.5) * sym.price * 0.001;
+    var tf = getTimeframeData(currentTimeframe);
+    liveTickCounter++;
+
+    var change = (Math.random() - 0.5) * sym.price * 0.0012;
     var newClose = lastCandleData.close + change;
     var newHigh = Math.max(lastCandleData.high, newClose);
     var newLow = Math.min(lastCandleData.low, newClose);
@@ -2426,13 +2425,31 @@ function startLiveSimulation() {
       volume: lastCandleData.volume
     };
     candleSeries.update(lastCandleData);
-    
+
     if (currentChartData.length > 0) {
       currentChartData[currentChartData.length - 1] = Object.assign({}, lastCandleData);
     }
-    
+
     sym.price = newClose;
     updateSymbolDisplay();
+
+    // Every ~10 ticks (15s) open a fresh candle so indicators get new data
+    if (liveTickCounter % 10 === 0) {
+      var nextTime = lastCandleData.time + tf.seconds;
+      var openPrice = lastCandleData.close;
+      lastCandleData = {
+        time: nextTime,
+        open: openPrice,
+        high: openPrice,
+        low: openPrice,
+        close: openPrice,
+        volume: Math.round(Math.random() * 1500 + 300)
+      };
+      currentChartData.push(Object.assign({}, lastCandleData));
+      if (currentChartData.length > 300) currentChartData.shift();
+      candleSeries.update(lastCandleData);
+      rerunAllIndicators();
+    }
   }, 1500);
 }
 
@@ -2446,9 +2463,17 @@ function navigateTo(page) {
     btn.classList.toggle('active', btn.getAttribute('data-page') === page);
   });
   
-  document.getElementById('editorPage').classList.remove('visible');
-  document.getElementById('signalsPage').classList.remove('visible');
-  document.getElementById('indicatorsPage').classList.remove('visible');
+  // Hide any currently-visible full-screen overlay pages instantly (no
+  // fade-out) so they never cross-fade with each other and briefly
+  // reveal the chart underneath.
+  [editorPageEl, signalsPageEl, indicatorsPageEl].forEach(function(el) {
+    if (el.classList.contains('visible')) {
+      el.style.transition = 'none';
+      el.classList.remove('visible');
+      void el.offsetWidth;
+      el.style.transition = '';
+    }
+  });
   
   var topControls = document.getElementById('topControls');
   
@@ -2456,20 +2481,24 @@ function navigateTo(page) {
     topControls.classList.add('visible');
   } else if (page === 'editor') {
     topControls.classList.remove('visible');
-    document.getElementById('editorPage').classList.add('visible');
+    editorPageEl.classList.add('visible');
     setTimeout(function() {
       if (codeMirror) codeMirror.refresh();
     }, 100);
   } else if (page === 'indicators') {
     topControls.classList.remove('visible');
     buildIndicatorsPage();
-    document.getElementById('indicatorsPage').classList.add('visible');
+    indicatorsPageEl.classList.add('visible');
   } else if (page === 'signals') {
     topControls.classList.remove('visible');
     buildSignalsPage();
-    document.getElementById('signalsPage').classList.add('visible');
+    signalsPageEl.classList.add('visible');
   }
 }
+
+var editorPageEl = document.getElementById('editorPage');
+var signalsPageEl = document.getElementById('signalsPage');
+var indicatorsPageEl = document.getElementById('indicatorsPage');
 
 document.querySelectorAll('.tool-btn[data-page]').forEach(function(btn) {
   btn.addEventListener('click', function() {
@@ -2481,6 +2510,8 @@ document.querySelectorAll('.tool-btn[data-page]').forEach(function(btn) {
 function buildSignalsPage() {
   var grid = document.getElementById('signalsGrid');
   grid.innerHTML = '';
+  document.getElementById('signalsCount').textContent = SIGNALS_DATA.length + ' Active';
+  document.getElementById('signalsBadge').textContent = SIGNALS_DATA.length;
   SIGNALS_DATA.forEach(function(sig, i) {
     var card = document.createElement('div');
     card.className = 'signal-card';
@@ -2499,6 +2530,29 @@ function buildSignalsPage() {
     grid.appendChild(card);
   });
 }
+
+// Periodically generate a brand-new trading signal so the Signals page
+// keeps producing fresh entries over time.
+function generateNewSignal() {
+  var sym = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
+  var isBuy = Math.random() > 0.5;
+  var entry = sym.price;
+  var target = isBuy ? entry * (1 + (0.02 + Math.random() * 0.03)) : entry * (1 - (0.02 + Math.random() * 0.03));
+  var stop = isBuy ? entry * (1 - (0.01 + Math.random() * 0.015)) : entry * (1 + (0.01 + Math.random() * 0.015));
+  var sig = {
+    symbol: sym.symbol,
+    type: isBuy ? 'buy' : 'sell',
+    entry: entry,
+    target: target,
+    stop: stop,
+    time: 'just now'
+  };
+  SIGNALS_DATA.unshift(sig);
+  if (SIGNALS_DATA.length > 8) SIGNALS_DATA.length = 8;
+  document.getElementById('signalsBadge').textContent = SIGNALS_DATA.length;
+  if (currentPage === 'signals') buildSignalsPage();
+}
+setInterval(generateNewSignal, 25000);
 
 function buildIndicatorsPage() {
   var grid = document.getElementById('indicatorsPageGrid');
@@ -2546,7 +2600,6 @@ function buildIndicatorsPage() {
   });
 }
 
-var editorPage = document.getElementById('editorPage');
 var sidebarList = document.getElementById('sidebarList');
 var editorConsole = document.getElementById('editorConsole');
 var consoleOutput = document.getElementById('consoleOutput');
