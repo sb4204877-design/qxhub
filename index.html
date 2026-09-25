@@ -11,7 +11,7 @@
 html,body{width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:monospace}
 
 .logo-container{
-  width:340px;height:340px;position:relative;z-index:5;
+  width:380px;height:380px;position:relative;z-index:5;
   transition:transform 3s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.5s ease, z-index 0.3s ease 2.5s;
 }
 .logo-container svg{width:100%;height:100%;overflow:visible;display:block}
@@ -164,33 +164,46 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 /* ============ ACTIVE INDICATORS BAR ============ */
 .active-indicators-bar{
   display:flex;
-  flex-wrap:wrap;
-  gap:6px;
+  flex-direction:column;
+  gap:4px;
   max-width:100%;
 }
+.ind-list-wrapper{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  max-height:500px;
+  overflow:hidden;
+  transition:max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  opacity:1;
+}
+.ind-list-wrapper.hidden{
+  max-height:0;
+  opacity:0;
+  pointer-events:none;
+}
+
 .active-indicator-item{
   display:flex;
   align-items:center;
   gap:6px;
-  padding:4px 8px 4px 10px;
-  background:rgba(10,20,35,0.7);
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  border:1px solid rgba(0,210,255,0.2);
-  border-radius:8px;
+  padding:3px 6px 3px 8px;
+  background:transparent;
+  border:none;
+  border-radius:0;
   transition:all 0.25s ease;
   direction:ltr;
 }
 .active-indicator-item:hover{
-  border-color:rgba(0,210,255,0.4);
-  background:rgba(10,20,35,0.85);
+  background:rgba(10,20,35,0.5);
+  border-radius:6px;
 }
-.active-indicator-item.hidden{
-  opacity:0.5;
+.active-indicator-item.hidden-ind{
+  opacity:0.4;
 }
-.active-indicator-item.hidden .ind-item-name{
+.active-indicator-item.hidden-ind .ind-item-name{
   text-decoration:line-through;
-  color:rgba(0,210,255,0.5);
+  color:rgba(0,210,255,0.4);
 }
 .ind-item-color{
   width:8px;height:8px;
@@ -200,7 +213,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 .ind-item-name{
   color:#00d2ff;
-  font-size:10px;
+  font-size:11px;
   font-weight:bold;
   letter-spacing:0.5px;
   font-family:monospace;
@@ -209,9 +222,10 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .ind-item-actions{
   display:flex;
   gap:2px;
+  margin-left:2px;
 }
 .ind-item-action{
-  width:18px;height:18px;
+  width:20px;height:20px;
   display:flex;align-items:center;justify-content:center;
   background:transparent;
   border:none;
@@ -222,7 +236,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   padding:0;
 }
 .ind-item-action svg{
-  width:11px;height:11px;
+  width:12px;height:12px;
   stroke:currentColor;
   fill:none;
   stroke-width:2;
@@ -236,6 +250,38 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .ind-item-action.delete:hover{
   background:rgba(255,68,102,0.15);
   color:#ff4466;
+}
+
+/* Toggle arrow - NO border */
+.toggle-indicators-arrow{
+  width:28px;
+  height:14px;
+  background:transparent;
+  border:none;
+  color:rgba(0,210,255,0.5);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:all 0.25s ease;
+  padding:0;
+  margin-top:-2px;
+  align-self:flex-start;
+}
+.toggle-indicators-arrow:hover{
+  color:#00f0ff;
+}
+.toggle-indicators-arrow svg{
+  width:12px;height:12px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  transition:transform 0.3s ease;
+}
+.toggle-indicators-arrow.collapsed svg{
+  transform:rotate(180deg);
 }
 
 .overlay-menu{
@@ -933,6 +979,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   border-bottom:1px solid #00f0ff;
 }
 
+/* ============ RESIZABLE CONSOLE ============ */
 .editor-console{
   height:0;
   background:rgba(5,12,22,0.95);
@@ -942,9 +989,42 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   display:flex;
   flex-direction:column;
   flex-shrink:0;
+  position:relative;
 }
 .editor-console.visible{
-  height:140px;
+  height:var(--console-height, 140px);
+}
+.console-resize-handle{
+  position:absolute;
+  top:-4px;
+  left:0;
+  width:100%;
+  height:8px;
+  background:transparent;
+  cursor:ns-resize;
+  z-index:10;
+  transition:background 0.2s ease;
+}
+.console-resize-handle:hover,
+.console-resize-handle.dragging{
+  background:rgba(0,210,255,0.15);
+}
+.console-resize-handle::after{
+  content:'';
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  width:40px;
+  height:2px;
+  background:rgba(0,210,255,0.3);
+  border-radius:1px;
+  opacity:0;
+  transition:opacity 0.2s ease;
+}
+.console-resize-handle:hover::after,
+.console-resize-handle.dragging::after{
+  opacity:1;
 }
 .console-header{
   display:flex;
@@ -1386,25 +1466,26 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   letter-spacing:0.5px;
 }
 
+/* Bottom dock bar - BIGGER for mobile */
 .bottom-bar{
   position:fixed;
-  bottom:8px;
+  bottom:10px;
   left:50%;
   transform:translateX(-50%) translateY(80px);
   display:flex;
-  gap:14px;
-  padding:4px 32px;
+  gap:16px;
+  padding:8px 36px;
   background:rgba(10,20,35,0.85);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
   border:1px solid rgba(0,210,255,0.18);
-  border-radius:22px;
+  border-radius:24px;
   opacity:0;
   pointer-events:none;
   transition:opacity 0.8s ease, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index:100;
   direction:ltr;
-  width:520px;
+  width:560px;
   justify-content:space-around;
   align-items:center;
 }
@@ -1418,14 +1499,14 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:2px;
-  padding:5px 16px;
+  gap:4px;
+  padding:8px 18px;
   background:transparent;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   cursor:pointer;
   transition:all 0.3s ease;
-  min-width:80px;
+  min-width:90px;
   flex:1;
   position:relative;
 }
@@ -1444,7 +1525,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   color:#00f0ff;
 }
 .tool-btn svg{
-  width:18px;height:18px;
+  width:22px;height:22px;
   stroke:#00d2ff;
   fill:none;
   stroke-width:1.8;
@@ -1458,7 +1539,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 .tool-btn .label{
   color:#00d2ff;
-  font-size:9px;
+  font-size:11px;
   letter-spacing:1.5px;
   text-transform:uppercase;
   font-family:monospace;
@@ -1471,15 +1552,15 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .tool-btn .badge{
   position:absolute;
   top:2px;
-  right:18px;
-  min-width:14px;
-  height:14px;
-  padding:0 4px;
+  right:20px;
+  min-width:16px;
+  height:16px;
+  padding:0 5px;
   background:#ff4466;
   color:#fff;
-  font-size:8px;
+  font-size:9px;
   font-weight:bold;
-  border-radius:7px;
+  border-radius:8px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -1492,27 +1573,32 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   50%{transform:scale(1.1)}
 }
 
+/* Responsive */
 @media (max-width: 768px) {
   .editor-sidebar{width:180px}
 }
 
 @media (max-width: 600px) {
-  .logo-container{width:260px;height:260px}
+  .logo-container{width:300px;height:300px}
   .logo-container.expanded{transform:scale(1.5)}
-  .chart-container{height:calc(100% - 50px)}
+  .chart-container{height:calc(100% - 60px)}
   .bottom-bar{
-    gap:6px;
-    padding:4px 16px;
-    border-radius:18px;
-    bottom:6px;
+    gap:8px;
+    padding:8px 18px;
+    border-radius:20px;
+    bottom:8px;
     width:calc(100% - 20px);
-    max-width:520px;
+    max-width:560px;
   }
-  .tool-btn{min-width:60px;padding:4px 10px}
-  .tool-btn svg{width:16px;height:16px}
-  .tool-btn .label{font-size:8px;letter-spacing:1px}
-  .top-controls{top:8px;left:8px;gap:6px}
-  .top-btn{padding:6px 10px;font-size:11px}
+  .tool-btn{
+    min-width:70px;
+    padding:6px 10px;
+    gap:3px;
+  }
+  .tool-btn svg{width:20px;height:20px}
+  .tool-btn .label{font-size:10px;letter-spacing:1px}
+  .top-controls{top:10px;left:10px;gap:8px}
+  .top-btn{padding:7px 12px;font-size:11px}
   .overlay-menu{padding:20px 15px 80px}
   .overlay-title{font-size:14px}
   .search-input{padding:10px 14px 10px 38px;font-size:12px}
@@ -1533,10 +1619,9 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .CodeMirror{font-size:11px !important}
   .signals-grid{grid-template-columns:1fr}
   .indicators-page-grid{grid-template-columns:repeat(auto-fill, minmax(180px, 1fr))}
-  .active-indicator-item{padding:3px 6px 3px 8px}
-  .ind-item-name{font-size:9px}
-  .ind-item-action{width:16px;height:16px}
-  .ind-item-action svg{width:10px;height:10px}
+  .ind-item-name{font-size:10px}
+  .ind-item-action{width:18px;height:18px}
+  .ind-item-action svg{width:11px;height:11px}
   .current-indicator-display{padding:3px 8px;max-width:180px}
   .current-indicator-name{font-size:11px}
   .ci-action{width:20px;height:20px}
@@ -1544,13 +1629,20 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 }
 
 @media (max-width: 380px) {
-  .logo-container{width:220px;height:220px}
+  .logo-container{width:260px;height:260px}
   .logo-container.expanded{transform:scale(1.4)}
-  .chart-container{height:calc(100% - 45px)}
-  .bottom-bar{gap:3px;padding:3px 10px;bottom:4px}
-  .tool-btn{min-width:50px;padding:3px 6px}
-  .tool-btn svg{width:15px;height:15px}
-  .tool-btn .label{font-size:7px}
+  .chart-container{height:calc(100% - 55px)}
+  .bottom-bar{
+    gap:6px;
+    padding:6px 12px;
+    bottom:6px;
+  }
+  .tool-btn{
+    min-width:60px;
+    padding:5px 8px;
+  }
+  .tool-btn svg{width:18px;height:18px}
+  .tool-btn .label{font-size:9px}
   .items-grid{grid-template-columns:repeat(auto-fill, minmax(120px, 1fr))}
   .tf-dropdown{min-width:200px}
   .tf-option{font-size:12px;padding:7px 8px}
@@ -1585,7 +1677,12 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
     </button>
   </div>
   
-  <div class="active-indicators-bar" id="activeIndicatorsBar"></div>
+  <div class="active-indicators-bar" id="activeIndicatorsBar">
+    <div class="ind-list-wrapper" id="indListWrapper"></div>
+    <button class="toggle-indicators-arrow" id="toggleIndicatorsArrow" title="Hide/Show indicators">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+  </div>
 </div>
 
 <div class="tf-dropdown" id="tfDropdown">
@@ -1648,7 +1745,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
       </button>
       
       <div class="current-indicator-display" id="currentIndicatorDisplay">
-        <span class="current-indicator-name" id="currentIndicatorName">RSI</span>
+        <span class="current-indicator-name" id="currentIndicatorName">Signals</span>
         <div class="current-indicator-actions">
           <button class="ci-action settings" id="ciSettings" title="Settings">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -1696,6 +1793,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
       </div>
       
       <div class="editor-console" id="editorConsole">
+        <div class="console-resize-handle" id="consoleResizeHandle"></div>
         <div class="console-header">
           <div class="console-title">Console</div>
           <button class="console-clear" id="consoleClear">Clear</button>
@@ -1866,48 +1964,65 @@ var currentIndicatorId = null;
 var indicatorIdCounter = 0;
 var codeMirror = null;
 var indicatorsListCollapsed = false;
+var indicatorsOnChartHidden = false;
 
-var RSI_EXAMPLE_CODE = 
-`// RSI (Relative Strength Index) Indicator
-// Period: 14 candles
+// ============ NEW DEFAULT: SIGNALS INDICATOR (markers on candles) ============
+var SIGNALS_EXAMPLE_CODE = 
+`// Trading Signals Indicator
+// Detects local swing highs/lows and draws buy/sell markers on candles
 
 function main(data) {
-  const period = 14;
-  const result = [];
-  let gains = 0, losses = 0;
+  const lookback = 3;
+  const markers = [];
   
-  for (let i = 1; i <= period; i++) {
-    const change = data[i].close - data[i - 1].close;
-    if (change > 0) gains += change;
-    else losses -= change;
+  for (let i = lookback; i < data.length - lookback; i++) {
+    const curr = data[i];
+    
+    // Detect swing low (buy signal)
+    let isSwingLow = true;
+    for (let j = 1; j <= lookback; j++) {
+      if (data[i - j].low < curr.low || data[i + j].low < curr.low) {
+        isSwingLow = false;
+        break;
+      }
+    }
+    
+    // Detect swing high (sell signal)
+    let isSwingHigh = true;
+    for (let j = 1; j <= lookback; j++) {
+      if (data[i - j].high > curr.high || data[i + j].high > curr.high) {
+        isSwingHigh = false;
+        break;
+      }
+    }
+    
+    if (isSwingLow) {
+      markers.push({
+        time: curr.time,
+        position: 'belowBar',
+        color: '#00ff88',
+        shape: 'arrowUp',
+        text: 'BUY'
+      });
+    }
+    
+    if (isSwingHigh) {
+      markers.push({
+        time: curr.time,
+        position: 'aboveBar',
+        color: '#ff4466',
+        shape: 'arrowDown',
+        text: 'SELL'
+      });
+    }
   }
   
-  let avgGain = gains / period;
-  let avgLoss = losses / period;
-  
-  for (let i = period; i < data.length; i++) {
-    const change = data[i].close - data[i - 1].close;
-    const gain = change > 0 ? change : 0;
-    const loss = change < 0 ? -change : 0;
-    
-    avgGain = (avgGain * (period - 1) + gain) / period;
-    avgLoss = (avgLoss * (period - 1) + loss) / period;
-    
-    const rs = avgLoss === 0 ? 100 : avgGain / avgLoss;
-    const rsi = 100 - (100 / (1 + rs));
-    
-    result.push({
-      time: data[i].time,
-      value: Math.round(rsi * 100) / 100
-    });
-  }
+  // Sort markers by time (required by lightweight-charts)
+  markers.sort((a, b) => a.time - b.time);
   
   return {
-    type: 'line',
-    data: result,
-    color: '#ff00ff',
-    lineWidth: 2,
-    title: 'RSI 14'
+    type: 'markers',
+    data: markers
   };
 }`;
 
@@ -1916,6 +2031,7 @@ var DEFAULT_INDICATOR_CODE =
 // Available: data (array of {time, open, high, low, close, volume})
 // Return: { type: 'line', data: [{time, value}], color: '#ff00ff' }
 // Or:     { type: 'markers', data: [{time, position, shape, color, text}] }
+// Or:     { type: 'histogram', data: [{time, value, color}] }
 
 function main(data) {
   const period = 14;
@@ -2435,11 +2551,67 @@ var sidebarList = document.getElementById('sidebarList');
 var editorConsole = document.getElementById('editorConsole');
 var consoleOutput = document.getElementById('consoleOutput');
 var activeIndicatorsBar = document.getElementById('activeIndicatorsBar');
+var indListWrapper = document.getElementById('indListWrapper');
+var toggleIndicatorsArrow = document.getElementById('toggleIndicatorsArrow');
 var indicatorsListWrapper = document.getElementById('indicatorsListWrapper');
 var indicatorsListBody = document.getElementById('indicatorsListBody');
 var indicatorsListCount = document.getElementById('indicatorsListCount');
 var currentIndicatorName = document.getElementById('currentIndicatorName');
 var toggleListBtn = document.getElementById('toggleListBtn');
+
+// ============ RESIZABLE CONSOLE ============
+var consoleResizeHandle = document.getElementById('consoleResizeHandle');
+var isResizingConsole = false;
+var consoleStartY = 0;
+var consoleStartHeight = 0;
+
+consoleResizeHandle.addEventListener('mousedown', function(e) {
+  e.preventDefault();
+  isResizingConsole = true;
+  consoleStartY = e.clientY;
+  consoleStartHeight = editorConsole.offsetHeight;
+  consoleResizeHandle.classList.add('dragging');
+  document.body.style.cursor = 'ns-resize';
+  document.body.style.userSelect = 'none';
+});
+
+document.addEventListener('mousemove', function(e) {
+  if (!isResizingConsole) return;
+  var deltaY = consoleStartY - e.clientY;
+  var newHeight = Math.max(80, Math.min(500, consoleStartHeight + deltaY));
+  editorConsole.style.setProperty('--console-height', newHeight + 'px');
+});
+
+document.addEventListener('mouseup', function() {
+  if (isResizingConsole) {
+    isResizingConsole = false;
+    consoleResizeHandle.classList.remove('dragging');
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  }
+});
+
+// Touch support for console resize
+consoleResizeHandle.addEventListener('touchstart', function(e) {
+  isResizingConsole = true;
+  consoleStartY = e.touches[0].clientY;
+  consoleStartHeight = editorConsole.offsetHeight;
+  consoleResizeHandle.classList.add('dragging');
+}, {passive: true});
+
+document.addEventListener('touchmove', function(e) {
+  if (!isResizingConsole) return;
+  var deltaY = consoleStartY - e.touches[0].clientY;
+  var newHeight = Math.max(80, Math.min(500, consoleStartHeight + deltaY));
+  editorConsole.style.setProperty('--console-height', newHeight + 'px');
+}, {passive: true});
+
+document.addEventListener('touchend', function() {
+  if (isResizingConsole) {
+    isResizingConsole = false;
+    consoleResizeHandle.classList.remove('dragging');
+  }
+});
 
 function initCodeMirror() {
   codeMirror = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
@@ -2536,6 +2708,19 @@ function toggleIndicatorsList() {
 
 toggleListBtn.addEventListener('click', toggleIndicatorsList);
 
+function toggleIndicatorsOnChart() {
+  indicatorsOnChartHidden = !indicatorsOnChartHidden;
+  if (indicatorsOnChartHidden) {
+    indListWrapper.classList.add('hidden');
+    toggleIndicatorsArrow.classList.add('collapsed');
+  } else {
+    indListWrapper.classList.remove('hidden');
+    toggleIndicatorsArrow.classList.remove('collapsed');
+  }
+}
+
+toggleIndicatorsArrow.addEventListener('click', toggleIndicatorsOnChart);
+
 function updateCurrentIndicatorDisplay() {
   if (currentIndicatorId === null) {
     currentIndicatorName.textContent = 'No indicator';
@@ -2552,20 +2737,24 @@ function updateCurrentIndicatorDisplay() {
   document.getElementById('ciDelete').style.display = '';
 }
 
+// Build active indicators (name + buttons, no card frame)
 function updateActiveIndicatorsBar() {
-  activeIndicatorsBar.innerHTML = '';
+  indListWrapper.innerHTML = '';
   
   var shownIndicators = indicators.filter(function(ind) {
     return ind.active || ind.hidden;
   });
   
   if (shownIndicators.length === 0) {
+    toggleIndicatorsArrow.style.display = 'none';
     return;
   }
   
+  toggleIndicatorsArrow.style.display = '';
+  
   shownIndicators.forEach(function(ind) {
     var item = document.createElement('div');
-    item.className = 'active-indicator-item' + (ind.hidden ? ' hidden' : '');
+    item.className = 'active-indicator-item' + (ind.hidden ? ' hidden-ind' : '');
     item.setAttribute('data-id', ind.id);
     
     var color = ind.color || '#ff00ff';
@@ -2574,23 +2763,23 @@ function updateActiveIndicatorsBar() {
       '<span class="ind-item-color" style="background:' + color + ';color:' + color + '"></span>' +
       '<span class="ind-item-name">' + ind.name + '</span>' +
       '<div class="ind-item-actions">' +
+        '<button class="ind-item-action settings" title="Settings">' +
+          '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' +
+        '</button>' +
         '<button class="ind-item-action toggle-vis" title="' + (ind.hidden ? 'Show' : 'Hide') + '">' +
           (ind.hidden 
             ? '<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>'
             : '<svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>') +
         '</button>' +
-        '<button class="ind-item-action settings" title="Settings">' +
-          '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' +
-        '</button>' +
-        '<button class="ind-item-action delete" title="Remove">' +
+        '<button class="ind-item-action remove-chart" title="Remove from chart">' +
           '<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
         '</button>' +
       '</div>';
     
-    activeIndicatorsBar.appendChild(item);
+    indListWrapper.appendChild(item);
   });
   
-  activeIndicatorsBar.querySelectorAll('.ind-item-action.toggle-vis').forEach(function(btn) {
+  indListWrapper.querySelectorAll('.ind-item-action.toggle-vis').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       var item = btn.closest('.active-indicator-item');
@@ -2599,7 +2788,7 @@ function updateActiveIndicatorsBar() {
     });
   });
   
-  activeIndicatorsBar.querySelectorAll('.ind-item-action.settings').forEach(function(btn) {
+  indListWrapper.querySelectorAll('.ind-item-action.settings').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       var item = btn.closest('.active-indicator-item');
@@ -2608,12 +2797,13 @@ function updateActiveIndicatorsBar() {
     });
   });
   
-  activeIndicatorsBar.querySelectorAll('.ind-item-action.delete').forEach(function(btn) {
+  // X button: remove from chart ONLY (keep in sidebar/editor)
+  indListWrapper.querySelectorAll('.ind-item-action.remove-chart').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       e.stopPropagation();
       var item = btn.closest('.active-indicator-item');
       var id = parseInt(item.getAttribute('data-id'));
-      closeIndicator(id);
+      removeFromChartOnly(id);
     });
   });
 }
@@ -2631,11 +2821,36 @@ function toggleIndicatorVisibility(id) {
       try { chart.removeSeries(s); } catch(e){}
     });
     ind.series = [];
+    try { candleSeries.setMarkers([]); } catch(e){}
   }
   
   updateActiveIndicatorsBar();
   updateSidebar();
   updateIndicatorsList();
+}
+
+// Remove from chart only - keep indicator in sidebar/editor
+function removeFromChartOnly(id) {
+  var ind = findIndicator(id);
+  if (!ind) return;
+  
+  // Remove series from chart
+  ind.series.forEach(function(s) {
+    try { chart.removeSeries(s); } catch(e){}
+  });
+  ind.series = [];
+  try { candleSeries.setMarkers([]); } catch(e){}
+  
+  // Mark as inactive but keep in list
+  ind.active = false;
+  ind.hidden = false;
+  
+  updateActiveIndicatorsBar();
+  updateSidebar();
+  updateIndicatorsList();
+  updateRunButton();
+  
+  logToConsole('Removed "' + ind.name + '" from chart (kept in editor)', 'info');
 }
 
 function openIndicatorSettings(id) {
@@ -2650,7 +2865,6 @@ function openIndicatorSettings(id) {
     });
     updateActiveIndicatorsBar();
     updateIndicatorsList();
-    logToConsole('Updated color for ' + ind.name + ' to ' + newColor, 'success');
   } else if (newColor !== null) {
     logToConsole('Invalid color format. Use hex like #ff00ff', 'error');
   }
@@ -2753,7 +2967,6 @@ function toggleCurrentIndicator() {
 function runIndicator(ind) {
   ind.code = codeMirror.getValue();
   
-  editorConsole.classList.add('visible');
   logToConsole('Running: ' + ind.name + '.js', 'info');
   
   ind.series.forEach(function(s) {
@@ -2799,7 +3012,7 @@ function runIndicator(ind) {
       }
       candleSeries.setMarkers(result.data);
       ind.active = true;
-      logToConsole('Markers set: ' + result.data.length + ' markers', 'success');
+      logToConsole('Markers set: ' + result.data.length + ' signals on chart', 'success');
     }
     else if (result.type === 'histogram') {
       if (!result.data || !Array.isArray(result.data)) {
@@ -2832,7 +3045,6 @@ function runIndicator(ind) {
 
 function stopIndicator(ind) {
   removeIndicatorSeries(ind);
-  logToConsole('Stopped: ' + ind.name, 'info');
   updateSidebar();
   updateIndicatorsList();
   updateActiveIndicatorsBar();
@@ -2890,6 +3102,8 @@ function rerunIndicator(ind) {
       });
       lineSeries.setData(result.data);
       ind.series.push(lineSeries);
+    } else if (result && result.type === 'markers' && result.data) {
+      candleSeries.setMarkers(result.data);
     }
   } catch(e) {}
 }
@@ -2995,7 +3209,6 @@ function confirmNewIndicator() {
   
   createIndicator(sanitized, DEFAULT_INDICATOR_CODE);
   closeNewIndicatorModal();
-  logToConsole('Created new indicator: ' + sanitized + '.js', 'success');
 }
 
 (function () {
@@ -3145,12 +3358,13 @@ function confirmNewIndicator() {
   play();
 })();
 
+// ============ INIT ============
 initCodeMirror();
-createIndicator('RSI', RSI_EXAMPLE_CODE);
+// Create Signals indicator as default (replaces RSI)
+createIndicator('Signals', SIGNALS_EXAMPLE_CODE);
 updateIndicatorsList();
 updateActiveIndicatorsBar();
 updateCurrentIndicatorDisplay();
-logToConsole('Ready. RSI example loaded. Press ▶ Run to draw it on the chart.', 'info');
 </script>
 </body>
 </html>
