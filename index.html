@@ -24,14 +24,15 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .chart-container{position:fixed;top:0;left:0;width:100%;height:calc(100% - 50px);z-index:1;opacity:0;pointer-events:none;transition:opacity 0.5s ease,left 0.3s ease,height 0.3s ease}
 .chart-container.visible{opacity:1;pointer-events:auto}
 #tvChart{width:100%;height:100%;touch-action:none}
-.chart-zoom-controls{position:absolute;bottom:52px;right:8px;z-index:15;display:flex;flex-direction:column;gap:3px;pointer-events:none}
+.chart-zoom-controls{position:absolute;top:56px;right:8px;z-index:15;display:flex;flex-direction:row;gap:3px;pointer-events:none}
 .chart-zoom-btn{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.8);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:6px;color:#ccc;cursor:pointer;pointer-events:auto;transition:all 0.15s ease;padding:0}
 .chart-zoom-btn:hover{background:rgba(17,17,17,0.95);border-color:rgba(255,255,255,0.3);color:#fff}
 .chart-zoom-btn:active{transform:scale(0.92);background:rgba(0,240,255,0.1);border-color:rgba(0,240,255,0.4);color:#00f0ff}
 .chart-zoom-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round}
-.chart-add-indicator-btn{position:absolute;top:56px;right:8px;z-index:15;width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:rgba(0,255,136,0.15);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(0,255,136,0.4);border-radius:6px;color:#00ff88;cursor:pointer;pointer-events:auto;transition:all 0.15s ease;padding:0}
-.chart-add-indicator-btn:hover{background:rgba(0,255,136,0.25);border-color:#00ff88}
-.chart-add-indicator-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.add-ind-btn{padding:0 14px}
+.add-ind-btn svg{width:14px;height:14px;stroke:#00ff88;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.add-ind-btn:hover{background:rgba(0,255,136,0.08)}
+.add-ind-btn:hover svg{stroke:#00ff88}
 .floating-indicators{position:absolute;top:56px;left:8px;z-index:10;display:flex;flex-direction:column;gap:4px;max-width:calc(100% - 16px);pointer-events:none}
 .floating-indicator-group{display:flex;flex-direction:column;gap:2px;pointer-events:auto}
 .floating-indicator-header{display:flex;align-items:center;gap:6px;padding:4px 8px;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:4px;cursor:pointer;transition:background 0.15s ease;user-select:none}
@@ -388,9 +389,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .indicators-top-row{flex-direction:column;align-items:stretch}
   .editor-side-btn{width:26px;height:26px}
   .editor-side-btn svg{width:12px;height:12px}
-  .chart-zoom-controls{bottom:52px;right:6px}
+  .chart-zoom-controls{top:56px;right:6px}
   .chart-zoom-btn{width:28px;height:28px}
-  .chart-add-indicator-btn{top:56px;right:46px}
 }
 @media (max-width: 380px){
   .logo-container{width:300px;height:300px}
@@ -410,13 +410,12 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
     <button class="chart-zoom-btn" id="zoomIn" title="Zoom In"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
     <button class="chart-zoom-btn" id="zoomOut" title="Zoom Out"><svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
   </div>
-  <button class="chart-add-indicator-btn" id="chartAddIndicator" title="Quick add indicator"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
   <div class="floating-indicators" id="floatingIndicators">
     <div class="ind-list-wrapper" id="indListWrapper"></div>
     <button class="toggle-indicators-arrow" id="toggleIndicatorsArrow" title="Hide/Show indicators"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button>
   </div>
 </div>
-<div class="top-controls" id="topControls"><div class="top-bar"><div class="top-row"><button class="top-btn symbol-btn" id="symbolBtn"><span class="symbol-name" id="currentSymbol">BTC/USDT</span><div class="symbol-info"><span class="symbol-price" id="currentPrice">67,234.50</span><span class="symbol-change positive" id="currentChange">+2.45%</span></div><svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><button class="top-btn tf-btn" id="timeframeBtn"><span id="currentTimeframe">1m</span><svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button></div></div></div>
+<div class="top-controls" id="topControls"><div class="top-bar"><div class="top-row"><button class="top-btn symbol-btn" id="symbolBtn"><span class="symbol-name" id="currentSymbol">BTC/USDT</span><div class="symbol-info"><span class="symbol-price" id="currentPrice">67,234.50</span><span class="symbol-change positive" id="currentChange">+2.45%</span></div><svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><button class="top-btn tf-btn" id="timeframeBtn"><span id="currentTimeframe">1m</span><svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></button><button class="top-btn add-ind-btn" id="topAddIndicator" title="Add indicator"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button></div></div></div>
 <div class="tf-dropdown" id="tfDropdown"><div class="tf-dropdown-header"><div class="tf-dropdown-title">Timeframe</div><button class="tf-dropdown-close" id="tfClose"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="tf-options-grid" id="tfOptionsGrid"></div></div>
 <div class="overlay-menu" id="symbolMenu"><div class="overlay-header"><div class="overlay-top-row"><div class="overlay-title">Select Market</div><button class="close-btn" data-close="symbolMenu"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div class="search-box"><input type="text" class="search-input" id="symbolSearch" placeholder="Search symbol..." autocomplete="off" spellcheck="false"/><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg></div></div><div class="items-grid" id="symbolGrid"></div><div class="no-results" id="noResults">No markets found</div></div>
 <div class="signals-page" id="signalsPage"><div class="signals-header"><div class="signals-top-row"><div class="signals-title"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Cross-Market <span class="title-accent">Indicator Signals</span></span></div><div class="signals-stats-bar" id="signalsStats"></div></div></div><div class="signals-grid" id="signalsGrid"></div></div>
@@ -881,7 +880,7 @@ function safeExecuteIndicator(code,data){
   // A timeout is enforced via a shared flag polled in the code.
   var fn;
   try{
-    fn=new Function('"use strict";var window=undefined,var document=undefined,var localStorage=undefined,var fetch=undefined,XMLHttpRequest=undefined,eval=undefined,Function=undefined;\n'+code+'\n;return (typeof main==="function")?main(data):null;');
+    fn=new Function('data','"use strict";var window=void 0,document=void 0,localStorage=void 0,fetch=void 0,XMLHttpRequest=void 0,Function=void 0;\n'+code+'\n;return (typeof main==="function")?main(data):null;');
   }catch(syntaxErr){
     return {error:'Syntax error: '+syntaxErr.message};
   }
@@ -1735,7 +1734,7 @@ function confirmNewIndicator(){
 /* ---------- Quick add modal (from chart) ---------- */
 var quickAddModal=document.getElementById('quickAddModal');
 var quickAddList=document.getElementById('quickAddList');
-document.getElementById('chartAddIndicator').addEventListener('click',function(){openQuickAddModal();});
+document.getElementById('topAddIndicator').addEventListener('click',function(e){e.stopPropagation();openQuickAddModal();});
 function openQuickAddModal(){
   // build list
   quickAddList.innerHTML='';
@@ -1799,7 +1798,7 @@ document.querySelectorAll('.close-btn').forEach(function(b){b.addEventListener('
 document.getElementById('symbolSearch').addEventListener('input',function(e){State.searchQuery=e.target.value;buildSymbolGrid();});
 document.getElementById('symbolSearch').addEventListener('click',function(e){e.stopPropagation();});
 document.addEventListener('click',function(e){
-  if(!e.target.closest('.top-btn')&&!e.target.closest('.overlay-menu')&&!e.target.closest('.tf-dropdown')&&!e.target.closest('.editor-page')&&!e.target.closest('.modal-overlay')&&!e.target.closest('.signals-page')&&!e.target.closest('.indicators-page')&&!e.target.closest('.bottom-bar')&&!e.target.closest('.floating-indicators')&&!e.target.closest('.chart-zoom-controls')&&!e.target.closest('.chart-add-indicator-btn'))closeAllMenus();
+  if(!e.target.closest('.top-btn')&&!e.target.closest('.overlay-menu')&&!e.target.closest('.tf-dropdown')&&!e.target.closest('.editor-page')&&!e.target.closest('.modal-overlay')&&!e.target.closest('.signals-page')&&!e.target.closest('.indicators-page')&&!e.target.closest('.bottom-bar')&&!e.target.closest('.floating-indicators')&&!e.target.closest('.chart-zoom-controls'))closeAllMenus();
 });
 
 /* ---------- Boot ---------- */
