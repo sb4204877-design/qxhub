@@ -261,8 +261,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .stat-chip.loss-stat .stat-icon{background:rgba(255,68,102,0.25);color:#ff4466}
 .stat-chip.rate-stat{background:linear-gradient(135deg,rgba(171,130,255,0.15) 0%,rgba(171,130,255,0.05) 100%);border:1px solid rgba(171,130,255,0.3);color:#ab82ff;box-shadow:0 2px 8px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.06)}
 .stat-chip.rate-stat .stat-icon{background:rgba(171,130,255,0.25);color:#ab82ff}
-.signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;max-width:1200px;margin:0 auto}
-.signal-card{position:relative;border-radius:14px;overflow:hidden;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+.signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;max-width:1200px;margin:0 auto}
+.signal-card{position:relative;border-radius:10px;overflow:hidden;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
 .signal-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.55)}
 .signal-card.buy-card{background:linear-gradient(135deg,rgba(0,40,20,0.95) 0%,rgba(0,60,30,0.75) 50%,rgba(0,40,20,0.95) 100%);border:1px solid rgba(0,255,136,0.25);box-shadow:0 4px 12px rgba(0,0,0,0.4)}
 .signal-card.sell-card{background:linear-gradient(135deg,rgba(50,10,15,0.95) 0%,rgba(70,15,25,0.75) 50%,rgba(50,10,15,0.95) 100%);border:1px solid rgba(255,68,102,0.25);box-shadow:0 4px 12px rgba(0,0,0,0.4)}
@@ -270,28 +270,28 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .signal-card.sell-card:hover{box-shadow:0 12px 36px rgba(0,0,0,0.55)}
 .signal-card.buy-card::before{content:none}
 .signal-card.sell-card::before{content:none}
-.signal-card-inner{padding:14px;display:flex;gap:12px;align-items:center}
-.signal-timer-wrap{flex-shrink:0;position:relative;width:74px;height:74px}
+.signal-card-inner{padding:10px;display:flex;gap:10px;align-items:center}
+.signal-timer-wrap{flex-shrink:0;position:relative;width:58px;height:58px}
 .signal-timer-svg{width:100%;height:100%;transform:rotate(-90deg)}
 .signal-timer-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:4}
 .signal-timer-progress{fill:none;stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset 1s linear}
 .buy-card .signal-timer-progress{stroke:#00ff88}
 .sell-card .signal-timer-progress{stroke:#ff4466}
 .signal-timer-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-.signal-timer-count{font-size:15px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;line-height:1;letter-spacing:0.5px}
-.signal-timer-label{font-size:7px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.8px;margin-top:4px;font-weight:600}
-.signal-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:9px}
+.signal-timer-count{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;line-height:1;letter-spacing:0.4px}
+.signal-timer-label{font-size:6px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.6px;margin-top:2px;font-weight:600}
+.signal-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
 .signal-top-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;min-width:0}
-.signal-symbol-name{font-size:14px;font-weight:800;color:#fff;letter-spacing:0.3px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.signal-type-badge{padding:3px 9px;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+.signal-symbol-name{font-size:13px;font-weight:800;color:#fff;letter-spacing:0.3px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.signal-type-badge{padding:2px 7px;border-radius:4px;font-size:8px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
 .buy-card .signal-type-badge{background:linear-gradient(135deg,rgba(0,255,136,0.25) 0%,rgba(0,255,136,0.1) 100%);color:#00ff88;border:1px solid rgba(0,255,136,0.4)}
 .sell-card .signal-type-badge{background:linear-gradient(135deg,rgba(255,68,102,0.25) 0%,rgba(255,68,102,0.1) 100%);color:#ff4466;border:1px solid rgba(255,68,102,0.4)}
-.signal-entry-row{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,0.55);flex-wrap:wrap}
-.signal-entry-row svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.signal-entry-row{display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,0.55);flex-wrap:wrap}
+.signal-entry-row svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
 .signal-entry-row .val{color:#fff;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:0.2px}
-.signal-entry-row .sep{color:rgba(255,255,255,0.15);margin:0 3px}
-.signal-open-hint{display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,0.35);margin-top:3px;letter-spacing:0.3px;text-transform:uppercase;font-weight:600}
-.signal-open-hint svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2}
+.signal-entry-row .sep{color:rgba(255,255,255,0.15);margin:0 2px}
+.signal-open-hint{display:flex;align-items:center;gap:4px;font-size:8px;color:rgba(255,255,255,0.35);margin-top:1px;letter-spacing:0.3px;text-transform:uppercase;font-weight:600}
+.signal-open-hint svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2}
 .signal-new-badge{position:absolute;bottom:8px;right:8px;padding:3px 10px;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.5);z-index:2;pointer-events:none}
 @keyframes newPulse{0%,100%{box-shadow:0 2px 8px rgba(0,240,255,0.25)}50%{box-shadow:0 2px 16px rgba(0,240,255,0.5)}}
 .signal-result-overlay{position:absolute;bottom:8px;right:8px;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity 0.4s ease;z-index:6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);max-width:60%}
@@ -326,19 +326,19 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .indicators-search::placeholder{color:#666}
 .indicators-search:focus{border-color:#00f0ff;background:rgba(0,30,30,0.4)}
 .indicators-search:focus+svg{stroke:#00f0ff}
-.indicators-page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;max-width:1200px;margin:0 auto}
-.ind-page-card{padding:14px;background:linear-gradient(180deg,#0f0f0f 0%,#060606 100%);border:1px solid #1f1f1f;border-radius:10px;cursor:pointer;transition:all 0.22s ease;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+.indicators-page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;max-width:1200px;margin:0 auto}
+.ind-page-card{padding:10px;background:linear-gradient(180deg,#0f0f0f 0%,#060606 100%);border:1px solid #1f1f1f;border-radius:8px;cursor:pointer;transition:all 0.22s ease;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
 .ind-page-card:hover{background:linear-gradient(180deg,#1a1a1a 0%,#0a0a0a 100%);border-color:#333;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.5)}
-.ind-page-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.ind-page-name{color:#fff;font-size:14px;font-weight:700;letter-spacing:0.3px}
-.ind-page-status{width:8px;height:8px;border-radius:50%;background:#00ff88;box-shadow:0 0 6px #00ff88}
-.ind-page-status.inactive{background:#555;box-shadow:none}
-.ind-page-desc{color:#888;font-size:11px;margin-bottom:14px;line-height:1.5;letter-spacing:0.2px}
-.ind-page-actions{display:flex;gap:6px}
-.ind-page-btn{flex:1;padding:7px 12px;background:linear-gradient(180deg,#181818 0%,#0a0a0a 100%);border:1px solid #222;border-radius:6px;color:#fff;font-size:11px;font-weight:600;cursor:pointer;transition:all 0.18s ease;letter-spacing:0.3px;box-shadow:0 1px 2px rgba(0,0,0,0.3)}
+.ind-page-card-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ind-page-name{color:#fff;font-size:12px;font-weight:700;letter-spacing:0.3px}
+.ind-page-status{width:7px;height:7px;border-radius:50%;background:#00ff88}
+.ind-page-status.inactive{background:#555}
+.ind-page-desc{color:#888;font-size:10px;margin-bottom:8px;line-height:1.4;letter-spacing:0.2px}
+.ind-page-actions{display:flex;gap:5px}
+.ind-page-btn{flex:1;padding:5px 8px;background:linear-gradient(180deg,#181818 0%,#0a0a0a 100%);border:1px solid #222;border-radius:5px;color:#fff;font-size:10px;font-weight:600;cursor:pointer;transition:all 0.18s ease;letter-spacing:0.3px;box-shadow:0 1px 2px rgba(0,0,0,0.3)}
 .ind-page-btn:hover{background:linear-gradient(180deg,#222 0%,#141414 100%);border-color:#333;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,0.5)}
 .ind-page-btn.toggle.active{background:linear-gradient(180deg,rgba(0,255,136,0.2) 0%,rgba(0,255,136,0.08) 100%);border-color:#00ff88;color:#00ff88}
-.ind-page-btn.delete-btn{flex:0 0 auto;padding:7px 12px;color:#ff4466;border-color:rgba(255,68,102,0.3);background:linear-gradient(180deg,rgba(255,68,102,0.05) 0%,rgba(0,0,0,0.5) 100%)}
+.ind-page-btn.delete-btn{flex:0 0 auto;padding:5px 8px;color:#ff4466;border-color:rgba(255,68,102,0.3);background:linear-gradient(180deg,rgba(255,68,102,0.05) 0%,rgba(0,0,0,0.5) 100%)}
 .ind-page-btn.delete-btn:hover{background:linear-gradient(180deg,rgba(255,68,102,0.2) 0%,rgba(255,68,102,0.05) 100%);border-color:#ff4466}
 .ind-no-results{text-align:center;padding:80px 20px;color:#666;font-size:13px;grid-column:1/-1;letter-spacing:0.5px}
 .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:90;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s ease;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
@@ -423,24 +423,24 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .editor-side-btn svg{width:12px;height:12px}
   .signals-page{padding:16px 12px 70px}
   .signals-grid{grid-template-columns:1fr;gap:10px}
-  .signal-card-inner{padding:10px;gap:8px}
-  .signal-timer-wrap{width:62px;height:62px}
-  .signal-timer-count{font-size:13px}
-  .signal-timer-label{font-size:6px;margin-top:2px}
-  .signal-symbol-name{font-size:13px}
-  .signal-type-badge{padding:3px 8px;font-size:8px;letter-spacing:0.6px}
-  .signal-entry-row{font-size:9px;gap:5px}
-  .signal-entry-row svg{width:10px;height:10px}
-  .signal-open-hint{font-size:8px}
+  .signal-card-inner{padding:8px;gap:7px}
+  .signal-timer-wrap{width:50px;height:50px}
+  .signal-timer-count{font-size:11px}
+  .signal-timer-label{font-size:5px;margin-top:1px}
+  .signal-symbol-name{font-size:12px}
+  .signal-type-badge{padding:2px 6px;font-size:7px;letter-spacing:0.5px}
+  .signal-entry-row{font-size:8px;gap:4px}
+  .signal-entry-row svg{width:9px;height:9px}
+  .signal-open-hint{font-size:7px}
   .signals-stats-bar{gap:6px}
   .stat-chip{padding:5px 10px;font-size:11px}
   .stat-chip .stat-icon{width:16px;height:16px;font-size:9px}
   .indicators-page{padding:20px 14px 80px}
   .indicators-page-grid{grid-template-columns:1fr;gap:10px}
-  .ind-page-card{padding:12px}
-  .ind-page-name{font-size:13px}
-  .ind-page-desc{font-size:10px;margin-bottom:10px}
-  .ind-page-btn{padding:6px 8px;font-size:10px}
+  .ind-page-card{padding:8px}
+  .ind-page-name{font-size:11px}
+  .ind-page-desc{font-size:9px;margin-bottom:6px}
+  .ind-page-btn{padding:4px 6px;font-size:9px}
   .indicators-search-wrap{width:100%}
   .indicators-top-row{flex-direction:column;align-items:stretch;gap:10px}
   .indicators-page-title{font-size:17px}
@@ -460,16 +460,16 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .symbol-change{font-size:9px}
   .signals-grid{grid-template-columns:1fr;gap:8px}
   .signal-card-inner{padding:8px;gap:6px}
-  .signal-timer-wrap{width:54px;height:54px}
-  .signal-timer-count{font-size:12px}
+  .signal-timer-wrap{width:42px;height:42px}
+  .signal-timer-count{font-size:10px}
   .signal-symbol-name{font-size:12px}
   .signal-type-badge{padding:2px 6px;font-size:7px}
   .signal-entry-row{font-size:8px}
   .signal-open-hint{display:none}
-  .ind-page-card{padding:10px}
-  .ind-page-name{font-size:12px}
-  .ind-page-actions{gap:4px}
-  .ind-page-btn{padding:5px 7px;font-size:9px}
+  .ind-page-card{padding:7px}
+  .ind-page-name{font-size:10px}
+  .ind-page-actions{gap:3px}
+  .ind-page-btn{padding:3px 5px;font-size:8px}
   .editor-toolbar{padding:5px 6px}
   .editor-btn{padding:4px 6px;font-size:10px;gap:3px}
   .editor-btn svg{width:11px;height:11px}
