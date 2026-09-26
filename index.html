@@ -363,9 +363,12 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .modal-error{color:#ff4466;font-size:11px;margin-bottom:10px;min-height:14px}
 .modal-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
 .modal-row label{color:#888;font-size:11px;min-width:60px;text-transform:uppercase;letter-spacing:0.5px}
-.modal-row input[type="color"]{width:36px;height:28px;border:1px solid #1a1a1a;border-radius:4px;background:#000;cursor:pointer;padding:2px}
+.modal-row input[type="color"]{width:36px;height:28px;border:1px solid #1a1a1a;border-radius:4px;background:#000;cursor:pointer;padding:2px;flex-shrink:0}
+.modal-row input[type="text"]{flex:1;padding:7px 10px;background:rgba(10,10,10,0.6);border:1px solid #1f1f1f;border-radius:6px;color:#fff;font-family:inherit;font-size:12px;outline:none;transition:border-color 0.2s ease;box-sizing:border-box;min-width:0}
+.modal-row input[type="text"]:focus{border-color:#00d2ff}
 .modal-row input[type="number"]{flex:1;padding:6px 10px;background:#000;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:12px;outline:none}
-.modal-row select{flex:1;padding:6px 10px;background:#000;border:1px solid #1a1a1a;border-radius:4px;color:#fff;font-family:inherit;font-size:12px;outline:none}
+.modal-row select{flex:1;padding:7px 10px;background:rgba(10,10,10,0.6);border:1px solid #1f1f1f;border-radius:6px;color:#fff;font-family:inherit;font-size:12px;outline:none;cursor:pointer;box-sizing:border-box;min-width:0}
+.modal-row select:focus{border-color:#00d2ff}
 .bottom-bar{position:fixed;bottom:0;left:0;right:0;display:flex;gap:0;padding:0;background:#000;border-top:1px solid #1a1a1a;opacity:0;pointer-events:none;transition:opacity 0.5s ease,transform 0.5s ease;z-index:100;direction:ltr;height:50px;transform:translateY(100%)}
 .bottom-bar.visible{opacity:1;pointer-events:auto;transform:translateY(0)}
 .tool-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0 16px;background:transparent;border:none;cursor:pointer;transition:background 0.15s ease;flex:1;position:relative;min-width:80px;border-right:1px solid #1a1a1a}
@@ -506,7 +509,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 <div class="editor-page" id="editorPage"><div class="editor-toolbar"><div class="editor-toolbar-left"><button class="editor-btn" id="editorBack"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span class="btn-text">Back</span></button><div class="current-indicator-display" id="currentIndicatorDisplay"><span class="current-indicator-name" id="currentIndicatorName">Signals</span><div class="current-indicator-actions"><button class="ci-action settings" id="ciSettings" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="ci-action delete" id="ciDelete" title="Remove"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div><div class="editor-toolbar-right"><button class="editor-btn" id="editorDuplicate" title="Duplicate (Ctrl+D)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="btn-text">Duplicate</span></button><button class="editor-btn" id="editorNew"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span class="btn-text">New</span></button><button class="editor-btn primary" id="editorRun"><svg class="run-icon-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><svg class="run-icon-stop" viewBox="0 0 24 24" style="display:none"><rect x="6" y="6" width="12" height="12" rx="1"/></svg><span class="btn-text run-label">Run</span></button></div></div><div class="indicators-list-wrapper" id="indicatorsListWrapper"><div class="indicators-list-header"><span class="indicators-list-title">All Indicators</span><span class="indicators-list-count" id="indicatorsListCount">0</span></div><div class="indicators-list-body" id="indicatorsListBody"></div></div><button class="toggle-list-btn" id="toggleListBtn" title="Toggle indicators list"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button><div class="editor-body"><div class="editor-sidebar"><div class="sidebar-header">Indicators</div><div class="sidebar-list" id="sidebarList"></div></div><div class="editor-main"><div class="code-wrapper"><textarea id="codeEditor"></textarea><div class="editor-side-toolbar" id="editorSideToolbar"><button class="editor-side-btn" id="btnSelectAll" title="Select All"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/><path d="M9 4v16"/></svg><span class="tooltip">Select All</span></button><button class="editor-side-btn" id="btnCopy" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="tooltip">Copy</span></button><button class="editor-side-btn" id="btnCut" title="Cut"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg><span class="tooltip">Cut</span></button></div><div class="editor-unsaved-dot" id="editorUnsavedDot" title="Unsaved changes (auto-saves every 2s)"></div></div><div class="editor-console" id="editorConsole"><div class="console-resize-handle" id="consoleResizeHandle"></div><div class="console-header" id="consoleHeader"><div class="console-title">Console</div><div class="console-header-actions"><button class="console-clear" id="consoleClear">Clear</button><button class="console-close" id="consoleClose" title="Close console"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><div class="console-output" id="consoleOutput"></div></div></div></div></div>
 <div class="modal-overlay" id="deleteConfirmModal"><div class="modal"><div class="modal-title">Delete Indicator</div><div class="modal-desc" id="deleteConfirmDesc">Are you sure?</div><div class="modal-actions"><button class="modal-btn" id="deleteCancelBtn">Cancel</button><button class="modal-btn danger" id="deleteConfirmBtn">Delete</button></div></div></div>
 <div class="modal-overlay" id="newIndicatorModal"><div class="modal"><div class="modal-title">New Indicator</div><div class="modal-desc">Enter a name for your custom indicator</div><input type="text" class="modal-input" id="newIndicatorInput" placeholder="e.g. MyStrategy" autocomplete="off" spellcheck="false"/><div class="modal-filename" id="newIndicatorFilename">File: untitled.js</div><div class="modal-error" id="newIndicatorError"></div><div class="modal-actions"><button class="modal-btn" id="newIndicatorCancel">Cancel</button><button class="modal-btn primary" id="newIndicatorContinue">Continue</button></div></div></div>
-<div class="modal-overlay" id="settingsModal"><div class="modal"><div class="modal-title" id="settingsModalTitle">Indicator Settings</div><div class="modal-desc" id="settingsModalDesc">Customize indicator color</div><div class="modal-row"><label>Color</label><input type="color" id="settingsColorInput" value="#00ff88"/></div><div class="modal-error" id="settingsError"></div><div class="modal-actions"><button class="modal-btn" id="settingsCancel">Cancel</button><button class="modal-btn primary" id="settingsApply">Apply</button></div></div></div>
+<div class="modal-overlay" id="settingsModal"><div class="modal"><div class="modal-title" id="settingsModalTitle">Indicator Settings</div><div class="modal-desc" id="settingsModalDesc">Customize indicator properties</div><div class="modal-row"><label>Name</label><input type="text" id="settingsNameInput" placeholder="Indicator name" autocomplete="off" spellcheck="false"/></div><div class="modal-row"><label>Color</label><input type="color" id="settingsColorInput" value="#00ff88"/></div><div class="modal-row"><label>Width</label><select id="settingsWidthSelect"><option value="1">1 (Thin)</option><option value="2" selected>2 (Normal)</option><option value="3">3 (Medium)</option><option value="4">4 (Thick)</option><option value="5">5 (Bold)</option></select></div><div class="modal-row"><label>Style</label><select id="settingsStyleSelect"><option value="0" selected>Solid</option><option value="1">Dotted</option><option value="2">Dashed</option><option value="3">Large Dashed</option><option value="4">Sparse Dotted</option></select></div><div class="modal-row"><label>Visible</label><select id="settingsVisibleSelect"><option value="1" selected>Yes</option><option value="0">No</option></select></div><div class="modal-error" id="settingsError"></div><div class="modal-actions"><button class="modal-btn" id="settingsCancel">Cancel</button><button class="modal-btn primary" id="settingsApply">Apply</button></div></div></div>
 <div class="modal-overlay" id="quickAddModal"><div class="modal"><div class="modal-title">Quick Add Indicator</div><div class="modal-desc">Choose an existing indicator to run on chart, or create new</div><div id="quickAddList" style="max-height:280px;overflow-y:auto;margin-bottom:14px"></div><div class="modal-actions"><button class="modal-btn" id="quickAddCancel">Cancel</button><button class="modal-btn primary" id="quickAddNew">+ New Indicator</button></div></div></div>
 
 <div class="logo-container">
@@ -1516,14 +1519,27 @@ function deleteIndicatorFull(id){
 /* ---------- Settings modal (replaces prompt) ---------- */
 var settingsModal=document.getElementById('settingsModal');
 var settingsColorInput=document.getElementById('settingsColorInput');
+var settingsNameInput=document.getElementById('settingsNameInput');
+var settingsWidthSelect=document.getElementById('settingsWidthSelect');
+var settingsStyleSelect=document.getElementById('settingsStyleSelect');
+var settingsVisibleSelect=document.getElementById('settingsVisibleSelect');
 var settingsError=document.getElementById('settingsError');
 var settingsTargetId=null;
 function openIndicatorSettings(id){
   var ind=findIndicator(id);if(!ind)return;
   settingsTargetId=id;
   document.getElementById('settingsModalTitle').textContent='Settings: '+ind.name;
-  document.getElementById('settingsModalDesc').textContent='Customize indicator color';
+  document.getElementById('settingsModalDesc').textContent='Customize indicator properties';
+  settingsNameInput.value=ind.name||'';
   settingsColorInput.value=ind.color||'#00ff88';
+  // Use first plot's width/style/visible as defaults, fallback to indicator defaults
+  var firstPlot=ind.plots&&ind.plots[0];
+  var width=firstPlot?firstPlot.width:2;
+  var style=firstPlot?firstPlot.lineStyle:0;
+  var visible=firstPlot?(firstPlot.visible!==false?1:0):1;
+  settingsWidthSelect.value=String(width);
+  settingsStyleSelect.value=String(style);
+  settingsVisibleSelect.value=String(visible);
   settingsError.textContent='';
   settingsModal.classList.add('visible');
 }
@@ -1534,19 +1550,49 @@ document.getElementById('settingsApply').addEventListener('click',function(){
   if(settingsTargetId===null)return;
   var ind=findIndicator(settingsTargetId);
   if(!ind)return;
-  var nc=settingsColorInput.value;
-  if(nc&&/^#([0-9A-Fa-f]{3}){1,2}$/.test(nc)){
-    ind.color=nc;
-    ind.plots.forEach(function(plot){
-      if(plot.seriesRef&&plot.seriesRef.applyOptions&&plot.type!=='fill'){
-        try{plot.seriesRef.applyOptions({color:nc});}catch(e){}
-      }
-    });
-    updateFloatingIndicators();updateIndicatorsList();saveStateDebounced();
-    closeSettingsModal();
-  }else{
-    settingsError.textContent='Invalid color format';
+  // Validate name
+  var newName=settingsNameInput.value.trim();
+  if(!newName){settingsError.textContent='Name cannot be empty';return;}
+  // Check name uniqueness (excluding current)
+  var dupFound=false;
+  for(var i=0;i<State.indicators.length;i++){
+    if(State.indicators[i].id!==ind.id&&State.indicators[i].name.toLowerCase()===newName.toLowerCase()){dupFound=true;break;}
   }
+  if(dupFound){settingsError.textContent='An indicator with this name already exists';return;}
+  // Validate color
+  var nc=settingsColorInput.value;
+  if(!nc||!/^#([0-9A-Fa-f]{3}){1,2}$/.test(nc)){settingsError.textContent='Invalid color format';return;}
+  var nwidth=parseInt(settingsWidthSelect.value)||2;
+  var nstyle=parseInt(settingsStyleSelect.value)||0;
+  var nvisible=settingsVisibleSelect.value==='1';
+  // Apply name
+  ind.name=newName;
+  // Apply color
+  ind.color=nc;
+  // Apply to all plots
+  ind.plots.forEach(function(plot){
+    if(plot.type==='fill')return; // fill uses its own color
+    plot.color=nc;
+    plot.width=nwidth;
+    plot.lineStyle=nstyle;
+    plot.visible=nvisible;
+    if(plot.seriesRef&&plot.seriesRef.applyOptions){
+      try{
+        var opts={color:nc,lineWidth:nwidth,lineStyle:nstyle,visible:nvisible};
+        plot.seriesRef.applyOptions(opts);
+      }catch(e){}
+    }
+  });
+  // Update markers if any plot was toggled
+  if(ind.plots.some(function(p){return p.type==='markers';})){
+    rebuildAllMarkers();
+  }
+  updateFloatingIndicators();updateIndicatorsList();updateSidebar();updateCurrentIndicatorDisplay();
+  if(State.currentIndicatorId===ind.id){
+    document.getElementById('currentIndicatorName').textContent=ind.name;
+  }
+  saveStateDebounced();
+  closeSettingsModal();
 });
 settingsModal.addEventListener('click',function(e){if(e.target===settingsModal)closeSettingsModal();});
 
