@@ -1830,7 +1830,7 @@ function runIndicator(ind){
   });
   ind.active=true;
   ind.isMarkerIndicator=plots.some(function(p){return p&&p.type==='markers';});
-  logToConsole('✓ '+ind.name+' loaded — '+plots.length+' plot(s): '+pn.join(', '),'success');
+  logToConsole('✓ '+ind.name+' loaded — '+plots.length+' plot(s): '+pn.join(', ')+' | markers in state: '+State.currentMarkers.length,'success');
   updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateRunButton();
   setUnsaved(false);
   saveState();
