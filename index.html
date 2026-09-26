@@ -598,7 +598,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   <button class="tool-btn" data-page="signals"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="badge hidden" id="signalsBadge">0</span><span class="label">Signals</span></button>
 </div>
 
-<script src="https://unpkg.com/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
@@ -999,16 +999,16 @@ document.getElementById('zoomIn').addEventListener('click',function(e){
   var ts=State.chart.timeScale();var range=ts.getVisibleLogicalRange();if(!range)return;
   var span=range.to-range.from;
   var newSpan=Math.max(3,span*0.7);
-  // Anchor on the first visible candle (left edge) — keep `from` fixed, shrink `to`
-  ts.setVisibleLogicalRange({from:range.from,to:range.from+newSpan});
+  // Anchor on the newest candle (right edge) — keep `to` fixed, shrink `from`
+  ts.setVisibleLogicalRange({from:range.to-newSpan,to:range.to});
 });
 document.getElementById('zoomOut').addEventListener('click',function(e){
   e.stopPropagation();if(!State.chart)return;
   var ts=State.chart.timeScale();var range=ts.getVisibleLogicalRange();if(!range)return;
   var span=range.to-range.from;
   var newSpan=Math.min(500,span*1.4);
-  // Anchor on the first visible candle (left edge) — keep `from` fixed, expand `to`
-  ts.setVisibleLogicalRange({from:range.from,to:range.from+newSpan});
+  // Anchor on the newest candle (right edge) — keep `to` fixed, expand `from`
+  ts.setVisibleLogicalRange({from:range.to-newSpan,to:range.to});
 });
 
 /* Incremental update: re-run only marker indicators to refresh markers.
