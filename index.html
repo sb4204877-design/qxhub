@@ -422,40 +422,72 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .editor-btn{padding:5px 8px;font-size:11px}
   .editor-btn span.btn-text{display:none}
   .current-indicator-display{max-width:140px;padding:4px 8px}
-  .current-indicator-name{font-size:11px}
-  .CodeMirror{font-size:11px !important}
-  .editor-side-btn{width:26px;height:26px}
-  .editor-side-btn svg{width:12px;height:12px}
+  .current-indicator-name{font-size:12px}
+  .CodeMirror{font-size:12px !important}
+  .editor-side-btn{width:32px;height:32px}
+  .editor-side-btn svg{width:14px;height:14px}
   .signals-page{padding:16px 12px 70px}
   .signals-grid{grid-template-columns:1fr;gap:8px}
   .signal-card{max-width:340px}
-  .signal-card-inner{padding:12px;gap:10px}
-  .signal-timer-wrap{width:64px;height:64px}
-  .signal-timer-count{font-size:14px}
-  .signal-timer-label{font-size:6px;margin-top:2px}
-  .signal-symbol-name{font-size:14px}
-  .signal-type-badge{padding:3px 8px;font-size:8px;letter-spacing:0.6px}
-  .signal-entry-row{font-size:10px;gap:5px}
-  .signal-entry-row svg{width:10px;height:10px}
-  .signal-open-hint{font-size:8px}
+  .signal-card-inner{padding:14px;gap:12px}
+  .signal-timer-wrap{width:70px;height:70px}
+  .signal-timer-count{font-size:15px}
+  .signal-timer-label{font-size:7px;margin-top:3px}
+  .signal-symbol-name{font-size:15px}
+  .signal-type-badge{padding:4px 10px;font-size:10px;letter-spacing:0.6px}
+  .signal-entry-row{font-size:11px;gap:6px}
+  .signal-entry-row svg{width:12px;height:12px}
+  .signal-open-hint{font-size:9px}
   .signals-stats-bar{gap:6px}
-  .stat-chip{padding:5px 10px;font-size:11px}
-  .stat-chip .stat-icon{width:16px;height:16px;font-size:9px}
+  .stat-chip{padding:6px 12px;font-size:12px}
+  .stat-chip .stat-icon{width:18px;height:18px;font-size:10px}
   .indicators-page{padding:20px 14px 80px}
   .indicators-page-grid{grid-template-columns:1fr;gap:8px}
   .ind-page-card{max-width:380px}
   .ind-page-card{padding:14px}
   .ind-page-name{font-size:14px}
-  .ind-page-desc{font-size:11px;margin-bottom:10px}
-  .ind-page-btn{padding:6px 8px;font-size:11px}
+  .ind-page-desc{font-size:12px;margin-bottom:10px}
+  .ind-page-btn{padding:8px 10px;font-size:12px}
   .indicators-search-wrap{width:100%}
   .indicators-top-row{flex-direction:column;align-items:stretch;gap:10px}
   .indicators-page-title{font-size:17px}
   .chart-zoom-controls{bottom:8px;left:50%;transform:translateX(-50%)}
-  .chart-zoom-btn{width:28px;height:28px}
-  .signals-title{font-size:16px;gap:8px}
-  .signals-title svg{width:20px;height:20px}
+  .chart-zoom-btn{width:32px;height:32px}
+  .chart-zoom-btn svg{width:16px;height:16px}
+  .signals-title{font-size:18px;gap:8px}
+  .signals-title svg{width:22px;height:22px}
   .editor-page{height:calc(100% - 50px)}
+  .tool-btn{padding:0 12px;min-width:64px}
+  .tool-btn svg{width:18px;height:18px}
+  .tool-btn .label{font-size:10px}
+  .top-btn{padding:0 12px;font-size:14px}
+  .symbol-name{font-size:14px}
+  .symbol-price{font-size:13px}
+  .symbol-change{font-size:11px}
+  .editor-btn{padding:7px 10px;font-size:12px}
+  .editor-btn svg{width:13px;height:13px}
+  .ci-action{width:24px;height:24px}
+  .ci-action svg{width:13px;height:13px}
+  .console-clear{font-size:11px;padding:4px 10px}
+  .console-close{width:24px;height:24px}
+  .console-close svg{width:12px;height:12px}
+  .modal-btn{padding:10px 16px;font-size:13px}
+  .modal-input{padding:11px 14px;font-size:14px}
+  .modal-row label{font-size:12px;min-width:70px}
+  .modal-row select,.modal-row input[type="text"],.modal-row input[type="number"]{padding:9px 12px;font-size:13px}
+  .sidebar-mini-btn{width:24px;height:24px}
+  .sidebar-mini-btn svg{width:12px;height:12px}
+  .indicators-search{padding:9px 12px 9px 32px;font-size:13px}
+  .indicators-search-wrap svg{width:14px;height:14px;left:10px}
+  .search-input{padding:13px 16px 13px 42px;font-size:14px}
+  .tf-option{padding:12px 14px;font-size:14px}
+  .tf-option .tf-label{font-size:11px}
+  .tf-dropdown-close{width:28px;height:28px}
+  .close-btn{width:40px;height:40px}
+  .close-btn svg{width:16px;height:16px}
+  .item-card{padding:14px 16px}
+  .item-symbol{font-size:14px}
+  .item-change{font-size:13px}
 }
 @media (max-width: 380px){
   .logo-container{width:260px;height:260px}
@@ -475,17 +507,24 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .signal-type-badge{padding:2px 6px;font-size:7px}
   .signal-entry-row{font-size:8px}
   .signal-open-hint{display:none}
-  .ind-page-card{padding:10px}
-  .ind-page-name{font-size:12px}
-  .ind-page-actions{gap:4px}
-  .ind-page-btn{padding:5px 7px;font-size:10px}
-  .editor-toolbar{padding:5px 6px}
-  .editor-btn{padding:4px 6px;font-size:10px;gap:3px}
-  .editor-btn svg{width:11px;height:11px}
-  .current-indicator-display{max-width:100px}
-  .current-indicator-name{font-size:10px}
-  .ci-action{width:18px;height:18px}
-  .ci-action svg{width:11px;height:11px}
+  .ind-page-card{padding:12px}
+  .ind-page-name{font-size:13px}
+  .ind-page-actions{gap:5px}
+  .ind-page-btn{padding:7px 9px;font-size:11px}
+  .editor-toolbar{padding:6px 8px}
+  .editor-btn{padding:6px 8px;font-size:11px;gap:4px}
+  .editor-btn svg{width:13px;height:13px}
+  .current-indicator-display{max-width:120px}
+  .current-indicator-name{font-size:11px}
+  .ci-action{width:22px;height:22px}
+  .ci-action svg{width:12px;height:12px}
+  .tool-btn{padding:0 10px;min-width:58px}
+  .tool-btn svg{width:16px;height:16px}
+  .tool-btn .label{font-size:9px}
+  .signal-type-badge{padding:3px 8px;font-size:9px}
+  .signal-entry-row{font-size:10px}
+  .signal-timer-count{font-size:13px}
+  .signal-symbol-name{font-size:13px}
 }
 </style>
 </head>
