@@ -261,8 +261,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .stat-chip.loss-stat .stat-icon{background:rgba(255,68,102,0.25);color:#ff4466}
 .stat-chip.rate-stat{background:linear-gradient(135deg,rgba(171,130,255,0.15) 0%,rgba(171,130,255,0.05) 100%);border:1px solid rgba(171,130,255,0.3);color:#ab82ff;box-shadow:0 2px 8px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.06)}
 .stat-chip.rate-stat .stat-icon{background:rgba(171,130,255,0.25);color:#ab82ff}
-.signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;max-width:1200px;margin:0 auto}
-.signal-card{position:relative;border-radius:10px;overflow:hidden;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);max-width:340px;margin:0 auto;width:100%;justify-self:center}
+.signals-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;max-width:1200px;margin:0 auto}
+.signal-card{position:relative;border-radius:12px;overflow:hidden;opacity:0;transform:translateY(10px);animation:cardIn 0.3s forwards;transition:transform 0.22s ease,box-shadow 0.22s ease;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.4);max-width:420px;margin:0 auto;width:100%;justify-self:center}
 .signal-card:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,0.55)}
 .signal-card.buy-card{background:linear-gradient(135deg,rgba(0,40,20,0.95) 0%,rgba(0,60,30,0.75) 50%,rgba(0,40,20,0.95) 100%);border:1px solid rgba(0,255,136,0.25);box-shadow:0 4px 12px rgba(0,0,0,0.4)}
 .signal-card.sell-card{background:linear-gradient(135deg,rgba(50,10,15,0.95) 0%,rgba(70,15,25,0.75) 50%,rgba(50,10,15,0.95) 100%);border:1px solid rgba(255,68,102,0.25);box-shadow:0 4px 12px rgba(0,0,0,0.4)}
@@ -270,28 +270,28 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .signal-card.sell-card:hover{box-shadow:0 12px 36px rgba(0,0,0,0.55)}
 .signal-card.buy-card::before{content:none}
 .signal-card.sell-card::before{content:none}
-.signal-card-inner{padding:10px;display:flex;gap:10px;align-items:center}
-.signal-timer-wrap{flex-shrink:0;position:relative;width:58px;height:58px}
+.signal-card-inner{padding:16px;display:flex;gap:14px;align-items:center}
+.signal-timer-wrap{flex-shrink:0;position:relative;width:80px;height:80px}
 .signal-timer-svg{width:100%;height:100%;transform:rotate(-90deg)}
 .signal-timer-bg{fill:none;stroke:rgba(255,255,255,0.06);stroke-width:4}
 .signal-timer-progress{fill:none;stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset 1s linear}
 .buy-card .signal-timer-progress{stroke:#00ff88}
 .sell-card .signal-timer-progress{stroke:#ff4466}
 .signal-timer-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
-.signal-timer-count{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;line-height:1;letter-spacing:0.4px}
-.signal-timer-label{font-size:6px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.6px;margin-top:2px;font-weight:600}
-.signal-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.signal-timer-count{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums;color:#fff;line-height:1;letter-spacing:0.5px}
+.signal-timer-label{font-size:7px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;font-weight:600}
+.signal-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}
 .signal-top-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:nowrap;min-width:0}
-.signal-symbol-name{font-size:13px;font-weight:800;color:#fff;letter-spacing:0.3px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.signal-type-badge{padding:2px 7px;border-radius:4px;font-size:8px;font-weight:800;letter-spacing:0.6px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+.signal-symbol-name{font-size:15px;font-weight:800;color:#fff;letter-spacing:0.3px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.signal-type-badge{padding:3px 10px;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;flex-shrink:0;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,0.3)}
 .buy-card .signal-type-badge{background:linear-gradient(135deg,rgba(0,255,136,0.25) 0%,rgba(0,255,136,0.1) 100%);color:#00ff88;border:1px solid rgba(0,255,136,0.4)}
 .sell-card .signal-type-badge{background:linear-gradient(135deg,rgba(255,68,102,0.25) 0%,rgba(255,68,102,0.1) 100%);color:#ff4466;border:1px solid rgba(255,68,102,0.4)}
-.signal-entry-row{display:flex;align-items:center;gap:5px;font-size:9px;color:rgba(255,255,255,0.55);flex-wrap:wrap}
-.signal-entry-row svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+.signal-entry-row{display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.55);flex-wrap:wrap}
+.signal-entry-row svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
 .signal-entry-row .val{color:#fff;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:0.2px}
 .signal-entry-row .sep{color:rgba(255,255,255,0.15);margin:0 2px}
-.signal-open-hint{display:flex;align-items:center;gap:4px;font-size:8px;color:rgba(255,255,255,0.35);margin-top:1px;letter-spacing:0.3px;text-transform:uppercase;font-weight:600}
-.signal-open-hint svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2}
+.signal-open-hint{display:flex;align-items:center;gap:4px;font-size:9px;color:rgba(255,255,255,0.35);margin-top:2px;letter-spacing:0.3px;text-transform:uppercase;font-weight:600}
+.signal-open-hint svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2}
 .signal-new-badge{position:absolute;bottom:8px;right:8px;padding:3px 10px;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.5);z-index:2;pointer-events:none}
 .signal-new-badge.win{background:rgba(0,255,136,0.15);color:#00ff88;border-color:rgba(0,255,136,0.5)}
 .signal-new-badge.lose{background:rgba(255,68,102,0.15);color:#ff4466;border-color:rgba(255,68,102,0.5)}
@@ -429,15 +429,15 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .signals-page{padding:16px 12px 70px}
   .signals-grid{grid-template-columns:1fr;gap:8px}
   .signal-card{max-width:340px}
-  .signal-card-inner{padding:8px;gap:7px}
-  .signal-timer-wrap{width:50px;height:50px}
-  .signal-timer-count{font-size:11px}
-  .signal-timer-label{font-size:5px;margin-top:1px}
-  .signal-symbol-name{font-size:12px}
-  .signal-type-badge{padding:2px 6px;font-size:7px;letter-spacing:0.5px}
-  .signal-entry-row{font-size:8px;gap:4px}
-  .signal-entry-row svg{width:9px;height:9px}
-  .signal-open-hint{font-size:7px}
+  .signal-card-inner{padding:12px;gap:10px}
+  .signal-timer-wrap{width:64px;height:64px}
+  .signal-timer-count{font-size:14px}
+  .signal-timer-label{font-size:6px;margin-top:2px}
+  .signal-symbol-name{font-size:14px}
+  .signal-type-badge{padding:3px 8px;font-size:8px;letter-spacing:0.6px}
+  .signal-entry-row{font-size:10px;gap:5px}
+  .signal-entry-row svg{width:10px;height:10px}
+  .signal-open-hint{font-size:8px}
   .signals-stats-bar{gap:6px}
   .stat-chip{padding:5px 10px;font-size:11px}
   .stat-chip .stat-icon{width:16px;height:16px;font-size:9px}
@@ -467,10 +467,10 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .symbol-price{font-size:10px}
   .symbol-change{font-size:9px}
   .signals-grid{grid-template-columns:1fr;gap:8px}
-  .signal-card{max-width:280px}
-  .signal-card-inner{padding:8px;gap:6px}
-  .signal-timer-wrap{width:42px;height:42px}
-  .signal-timer-count{font-size:10px}
+  .signal-card{max-width:380px}
+  .signal-card-inner{padding:10px;gap:8px}
+  .signal-timer-wrap{width:56px;height:56px}
+  .signal-timer-count{font-size:12px}
   .signal-symbol-name{font-size:12px}
   .signal-type-badge{padding:2px 6px;font-size:7px}
   .signal-entry-row{font-size:8px}
