@@ -924,7 +924,10 @@ function initChart(){
   State.candleSeries=State.chart.addCandlestickSeries({upColor:'#00ff88',downColor:'#ff4466',borderUpColor:'#00ff88',borderDownColor:'#ff4466',wickUpColor:'#00ff88',wickDownColor:'#ff4466',priceScaleId:'right',priceLineVisible:true,lastValueVisible:true});
   loadData();
   window.addEventListener('resize',function(){
-    if(State.chart)State.chart.applyOptions({width:c.clientWidth,height:c.clientHeight});
+    if(State.chart){
+      State.chart.applyOptions({width:c.clientWidth,height:c.clientHeight});
+      rebuildAllMarkers();
+    }
   });
   startLiveSimulation();
 }
@@ -1194,7 +1197,12 @@ function navigateTo(page,opts){
   if(page==='chart'){
     tc.classList.add('visible');cc.classList.add('visible');
     setTimeout(function(){
-      if(State.chart)State.chart.applyOptions({width:document.getElementById('tvChart').clientWidth,height:document.getElementById('tvChart').clientHeight});
+      if(State.chart){
+        State.chart.applyOptions({width:document.getElementById('tvChart').clientWidth,height:document.getElementById('tvChart').clientHeight});
+        // Mobile fix: markers (setMarkers) don't always redraw after a resize
+        // the way line/candle series do — force them to re-apply here.
+        rebuildAllMarkers();
+      }
     },150);
   }else if(page==='editor'){
     tc.classList.remove('visible');cc.classList.remove('visible');
