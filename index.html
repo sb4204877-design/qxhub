@@ -509,7 +509,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 <div class="editor-page" id="editorPage"><div class="editor-toolbar"><div class="editor-toolbar-left"><button class="editor-btn" id="editorBack"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg><span class="btn-text">Back</span></button><div class="current-indicator-display" id="currentIndicatorDisplay"><span class="current-indicator-name" id="currentIndicatorName">Signals</span><div class="current-indicator-actions"><button class="ci-action settings" id="ciSettings" title="Settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button><button class="ci-action delete" id="ciDelete" title="Remove"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div></div><div class="editor-toolbar-right"><button class="editor-btn" id="editorDuplicate" title="Duplicate (Ctrl+D)"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="btn-text">Duplicate</span></button><button class="editor-btn" id="editorNew"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg><span class="btn-text">New</span></button><button class="editor-btn primary" id="editorRun"><svg class="run-icon-play" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg><svg class="run-icon-stop" viewBox="0 0 24 24" style="display:none"><rect x="6" y="6" width="12" height="12" rx="1"/></svg><span class="btn-text run-label">Run</span></button></div></div><div class="indicators-list-wrapper" id="indicatorsListWrapper"><div class="indicators-list-header"><span class="indicators-list-title">All Indicators</span><span class="indicators-list-count" id="indicatorsListCount">0</span></div><div class="indicators-list-body" id="indicatorsListBody"></div></div><button class="toggle-list-btn" id="toggleListBtn" title="Toggle indicators list"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></button><div class="editor-body"><div class="editor-sidebar"><div class="sidebar-header">Indicators</div><div class="sidebar-list" id="sidebarList"></div></div><div class="editor-main"><div class="code-wrapper"><textarea id="codeEditor"></textarea><div class="editor-side-toolbar" id="editorSideToolbar"><button class="editor-side-btn" id="btnSelectAll" title="Select All"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16"/><path d="M9 4v16"/></svg><span class="tooltip">Select All</span></button><button class="editor-side-btn" id="btnCopy" title="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span class="tooltip">Copy</span></button><button class="editor-side-btn" id="btnCut" title="Cut"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg><span class="tooltip">Cut</span></button></div><div class="editor-unsaved-dot" id="editorUnsavedDot" title="Unsaved changes (auto-saves every 2s)"></div></div><div class="editor-console" id="editorConsole"><div class="console-resize-handle" id="consoleResizeHandle"></div><div class="console-header" id="consoleHeader"><div class="console-title">Console</div><div class="console-header-actions"><button class="console-clear" id="consoleClear">Clear</button><button class="console-close" id="consoleClose" title="Close console"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div></div><div class="console-output" id="consoleOutput"></div></div></div></div></div>
 <div class="modal-overlay" id="deleteConfirmModal"><div class="modal"><div class="modal-title">Delete Indicator</div><div class="modal-desc" id="deleteConfirmDesc">Are you sure?</div><div class="modal-actions"><button class="modal-btn" id="deleteCancelBtn">Cancel</button><button class="modal-btn danger" id="deleteConfirmBtn">Delete</button></div></div></div>
 <div class="modal-overlay" id="newIndicatorModal"><div class="modal"><div class="modal-title">New Indicator</div><div class="modal-desc">Enter a name for your custom indicator</div><input type="text" class="modal-input" id="newIndicatorInput" placeholder="e.g. MyStrategy" autocomplete="off" spellcheck="false"/><div class="modal-filename" id="newIndicatorFilename">File: untitled.js</div><div class="modal-error" id="newIndicatorError"></div><div class="modal-actions"><button class="modal-btn" id="newIndicatorCancel">Cancel</button><button class="modal-btn primary" id="newIndicatorContinue">Continue</button></div></div></div>
-<div class="modal-overlay" id="settingsModal"><div class="modal"><div class="modal-title" id="settingsModalTitle">Indicator Settings</div><div class="modal-desc" id="settingsModalDesc">Customize indicator properties</div><div class="modal-row"><label>Name</label><input type="text" id="settingsNameInput" placeholder="Indicator name" autocomplete="off" spellcheck="false"/></div><div class="modal-row"><label>Color</label><input type="color" id="settingsColorInput" value="#00ff88"/></div><div class="modal-row"><label>Width</label><select id="settingsWidthSelect"><option value="1">1 (Thin)</option><option value="2" selected>2 (Normal)</option><option value="3">3 (Medium)</option><option value="4">4 (Thick)</option><option value="5">5 (Bold)</option></select></div><div class="modal-row"><label>Style</label><select id="settingsStyleSelect"><option value="0" selected>Solid</option><option value="1">Dotted</option><option value="2">Dashed</option><option value="3">Large Dashed</option><option value="4">Sparse Dotted</option></select></div><div class="modal-row"><label>Visible</label><select id="settingsVisibleSelect"><option value="1" selected>Yes</option><option value="0">No</option></select></div><div class="modal-error" id="settingsError"></div><div class="modal-actions"><button class="modal-btn" id="settingsCancel">Cancel</button><button class="modal-btn primary" id="settingsApply">Apply</button></div></div></div>
+<div class="modal-overlay" id="settingsModal"><div class="modal"><div class="modal-title" id="settingsModalTitle">Indicator Settings</div><div class="modal-desc" id="settingsModalDesc">Customize indicator properties</div><div class="modal-row"><label>Name</label><input type="text" id="settingsNameInput" placeholder="Indicator name" autocomplete="off" spellcheck="false"/></div><div class="modal-row"><label>Color</label><input type="color" id="settingsColorInput" value="#00ff88"/></div><div class="modal-row"><label>Period</label><input type="number" id="settingsPeriodInput" value="14" min="1" max="999"/></div><div class="modal-row"><label>Width</label><select id="settingsWidthSelect"><option value="1">1 (Thin)</option><option value="2" selected>2 (Normal)</option><option value="3">3 (Medium)</option><option value="4">4 (Thick)</option><option value="5">5 (Bold)</option></select></div><div class="modal-row"><label>Style</label><select id="settingsStyleSelect"><option value="0" selected>Solid</option><option value="1">Dotted</option><option value="2">Dashed</option><option value="3">Large Dashed</option><option value="4">Sparse Dotted</option></select></div><div class="modal-row"><label>Visible</label><select id="settingsVisibleSelect"><option value="1" selected>Yes</option><option value="0">No</option></select></div><div class="modal-error" id="settingsError"></div><div class="modal-actions"><button class="modal-btn" id="settingsCancel">Cancel</button><button class="modal-btn primary" id="settingsApply">Apply</button></div></div></div>
 <div class="modal-overlay" id="quickAddModal"><div class="modal"><div class="modal-title">Quick Add Indicator</div><div class="modal-desc">Choose an existing indicator to run on chart, or create new</div><div id="quickAddList" style="max-height:280px;overflow-y:auto;margin-bottom:14px"></div><div class="modal-actions"><button class="modal-btn" id="quickAddCancel">Cancel</button><button class="modal-btn primary" id="quickAddNew">+ New Indicator</button></div></div></div>
 
 <div class="logo-container">
@@ -523,8 +523,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 <g clip-path="url(#hexagonClip)"><rect class="bar bar-1" x="60" y="58" width="18" height="102" rx="2"/><rect class="bar bar-3" x="122" y="58" width="18" height="102" rx="2"/><path class="bar bar-2" d="M91 40 L91 160 L109 160 L109 40 Z"/></g>
 <polygon points="97.733,158.883 100,165.42 102.267,158.883" fill="url(#cyanGrad)"/>
 <polygon points="99.244,156.294 100,158.476 100.756,156.294" fill="url(#blueGrad)"/>
-<path class="hexagon-border" d="M100 155 L40 120 L40 50 L64 36"/><path class="hexagon-border" d="M100 155 L160 120 L160 50 L136 36"/>
-<path class="hexagon" d="M100 155 L40 120 L40 50 L64 36"/><path class="hexagon" d="M100 155 L160 120 L160 50 L136 36"/>
+<path class="hexagon-border" d="M100 155 L40 120 L40 50 L64 36"/><path class="hexagon-border" d="M100 155 L160 120 L160 50 L136 36"/><path class="hexagon-border" d="M64 36 L100 15 L136 36"/><path class="hexagon-border" d="M64 134 L100 155 L136 134"/>
+<path class="hexagon" d="M100 155 L40 120 L40 50 L64 36"/><path class="hexagon" d="M100 155 L160 120 L160 50 L136 36"/><path class="hexagon" d="M64 36 L100 15 L136 36"/><path class="hexagon" d="M64 134 L100 155 L136 134"/>
 <polygon points="97.733,11.117 100,4.58 102.267,11.117" fill="url(#cyanGrad)"/>
 <polygon points="99.244,13.706 100,11.524 100.756,13.706" fill="url(#blueGrad)"/>
 <path class="notch-fill" d="M65.7 35 L100 15"/><path class="notch-fill" d="M134.3 35 L100 15"/>
@@ -622,10 +622,10 @@ var TIMEFRAMES=[
 ];
 var DEFAULT_VISIBLE_BARS=20;
 
-var MA10_CODE="// Moving Average 10\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var period = 10;\n  if (data.length < period) return { plots: [] };\n  var result = [];\n  for (var i = period - 1; i < data.length; i++) {\n    var sum = 0;\n    for (var j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 10', data: result, color: '#ffc452', width: 1 }] };\n}";
-var MA20_CODE="// Moving Average 20\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var period = 20;\n  if (data.length < period) return { plots: [] };\n  var result = [];\n  for (var i = period - 1; i < data.length; i++) {\n    var sum = 0;\n    for (var j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 20', data: result, color: '#ab82ff', width: 1 }] };\n}";
+var MA10_CODE="// Moving Average 10\nfunction main(data, period) {\n  if (!data || data.length === 0) return { plots: [] };\n  period = period || 10;\n  if (data.length < period) return { plots: [] };\n  var result = [];\n  for (var i = period - 1; i < data.length; i++) {\n    var sum = 0;\n    for (var j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 10', data: result, color: '#ffc452', width: 1 }] };\n}";
+var MA20_CODE="// Moving Average 20\nfunction main(data, period) {\n  if (!data || data.length === 0) return { plots: [] };\n  period = period || 20;\n  if (data.length < period) return { plots: [] };\n  var result = [];\n  for (var i = period - 1; i < data.length; i++) {\n    var sum = 0;\n    for (var j = 0; j < period; j++) sum += data[i - j].close;\n    result.push({ time: data[i].time, value: sum / period });\n  }\n  return { plots: [{ type: 'line', name: 'MA 20', data: result, color: '#ab82ff', width: 1 }] };\n}";
 var SIGNALS_EXAMPLE_CODE="// Trading Signals\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var lookback = 3;\n  if (data.length < lookback * 2 + 1) return { plots: [] };\n  var markers = [], trendLine = [];\n  for (var i = lookback; i < data.length - lookback; i++) {\n    var curr = data[i];\n    if (!curr) continue;\n    var isLow = true, isHigh = true;\n    for (var j = 1; j <= lookback; j++) {\n      if (data[i-j].low < curr.low || data[i+j].low < curr.low) isLow = false;\n      if (data[i-j].high > curr.high || data[i+j].high > curr.high) isHigh = false;\n    }\n    if (isLow) markers.push({ time: curr.time, position: 'belowBar', color: '#00ff88', shape: 'arrowUp', text: 'BUY' });\n    if (isHigh) markers.push({ time: curr.time, position: 'aboveBar', color: '#ff4466', shape: 'arrowDown', text: 'SELL' });\n    var sum = 0, count = 0;\n    for (var j = 0; j < 5 && i-j >= 0; j++) { sum += data[i-j].close; count++; }\n    if (count > 0) trendLine.push({ time: curr.time, value: sum / count });\n  }\n  markers.sort(function(a,b){return a.time-b.time;});\n  return { plots: [{ type:'line',name:'SMA 5',data:trendLine,color:'#00bfff',width:1 },{ type:'markers',name:'Signals',data:markers }] };\n}";
-var DEFAULT_INDICATOR_CODE="// Custom Indicator\nfunction main(data) {\n  if (!data || data.length === 0) return { plots: [] };\n  var period = 14;\n  if (data.length < period) return { plots: [] };\n  var upper=[],middle=[],lower=[];\n  for (var i=period-1;i<data.length;i++) {\n    var sum=0,count=0;\n    for(var j=0;j<period;j++){sum+=data[i-j].close;count++;}\n    if(!count)continue;\n    var avg=sum/count,variance=0;\n    for(var j=0;j<period;j++){var d=data[i-j].close-avg;variance+=d*d;}\n    var std=Math.sqrt(variance/count);\n    middle.push({time:data[i].time,value:avg});\n    upper.push({time:data[i].time,value:avg+2*std});\n    lower.push({time:data[i].time,value:avg-2*std});\n  }\n  return{plots:[{type:'line',name:'Upper',data:upper,color:'#00ff88',width:1,lineStyle:1},{type:'line',name:'Middle',data:middle,color:'#00bfff',width:2},{type:'line',name:'Lower',data:lower,color:'#ff4466',width:1,lineStyle:1},{type:'fill',name:'Fill',upperData:upper,lowerData:lower,color:'rgba(0,191,255,0.08)'}]};\n}";
+var DEFAULT_INDICATOR_CODE="// Custom Indicator (Bollinger Bands)\nfunction main(data, period) {\n  if (!data || data.length === 0) return { plots: [] };\n  period = period || 14;\n  if (data.length < period) return { plots: [] };\n  var upper=[],middle=[],lower=[];\n  for (var i=period-1;i<data.length;i++) {\n    var sum=0,count=0;\n    for(var j=0;j<period;j++){sum+=data[i-j].close;count++;}\n    if(!count)continue;\n    var avg=sum/count,variance=0;\n    for(var j=0;j<period;j++){var d=data[i-j].close-avg;variance+=d*d;}\n    var std=Math.sqrt(variance/count);\n    middle.push({time:data[i].time,value:avg});\n    upper.push({time:data[i].time,value:avg+2*std});\n    lower.push({time:data[i].time,value:avg-2*std});\n  }\n  return{plots:[{type:'line',name:'Upper',data:upper,color:'#00ff88',width:1,lineStyle:1},{type:'line',name:'Middle',data:middle,color:'#00bfff',width:2},{type:'line',name:'Lower',data:lower,color:'#ff4466',width:1,lineStyle:1},{type:'fill',name:'Fill',upperData:upper,lowerData:lower,color:'rgba(0,191,255,0.08)'}]};\n}";
 
 /* ---------- Centralized State ---------- */
 var State={
@@ -660,7 +660,7 @@ function saveState(){
       indicators:State.indicators.map(function(ind){
         return {
           id:ind.id,name:ind.name,code:ind.code,
-          active:ind.active,hidden:ind.hidden,color:ind.color
+          active:ind.active,hidden:ind.hidden,color:ind.color,period:ind.period
         };
       })
     };
@@ -684,6 +684,7 @@ function loadState(){
           active:false,  // restored indicators are inactive until run
           hidden:false,
           color:ind.color||null,
+          period:ind.period||14,
           plots:[],
           isMarkerIndicator:false
         };
@@ -964,13 +965,14 @@ function updateIndicatorsIncremental(){
 /* We still use `new Function` but with: try/catch, rollback on error, timeout guard,
    and we strip access to dangerous globals via a proxy-style wrapper. */
 var MAX_INDICATOR_RUNTIME_MS=2000;
-function safeExecuteIndicator(code,data){
-  // Build a sandboxed function: only `data` is exposed.
+function safeExecuteIndicator(code,data,period){
+  // Build a sandboxed function: only `data` and `period` are exposed.
   // We use `Function` constructor so the code can't close over our local vars.
   // A timeout is enforced via a shared flag polled in the code.
+  var safePeriod=period||14;
   var fn;
   try{
-    fn=new Function('data','"use strict";var window=void 0,document=void 0,localStorage=void 0,fetch=void 0,XMLHttpRequest=void 0,Function=void 0;\n'+code+'\n;return (typeof main==="function")?main(data):null;');
+    fn=new Function('data','period','"use strict";var window=void 0,document=void 0,localStorage=void 0,fetch=void 0,XMLHttpRequest=void 0,Function=void 0;\nif(typeof period==="undefined")period='+safePeriod+';\n'+code+'\n;return (typeof main==="function")?main(data,period):null;');
   }catch(syntaxErr){
     return {error:'Syntax error: '+syntaxErr.message};
   }
@@ -1520,6 +1522,7 @@ function deleteIndicatorFull(id){
 var settingsModal=document.getElementById('settingsModal');
 var settingsColorInput=document.getElementById('settingsColorInput');
 var settingsNameInput=document.getElementById('settingsNameInput');
+var settingsPeriodInput=document.getElementById('settingsPeriodInput');
 var settingsWidthSelect=document.getElementById('settingsWidthSelect');
 var settingsStyleSelect=document.getElementById('settingsStyleSelect');
 var settingsVisibleSelect=document.getElementById('settingsVisibleSelect');
@@ -1532,6 +1535,7 @@ function openIndicatorSettings(id){
   document.getElementById('settingsModalDesc').textContent='Customize indicator properties';
   settingsNameInput.value=ind.name||'';
   settingsColorInput.value=ind.color||'#00ff88';
+  settingsPeriodInput.value=ind.period||14;
   // Use first plot's width/style/visible as defaults, fallback to indicator defaults
   var firstPlot=ind.plots&&ind.plots[0];
   var width=firstPlot?firstPlot.width:2;
@@ -1562,13 +1566,19 @@ document.getElementById('settingsApply').addEventListener('click',function(){
   // Validate color
   var nc=settingsColorInput.value;
   if(!nc||!/^#([0-9A-Fa-f]{3}){1,2}$/.test(nc)){settingsError.textContent='Invalid color format';return;}
+  // Validate period
+  var nperiod=parseInt(settingsPeriodInput.value)||14;
+  if(nperiod<1||nperiod>999){settingsError.textContent='Period must be 1-999';return;}
   var nwidth=parseInt(settingsWidthSelect.value)||2;
   var nstyle=parseInt(settingsStyleSelect.value)||0;
   var nvisible=settingsVisibleSelect.value==='1';
+  var periodChanged=(ind.period!==nperiod);
   // Apply name
   ind.name=newName;
   // Apply color
   ind.color=nc;
+  // Apply period
+  ind.period=nperiod;
   // Apply to all plots
   ind.plots.forEach(function(plot){
     if(plot.type==='fill')return; // fill uses its own color
@@ -1586,6 +1596,10 @@ document.getElementById('settingsApply').addEventListener('click',function(){
   // Update markers if any plot was toggled
   if(ind.plots.some(function(p){return p.type==='markers';})){
     rebuildAllMarkers();
+  }
+  // If period changed and indicator is active, re-run it to reflect new period
+  if(periodChanged&&ind.active&&!ind.hidden){
+    rerunIndicator(ind);
   }
   updateFloatingIndicators();updateIndicatorsList();updateSidebar();updateCurrentIndicatorDisplay();
   if(State.currentIndicatorId===ind.id){
@@ -1625,7 +1639,7 @@ function loadIndicator(id){
 function createIndicator(name,code){
   pushHistory();
   var id=++State.indicatorIdCounter;
-  var ni={id:id,name:name,code:code||DEFAULT_INDICATOR_CODE,active:false,hidden:false,color:null,plots:[],isMarkerIndicator:false};
+  var ni={id:id,name:name,code:code||DEFAULT_INDICATOR_CODE,active:false,hidden:false,color:null,period:14,plots:[],isMarkerIndicator:false};
   State.indicators.push(ni);
   loadIndicator(id);
   saveState();
@@ -1640,7 +1654,7 @@ function duplicateIndicator(id){
     newName=ind.name+' (copy '+counter+')';counter++;
   }
   var nid=++State.indicatorIdCounter;
-  var ni={id:nid,name:newName,code:ind.code,active:false,hidden:false,color:ind.color,plots:[],isMarkerIndicator:false};
+  var ni={id:nid,name:newName,code:ind.code,active:false,hidden:false,color:ind.color,period:ind.period||14,plots:[],isMarkerIndicator:false};
   State.indicators.push(ni);
   loadIndicator(nid);
   logToConsole('Duplicated: '+ind.name+' → '+newName,'success');
@@ -1711,7 +1725,7 @@ function runIndicator(ind){
     }
   });
   ind.plots=[];ind.hidden=false;
-  var exec=safeExecuteIndicator(ind.code,State.currentChartData);
+  var exec=safeExecuteIndicator(ind.code,State.currentChartData,ind.period);
   if(exec.error){
     // ROLLBACK: re-create saved plots
     logToConsole(exec.error,'error');
@@ -1772,7 +1786,7 @@ function updateRunButton(){
   }
 }
 function rerunIndicator(ind){
-  var exec=safeExecuteIndicator(ind.code,State.currentChartData);
+  var exec=safeExecuteIndicator(ind.code,State.currentChartData,ind.period);
   if(exec.error){logToConsole(ind.name+': '+exec.error,'error');return;}
   var result=exec.result;
   if(!result)return;
