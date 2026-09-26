@@ -929,6 +929,16 @@ function initChart(){
       rebuildAllMarkers();
     }
   });
+  // Mobile orientation change: rebuild markers after rotation
+  window.addEventListener('orientationchange',function(){
+    setTimeout(function(){
+      if(State.chart){
+        var tvEl=document.getElementById('tvChart');
+        State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
+        rebuildAllMarkers();
+      }
+    },300);
+  });
   startLiveSimulation();
 }
 
@@ -1198,14 +1208,20 @@ function navigateTo(page,opts){
   var tc=document.getElementById('topControls'),cc=document.getElementById('chartContainer');
   if(page==='chart'){
     tc.classList.add('visible');cc.classList.add('visible');
+    // Force chart resize + marker rebuild with multiple delays
+    // to handle mobile rendering timing issues
     setTimeout(function(){
       if(State.chart){
-        State.chart.applyOptions({width:document.getElementById('tvChart').clientWidth,height:document.getElementById('tvChart').clientHeight});
-        // Mobile fix: markers (setMarkers) don't always redraw after a resize
-        // the way line/candle series do — force them to re-apply here.
+        var tvEl=document.getElementById('tvChart');
+        State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
         rebuildAllMarkers();
       }
     },150);
+    setTimeout(function(){
+      if(State.chart){
+        rebuildAllMarkers();
+      }
+    },400);
   }else if(page==='editor'){
     tc.classList.remove('visible');cc.classList.remove('visible');
     document.getElementById('editorPage').classList.add('visible');
@@ -1833,9 +1849,24 @@ function runIndicator(ind){
   ind.active=true;
   ind.isMarkerIndicator=plots.some(function(p){return p&&p.type==='markers';});
   logToConsole('✓ '+ind.name+' loaded — '+plots.length+' plot(s): '+pn.join(', ')+' | markers in state: '+State.currentMarkers.length,'success');
+  // CRITICAL: rebuild all markers after running indicator
+  // This ensures markers are properly set on the chart
+  rebuildAllMarkers();
   updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateRunButton();
   setUnsaved(false);
   saveState();
+  // On mobile: navigate to chart so user can see the result
+  // Also force a chart resize + marker rebuild after navigation
+  if(window.innerWidth<=768){
+    navigateTo('chart');
+    setTimeout(function(){
+      if(State.chart){
+        var tvEl=document.getElementById('tvChart');
+        State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
+        rebuildAllMarkers();
+      }
+    },300);
+  }
 }
 function stopIndicator(ind){
   pushHistory();
