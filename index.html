@@ -293,6 +293,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .signal-open-hint{display:flex;align-items:center;gap:4px;font-size:8px;color:rgba(255,255,255,0.35);margin-top:1px;letter-spacing:0.3px;text-transform:uppercase;font-weight:600}
 .signal-open-hint svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2}
 .signal-new-badge{position:absolute;bottom:8px;right:8px;padding:3px 10px;border-radius:5px;font-size:9px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;background:rgba(0,240,255,0.15);color:#00f0ff;border:1px solid rgba(0,240,255,0.5);z-index:2;pointer-events:none}
+.signal-new-badge.win{background:rgba(0,255,136,0.15);color:#00ff88;border-color:rgba(0,255,136,0.5)}
+.signal-new-badge.lose{background:rgba(255,68,102,0.15);color:#ff4466;border-color:rgba(255,68,102,0.5)}
 @keyframes newPulse{0%,100%{box-shadow:0 2px 8px rgba(0,240,255,0.25)}50%{box-shadow:0 2px 16px rgba(0,240,255,0.5)}}
 .signal-result-overlay{position:absolute;bottom:8px;right:8px;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity 0.4s ease;z-index:6;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);max-width:60%}
 .signal-result-overlay.visible{opacity:1;pointer-events:auto}
@@ -422,8 +424,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .editor-side-btn{width:26px;height:26px}
   .editor-side-btn svg{width:12px;height:12px}
   .signals-page{padding:16px 12px 70px}
-  .signals-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px}
-  .signal-card{max-width:none}
+  .signals-grid{grid-template-columns:1fr;gap:8px}
+  .signal-card{max-width:340px}
   .signal-card-inner{padding:8px;gap:7px}
   .signal-timer-wrap{width:50px;height:50px}
   .signal-timer-count{font-size:11px}
@@ -437,8 +439,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .stat-chip{padding:5px 10px;font-size:11px}
   .stat-chip .stat-icon{width:16px;height:16px;font-size:9px}
   .indicators-page{padding:20px 14px 80px}
-  .indicators-page-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
-  .ind-page-card{max-width:none}
+  .indicators-page-grid{grid-template-columns:1fr;gap:8px}
+  .ind-page-card{max-width:300px}
   .ind-page-card{padding:8px}
   .ind-page-name{font-size:11px}
   .ind-page-desc{font-size:9px;margin-bottom:6px}
@@ -456,11 +458,13 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
   .logo-container{width:260px;height:260px}
   .logo-container.expanded{transform:scale(1.5)}
   .editor-sidebar{display:none}
-  .indicators-page-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr))}
+  .indicators-page-grid{grid-template-columns:1fr;gap:8px}
+  .ind-page-card{max-width:240px}
   .symbol-info{gap:3px;margin-left:4px}
   .symbol-price{font-size:10px}
   .symbol-change{font-size:9px}
-  .signals-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+  .signals-grid{grid-template-columns:1fr;gap:8px}
+  .signal-card{max-width:280px}
   .signal-card-inner{padding:8px;gap:6px}
   .signal-timer-wrap{width:42px;height:42px}
   .signal-timer-count{font-size:10px}
@@ -1223,9 +1227,12 @@ function buildSignalsPage(){
     card.setAttribute('data-signal-id',sig.id);
     var tdo=sig.result!==null?TC:dOff;
     var ct=sig.result!==null?'0:00':formatCountdown(rem);
-    var nb=sig.isNew?'<span class="signal-new-badge">NEW</span>':'';
+    var nb='';
+    if(sig.result==='win'){nb='<span class="signal-new-badge win">WIN '+(sig.profit!==null?(sig.profit>=0?'+':'')+sig.profit.toFixed(2)+'%':'')+'</span>';}
+    else if(sig.result==='lose'){nb='<span class="signal-new-badge lose">LOSS '+(sig.profit!==null?(sig.profit>=0?'+':'')+sig.profit.toFixed(2)+'%':'')+'</span>';}
+    else if(sig.isNew){nb='<span class="signal-new-badge">NEW</span>';}
     // ESCAPED signal content
-    card.innerHTML='<div class="signal-card-inner"><div class="signal-timer-wrap"><svg class="signal-timer-svg" viewBox="0 0 86 86"><circle class="signal-timer-bg" cx="43" cy="43" r="'+TR+'"/><circle class="signal-timer-progress" cx="43" cy="43" r="'+TR+'" stroke-dasharray="'+TC+'" stroke-dashoffset="'+tdo+'"/></svg><div class="signal-timer-center"><div class="signal-timer-count">'+ct+'</div><div class="signal-timer-label">'+(sig.result!==null?'Closed':'Left')+'</div></div></div><div class="signal-info"><div class="signal-top-row"><span class="signal-symbol-name">'+escapeHtml(sig.symbol)+'</span><span class="signal-type-badge">'+(isBuy?'▲ BUY':'▼ SELL')+'</span></div><div class="signal-entry-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="val">'+formatTime(sig.startTime)+'</span><span class="sep">|</span><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="val">'+formatPrice(sig.entry)+'</span></div><div class="signal-open-hint"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Tap to open chart</span></div></div></div>'+nb+'<div class="signal-result-overlay '+(sig.result||'')+'"><div class="signal-result-icon">'+(sig.result==='win'?'<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>':sig.result==='lose'?'<svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>':'')+'</div><div class="signal-result-info"><div class="signal-result-text">'+(sig.result==='win'?'PROFIT':sig.result==='lose'?'LOSS':'')+'</div><div class="signal-result-profit">'+(sig.profit!==null?(sig.profit>=0?'+':'')+sig.profit.toFixed(2)+'%':'')+'</div></div></div>';
+    card.innerHTML='<div class="signal-card-inner"><div class="signal-timer-wrap"><svg class="signal-timer-svg" viewBox="0 0 86 86"><circle class="signal-timer-bg" cx="43" cy="43" r="'+TR+'"/><circle class="signal-timer-progress" cx="43" cy="43" r="'+TR+'" stroke-dasharray="'+TC+'" stroke-dashoffset="'+tdo+'"/></svg><div class="signal-timer-center"><div class="signal-timer-count">'+ct+'</div><div class="signal-timer-label">'+(sig.result!==null?'Closed':'Left')+'</div></div></div><div class="signal-info"><div class="signal-top-row"><span class="signal-symbol-name">'+escapeHtml(sig.symbol)+'</span><span class="signal-type-badge">'+(isBuy?'▲ BUY':'▼ SELL')+'</span></div><div class="signal-entry-row"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span class="val">'+formatTime(sig.startTime)+'</span><span class="sep">|</span><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="val">'+formatPrice(sig.entry)+'</span></div><div class="signal-open-hint"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Tap to open chart</span></div></div></div>'+nb;
     card.addEventListener('click',function(){
       SIGNALS_DATA.forEach(function(s){s.isNew=false;});
       State.signalsBadgeDismissed=true;
