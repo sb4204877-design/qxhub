@@ -7,7 +7,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+/* ===== Modern Overlay Scrollbar ===== */
+/* Global modern overlay scrollbar - thin, auto-hide, rounded, semi-transparent */
+*,*::before,*::after{scrollbar-width:thin;scrollbar-color:rgba(140,140,140,0.4) transparent}
+*::-webkit-scrollbar{width:8px;height:8px;background:transparent}
+*::-webkit-scrollbar-track{background:transparent}
+*::-webkit-scrollbar-thumb{background:rgba(140,140,140,0.35);border-radius:10px;border:2px solid transparent;background-clip:padding-box;transition:background 0.2s ease,border-color 0.2s ease}
+*::-webkit-scrollbar-thumb:hover{background:rgba(0,210,255,0.6);border-color:transparent;background-clip:padding-box}
+*::-webkit-scrollbar-thumb:active{background:rgba(0,210,255,0.8);background-clip:padding-box}
+*::-webkit-scrollbar-corner{background:transparent}
+/* Hide scrollbar arrows/buttons */
+*::-webkit-scrollbar-button{display:none;width:0;height:0}
+
 html,body{width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#fff}
 .logo-container{width:460px;height:460px;position:relative;z-index:5;transform-origin:center center;transition:transform 3s cubic-bezier(0.22,1,0.36,1),opacity 1.5s ease,z-index 0.3s ease 2.5s}
 .logo-container svg{width:100%;height:100%;overflow:visible;display:block}
@@ -145,10 +156,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .indicators-list-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #1a1a1a}
 .indicators-list-title{color:#aaa;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
 .indicators-list-count{color:#666;font-size:10px;font-weight:600;background:#1a1a1a;padding:2px 8px;border-radius:10px}
-.indicators-list-body{display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px 12px;max-height:140px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#333 transparent}
-.indicators-list-body::-webkit-scrollbar{height:4px;width:4px}
-.indicators-list-body::-webkit-scrollbar-track{background:transparent}
-.indicators-list-body::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
+.indicators-list-body{display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px 12px;max-height:140px;overflow-y:auto}
 .ind-list-item{display:flex;align-items:center;gap:7px;padding:5px 10px;background:linear-gradient(180deg,#161616 0%,#0a0a0a 100%);border:1px solid #222;border-radius:6px;cursor:pointer;transition:all 0.15s ease}
 .ind-list-item:hover{background:linear-gradient(180deg,#1f1f1f 0%,#131313 100%);border-color:#333;transform:translateY(-1px)}
 .ind-list-item.active{border-color:#00ff88;background:linear-gradient(180deg,rgba(0,255,136,0.12) 0%,rgba(0,255,136,0.04) 100%)}
@@ -166,10 +174,7 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .editor-sidebar{width:240px;background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);border-right:1px solid #1f1f1f;display:flex;flex-direction:column;flex-shrink:0;box-shadow:2px 0 12px rgba(0,0,0,0.3)}
 .sidebar-header{padding:14px 14px 12px;border-bottom:1px solid #1a1a1a;color:#aaa;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 .sidebar-header::before{content:'';width:3px;height:12px;background:linear-gradient(180deg,#00d2ff,#0099cc);border-radius:2px}
-.sidebar-list{flex:1;overflow-y:auto;padding:6px;scrollbar-width:thin;scrollbar-color:#333 transparent}
-.sidebar-list::-webkit-scrollbar{width:4px}
-.sidebar-list::-webkit-scrollbar-track{background:transparent}
-.sidebar-list::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
+.sidebar-list{flex:1;overflow-y:auto;padding:6px}
 .sidebar-item{display:flex;align-items:center;gap:8px;padding:9px 11px;color:#fff;font-size:12px;border-radius:7px;cursor:pointer;transition:all 0.18s ease;margin-bottom:3px;position:relative;border:1px solid transparent}
 .sidebar-item:hover{background:linear-gradient(180deg,#181818 0%,#0e0e0e 100%);border-color:#222}
 .sidebar-item.active{background:linear-gradient(180deg,#00d2ff 0%,#0099cc 100%);color:#000;box-shadow:0 2px 10px rgba(0,210,255,0.3);font-weight:700}
@@ -191,6 +196,14 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .code-wrapper{flex:1;overflow:hidden;position:relative;background:#000;min-height:0}
 .CodeMirror{height:100% !important;font-family:'JetBrains Mono','Fira Code','Consolas','Monaco',monospace !important;font-size:13px !important;line-height:1.65 !important;background:#000 !important;color:#e0e0e0 !important}
 .CodeMirror-gutters{background:#0a0a0a !important;border-right:1px solid #1a1a1a !important}
+.CodeMirror-scrollbar-filler,.CodeMirror-gutter-filler{background:transparent !important}
+.CodeMirror-overscroll{display:none !important}
+.CodeMirror-vscrollbar,.CodeMirror-hscrollbar{scrollbar-width:thin !important;scrollbar-color:rgba(140,140,140,0.35) transparent !important}
+.CodeMirror-vscrollbar::-webkit-scrollbar,.CodeMirror-hscrollbar::-webkit-scrollbar{width:8px !important;height:8px !important;background:transparent !important}
+.CodeMirror-vscrollbar::-webkit-scrollbar-track,.CodeMirror-hscrollbar::-webkit-scrollbar-track{background:transparent !important}
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb,.CodeMirror-hscrollbar::-webkit-scrollbar-thumb{background:rgba(140,140,140,0.35) !important;border-radius:10px !important;border:2px solid transparent !important;background-clip:padding-box !important;transition:background 0.2s ease !important}
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb:hover,.CodeMirror-hscrollbar::-webkit-scrollbar-thumb:hover{background:rgba(0,210,255,0.6) !important;background-clip:padding-box !important}
+.CodeMirror-vscrollbar::-webkit-scrollbar-thumb:active,.CodeMirror-hscrollbar::-webkit-scrollbar-thumb:active{background:rgba(0,210,255,0.8) !important;background-clip:padding-box !important}
 .CodeMirror-linenumber{color:#555 !important;padding:0 10px !important;font-weight:500}
 .CodeMirror-cursor{border-left:2px solid #00d2ff !important}
 .CodeMirror-selected{background:rgba(0,210,255,0.18) !important}
