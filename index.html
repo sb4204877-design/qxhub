@@ -1842,6 +1842,11 @@ function runIndicator(ind){
   // Commit current editor content to indicator before running
   ind.code=State.codeMirror.getValue();
   logToConsole('Running: '+ind.name+'.js','info');
+  // Check if chart data is available
+  if(!State.currentChartData||!State.currentChartData.length){
+    logToConsole('No chart data available. Loading data...','info');
+    refreshChart();
+  }
   // Save existing plots for rollback
   var savedPlots=ind.plots.slice();
   // Remove existing plots first
@@ -1934,8 +1939,9 @@ function rerunIndicator(ind){
   var exec=safeExecuteIndicator(ind.code,State.currentChartData,ind.period);
   if(exec.error){logToConsole(ind.name+': '+exec.error,'error');return;}
   var result=exec.result;
-  if(!result)return;
+  if(!result){logToConsole(ind.name+': no result returned','error');return;}
   var plots=normalizeResult(result);
+  if(!plots.length){logToConsole(ind.name+': no plots returned','error');return;}
   ind.plots.forEach(function(plot){
     if(plot.seriesRef){
       try{if(plot.type==='fill'&&plot.seriesRef.remove)plot.seriesRef.remove();else State.chart.removeSeries(plot.seriesRef);}catch(e){}
@@ -1951,6 +1957,9 @@ function rerunIndicator(ind){
       data:plot.data,upperData:plot.upperData,lowerData:plot.lowerData
     });
   });
+  ind.active=true;
+  ind.isMarkerIndicator=plots.some(function(p){return p&&p.type==='markers';});
+  rebuildAllMarkers();
 }
 function rerunAllIndicators(){
   State.currentMarkers=[];
