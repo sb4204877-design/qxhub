@@ -67,9 +67,9 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .plot-action{width:16px;height:16px;display:flex;align-items:center;justify-content:center;background:transparent;border:none;border-radius:3px;color:#888;cursor:pointer;padding:0;transition:all 0.15s ease}
 .plot-action:hover{background:rgba(255,255,255,0.1);color:#fff}
 .plot-action svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.toggle-indicators-arrow{align-self:flex-start;width:24px;height:14px;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:4px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color 0.15s ease,background 0.15s ease;padding:0;pointer-events:auto}
+.toggle-indicators-arrow{align-self:flex-start;width:34px;height:22px;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.15);border-radius:5px;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color 0.15s ease,background 0.15s ease;padding:0;pointer-events:auto}
 .toggle-indicators-arrow:hover{color:#fff;background:rgba(0,0,0,0.95)}
-.toggle-indicators-arrow svg{width:10px;height:10px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s ease}
+.toggle-indicators-arrow svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:transform 0.2s ease}
 .toggle-indicators-arrow.collapsed svg{transform:rotate(180deg)}
 .ind-list-wrapper.hidden{display:none}
 .top-controls{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;flex-direction:column;gap:0;opacity:0;transform:translateY(-20px);transition:opacity 0.5s ease,transform 0.5s ease,left 0.3s ease;pointer-events:none;direction:ltr}
@@ -345,6 +345,8 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .ind-page-btn{flex:1;padding:7px 10px;background:linear-gradient(180deg,#181818 0%,#0a0a0a 100%);border:1px solid #222;border-radius:6px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.18s ease;letter-spacing:0.3px;box-shadow:0 1px 2px rgba(0,0,0,0.3)}
 .ind-page-btn:hover{background:linear-gradient(180deg,#222 0%,#141414 100%);border-color:#333;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,0,0,0.5)}
 .ind-page-btn.toggle.active{background:linear-gradient(180deg,rgba(0,255,136,0.2) 0%,rgba(0,255,136,0.08) 100%);border-color:#00ff88;color:#00ff88}
+.ind-page-btn.share-btn{flex:0 0 auto;padding:7px 10px;color:#00d2ff;border-color:rgba(0,210,255,0.3);background:linear-gradient(180deg,rgba(0,210,255,0.05) 0%,rgba(0,0,0,0.5) 100%)}
+.ind-page-btn.share-btn:hover{background:linear-gradient(180deg,rgba(0,210,255,0.2) 0%,rgba(0,210,255,0.05) 100%);border-color:#00d2ff}
 .ind-page-btn.delete-btn{flex:0 0 auto;padding:7px 10px;color:#ff4466;border-color:rgba(255,68,102,0.3);background:linear-gradient(180deg,rgba(255,68,102,0.05) 0%,rgba(0,0,0,0.5) 100%)}
 .ind-page-btn.delete-btn:hover{background:linear-gradient(180deg,rgba(255,68,102,0.2) 0%,rgba(255,68,102,0.05) 100%);border-color:#ff4466}
 .ind-no-results{text-align:center;padding:80px 20px;color:#666;font-size:13px;grid-column:1/-1;letter-spacing:0.5px}
@@ -1409,12 +1411,49 @@ function buildIndicatorsPage(){
     var card=document.createElement('div');card.className='ind-page-card';card.style.animationDelay=(i*0.05)+'s';
     var pc=ind.plots?ind.plots.length:0;
     // ESCAPED name
-    card.innerHTML='<div class="ind-page-card-header"><span class="ind-page-name">'+escapeHtml(ind.name)+'</span><span class="ind-page-status '+(ind.active?'':'inactive')+'"></span></div><div class="ind-page-desc">'+pc+' plot(s). '+(ind.active?'Currently drawn on chart.':'Not active.')+'</div><div class="ind-page-actions"><button class="ind-page-btn edit" data-id="'+ind.id+'">Edit</button><button class="ind-page-btn toggle '+(ind.active?'active':'')+'" data-id="'+ind.id+'">'+(ind.active?'Running':'Run')+'</button><button class="ind-page-btn delete-btn" data-id="'+ind.id+'" title="Delete">✕</button></div>';
+    card.innerHTML='<div class="ind-page-card-header"><span class="ind-page-name">'+escapeHtml(ind.name)+'</span><span class="ind-page-status '+(ind.active?'':'inactive')+'"></span></div><div class="ind-page-desc">'+pc+' plot(s). '+(ind.active?'Currently drawn on chart.':'Not active.')+'</div><div class="ind-page-actions"><button class="ind-page-btn edit" data-id="'+ind.id+'">Edit</button><button class="ind-page-btn toggle '+(ind.active?'active':'')+'" data-id="'+ind.id+'">'+(ind.active?'Running':'Run')+'</button><button class="ind-page-btn share-btn" data-id="'+ind.id+'" title="Share">Share</button><button class="ind-page-btn delete-btn" data-id="'+ind.id+'" title="Delete">✕</button></div>';
     grid.appendChild(card);
   });
   grid.querySelectorAll('.ind-page-btn.edit').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();loadIndicator(parseInt(b.getAttribute('data-id')));navigateTo('editor');});});
   grid.querySelectorAll('.ind-page-btn.toggle').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();loadIndicator(parseInt(b.getAttribute('data-id')));toggleCurrentIndicator();buildIndicatorsPage();});});
+  grid.querySelectorAll('.ind-page-btn.share-btn').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();shareIndicator(parseInt(b.getAttribute('data-id')));});});
   grid.querySelectorAll('.ind-page-btn.delete-btn').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();openDeleteConfirm(parseInt(b.getAttribute('data-id')));});});
+}
+
+/* Share indicator: copy code or download as .js file */
+function shareIndicator(id){
+  var ind=findIndicator(id);if(!ind)return;
+  // Build a shareable text with indicator name + code
+  var shareText='// Indicator: '+ind.name+'\n// Shared from QXView\n\n'+ind.code;
+  // Try Web Share API first (mobile-friendly)
+  if(navigator.share){
+    navigator.share({
+      title:'QXView Indicator: '+ind.name,
+      text:shareText
+    }).catch(function(){});
+  }else if(navigator.clipboard&&navigator.clipboard.writeText){
+    // Fallback: copy to clipboard
+    navigator.clipboard.writeText(shareText).then(function(){
+      // Download as .js file
+      downloadIndicatorFile(ind.name,ind.code);
+    }).catch(function(){
+      downloadIndicatorFile(ind.name,ind.code);
+    });
+  }else{
+    downloadIndicatorFile(ind.name,ind.code);
+  }
+}
+
+function downloadIndicatorFile(name,code){
+  var blob=new Blob([code],{type:'text/javascript'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');
+  a.href=url;
+  a.download=name.replace(/[^a-zA-Z0-9_\-]/g,'')+'.js';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},100);
 }
 document.getElementById('indicatorsSearch').addEventListener('input',function(e){State.indicatorsSearchQuery=e.target.value;buildIndicatorsPage();});
 
@@ -1784,15 +1823,12 @@ function removeIndicatorSeries(ind){
 }
 function rebuildAllMarkers(){
   var am=[];
-  var debugInfo=[];
   State.indicators.forEach(function(ind){
     if(ind.active&&!ind.hidden){
       ind.plots.forEach(function(plot){
         if(plot.type==='markers'&&plot.visible&&plot.data){
-          debugInfo.push(ind.name+': '+plot.data.length+' markers');
           plot.data.forEach(function(m){
-            var marker={time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'arrowUp',text:m.text||''};
-            am.push(marker);
+            am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'arrowUp',text:m.text||''});
           });
         }
       });
@@ -1802,23 +1838,7 @@ function rebuildAllMarkers(){
   var um=[],seen={};
   am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});
   State.currentMarkers=um;
-  // Log diagnostic info
-  if(debugInfo.length){
-    logToConsole('Markers: '+debugInfo.join(', ')+' | total: '+um.length,'info');
-    if(um.length>0){
-      var sample=um.slice(0,Math.min(3,um.length));
-      sample.forEach(function(m){
-        logToConsole('  → '+(m.text||'')+' '+m.color+' '+m.shape+' @'+m.position,'info');
-      });
-    }
-  }
-  // Set markers directly
-  try{
-    State.candleSeries.setMarkers(um);
-    logToConsole('setMarkers called with '+um.length+' markers','success');
-  }catch(e){
-    logToConsole('setMarkers error: '+e.message,'error');
-  }
+  try{State.candleSeries.setMarkers(um);}catch(e){}
 }
 function clearConsole(){consoleOutput.innerHTML='';}
 function logToConsole(msg,type){
@@ -1843,17 +1863,15 @@ function toggleCurrentIndicator(){
 function runIndicator(ind){
   pushHistory();
   // Get code: prefer ind.code (stored), only use editor if current indicator matches
-  // This fixes mobile issue where CodeMirror shows wrong code
   if(State.codeMirror && State.currentIndicatorId===ind.id){
     var editorCode=State.codeMirror.getValue();
     if(editorCode && editorCode.length>10){
       ind.code=editorCode;
     }
   }
-  logToConsole('Running: '+ind.name+'.js (code length: '+(ind.code||'').length+')','info');
+  logToConsole('Running: '+ind.name+'.js','info');
   // Check if chart data is available
   if(!State.currentChartData||!State.currentChartData.length){
-    logToConsole('No chart data available. Loading data...','info');
     refreshChart();
   }
   // Save existing plots for rollback
@@ -1884,16 +1902,14 @@ function runIndicator(ind){
   if(!result){logToConsole('Indicator must return a result object','error');ind.active=false;updateRunButton();return;}
   var plots=normalizeResult(result);
   if(!plots.length){logToConsole('No plots returned','error');ind.active=false;updateRunButton();return;}
-  logToConsole('Result: '+plots.length+' plots','info');
   var pc=0,pn=[];
   plots.forEach(function(plot){
     if(!plot)return;
     pc++;
     if(!plot.name||plot.name.startsWith('Plot '))plot.name=plot.name||('Plot '+pc);
     var dataLen=(plot.data&&plot.data.length)?plot.data.length:0;
-    logToConsole('  plot '+pc+': '+plot.name+' type='+plot.type+' data='+dataLen,'info');
     var sr=createPlotSeries(plot,ind);
-    pn.push(plot.name+' ('+plot.type+', '+dataLen+' pts)');
+    pn.push(plot.name+' ('+plot.type+(dataLen?', '+dataLen+' pts':'')+')');
     ind.plots.push({
       id:ind.id+'_'+pc,name:plot.name,type:plot.type,color:plot.color,
       width:plot.width,lineStyle:plot.lineStyle,visible:true,seriesRef:sr,
