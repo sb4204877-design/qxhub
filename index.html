@@ -1230,27 +1230,19 @@ function navigateTo(page,opts){
   var tc=document.getElementById('topControls'),cc=document.getElementById('chartContainer');
   if(page==='chart'){
     tc.classList.add('visible');cc.classList.add('visible');
-    // Force chart resize + full re-render with multiple delays
-    // to handle mobile rendering timing issues
+    // Just resize the chart + rebuild markers (don't re-run indicators)
     setTimeout(function(){
       if(State.chart){
         var tvEl=document.getElementById('tvChart');
         State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
-        forceChartRender();
+        rebuildAllMarkers();
       }
     },150);
     setTimeout(function(){
       if(State.chart){
-        var tvEl=document.getElementById('tvChart');
-        State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
-        forceChartRender();
-      }
-    },400);
-    setTimeout(function(){
-      if(State.chart){
         rebuildAllMarkers();
       }
-    },700);
+    },400);
   }else if(page==='editor'){
     tc.classList.remove('visible');cc.classList.remove('visible');
     document.getElementById('editorPage').classList.add('visible');
@@ -1891,19 +1883,19 @@ function runIndicator(ind){
   setUnsaved(false);
   saveState();
   // On mobile: navigate to chart so user can see the result
-  // Force chart resize + full re-render after navigation
+  // Just resize + rebuild markers (indicators are already running)
   if(window.innerWidth<=768){
     navigateTo('chart');
     setTimeout(function(){
       if(State.chart){
         var tvEl=document.getElementById('tvChart');
         State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
-        forceChartRender();
+        rebuildAllMarkers();
       }
     },300);
     setTimeout(function(){
       if(State.chart){
-        forceChartRender();
+        rebuildAllMarkers();
       }
     },600);
   }
