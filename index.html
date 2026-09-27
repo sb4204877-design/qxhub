@@ -1511,7 +1511,7 @@ function deletePublished(pid){
 function exportIndicatorTxt(id){
   var ind=findIndicator(id);if(!ind)return;
   var content='// QXView Indicator\n// Name: '+ind.name+'\n// Exported: '+new Date().toISOString()+'\n\n'+ind.code;
-  downloadTxtFile(ind.name,content);
+  shareTxtFile(ind.name,content);
 }
 
 function exportPublishedTxt(pid){
@@ -1519,7 +1519,34 @@ function exportPublishedTxt(pid){
   var p=list.find(function(x){return x.id===pid;});
   if(!p)return;
   var content='// QXView Indicator\n// Name: '+p.name+'\n// Exported: '+new Date().toISOString()+'\n\n'+p.code;
-  downloadTxtFile(p.name,content);
+  shareTxtFile(p.name,content);
+}
+
+/* Share TXT file via Web Share API (mobile) or fallback to download */
+function shareTxtFile(name,content){
+  var safeName=name.replace(/[^a-zA-Z0-9_\-]/g,'')||'indicator';
+  var blob=new Blob([content],{type:'text/plain'});
+  var file=new File([blob],safeName+'.txt',{type:'text/plain'});
+  // Try Web Share API with file (mobile-friendly)
+  if(navigator.canShare&&navigator.canShare({files:[file]})){
+    navigator.share({
+      title:'QXView Indicator: '+name,
+      text:'Indicator code: '+name,
+      files:[file]
+    }).catch(function(){});
+  }else if(navigator.share){
+    // Web Share API without file (text only)
+    navigator.share({
+      title:'QXView Indicator: '+name,
+      text:content
+    }).catch(function(){});
+  }else{
+    // Fallback: copy to clipboard + download
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(content).then(function(){}).catch(function(){});
+    }
+    downloadTxtFile(name,content);
+  }
 }
 
 function downloadTxtFile(name,content){
