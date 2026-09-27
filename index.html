@@ -1081,7 +1081,7 @@ function safeExecuteIndicator(code,data,period){
   // Note: true interruption requires Web Worker; we keep this lightweight for now.
   var result,threw=null;
   try{
-    result=fn(data);
+    result=fn(data,safePeriod);
   }catch(runtimeErr){
     threw=runtimeErr.message;
   }
@@ -1096,8 +1096,15 @@ function normalizeResult(r){
 }
 function normalizePlot(p){
   if(!p)return null;
+  // Normalize type: accept both singular and plural forms
+  var t=(p.type||'line').toString().toLowerCase();
+  if(t==='marker')t='markers';
+  if(t==='lines')t='line';
+  if(t==='areas')t='area';
+  if(t==='histogram')t='histogram';
+  if(t==='hist')t='histogram';
   return{
-    type:p.type||'line',
+    type:t,
     name:p.name||'Plot',
     data:p.data||[],
     color:p.color||'#00ff88',
