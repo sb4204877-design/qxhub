@@ -151,13 +151,17 @@ html,body{width:100%;height:100%;background:#000;display:flex;justify-content:ce
 .editor-btn.primary:active{transform:scale(0.97)}
 .editor-btn.primary.running{background:linear-gradient(180deg,#ff4466 0%,#cc2a48 100%);border-color:#ff4466;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.2)}
 .editor-btn.primary.running:hover{background:linear-gradient(180deg,#ff5577 0%,#d93055 100%);border-color:#ff5577;box-shadow:0 4px 14px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.3)}
-.indicators-list-wrapper{background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);border-bottom:1px solid #1f1f1f;flex-shrink:0;direction:ltr;overflow:hidden;transition:max-height 0.3s ease;max-height:200px}
+.indicators-list-wrapper{background:linear-gradient(180deg,#0a0a0a 0%,#000 100%);border-bottom:1px solid #1f1f1f;flex-shrink:0;direction:ltr;overflow:hidden;transition:max-height 0.3s ease;max-height:80px}
 .indicators-list-wrapper.collapsed{max-height:0;border-bottom-color:transparent}
 .indicators-list-header{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;border-bottom:1px solid #1a1a1a}
 .indicators-list-title{color:#aaa;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
 .indicators-list-count{color:#666;font-size:10px;font-weight:600;background:#1a1a1a;padding:2px 8px;border-radius:10px}
-.indicators-list-body{display:flex;flex-wrap:wrap;gap:5px;padding:10px 14px 12px;max-height:140px;overflow-y:auto}
-.ind-list-item{display:flex;align-items:center;gap:7px;padding:5px 10px;background:linear-gradient(180deg,#161616 0%,#0a0a0a 100%);border:1px solid #222;border-radius:6px;cursor:pointer;transition:all 0.15s ease}
+.indicators-list-body{display:flex;flex-wrap:nowrap;gap:5px;padding:8px 14px;overflow-x:auto;overflow-y:hidden;white-space:nowrap;scrollbar-width:thin;scrollbar-color:rgba(140,140,140,0.4) transparent}
+.indicators-list-body::-webkit-scrollbar{height:6px;width:6px}
+.indicators-list-body::-webkit-scrollbar-track{background:transparent}
+.indicators-list-body::-webkit-scrollbar-thumb{background:rgba(140,140,140,0.35);border-radius:10px;border:1px solid transparent;background-clip:padding-box}
+.indicators-list-body::-webkit-scrollbar-thumb:hover{background:rgba(0,210,255,0.6);background-clip:padding-box}
+.ind-list-item{display:flex;align-items:center;gap:7px;padding:5px 10px;background:linear-gradient(180deg,#161616 0%,#0a0a0a 100%);border:1px solid #222;border-radius:6px;cursor:pointer;transition:all 0.15s ease;flex-shrink:0;white-space:nowrap}
 .ind-list-item:hover{background:linear-gradient(180deg,#1f1f1f 0%,#131313 100%);border-color:#333;transform:translateY(-1px)}
 .ind-list-item.active{border-color:#00ff88;background:linear-gradient(180deg,rgba(0,255,136,0.12) 0%,rgba(0,255,136,0.04) 100%)}
 .ind-list-item.hidden-ind{opacity:0.5}
@@ -2092,6 +2096,7 @@ document.addEventListener('click',function(e){
   var bottomBar=document.getElementById('bottomBar');
   var chartContainer=document.getElementById('chartContainer');
   var topControls=document.getElementById('topControls');
+  // Wait 3 seconds before starting logo animation, then fade out + show chart
   setTimeout(function(){
     logoContainer.classList.add('expanded');
     setTimeout(function(){
@@ -2101,8 +2106,8 @@ document.addEventListener('click',function(e){
       // Always open on chart page on initial load
       if(location.hash){try{history.replaceState(null,'','#chart');}catch(e){}}
       navigateTo('chart',{silent:true});
-    },1200);
-  },2200);
+    },1500);
+  },3000);
 })();
 
 initCodeMirror();
