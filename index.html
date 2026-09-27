@@ -1784,12 +1784,15 @@ function removeIndicatorSeries(ind){
 }
 function rebuildAllMarkers(){
   var am=[];
+  var debugInfo=[];
   State.indicators.forEach(function(ind){
     if(ind.active&&!ind.hidden){
       ind.plots.forEach(function(plot){
         if(plot.type==='markers'&&plot.visible&&plot.data){
+          debugInfo.push(ind.name+': '+plot.data.length+' markers');
           plot.data.forEach(function(m){
-            am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'arrowUp',text:m.text||''});
+            var marker={time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'arrowUp',text:m.text||''};
+            am.push(marker);
           });
         }
       });
@@ -1799,9 +1802,23 @@ function rebuildAllMarkers(){
   var um=[],seen={};
   am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});
   State.currentMarkers=um;
-  // Set markers directly - this works because rerunAllIndicators
-  // no longer clears markers prematurely
-  try{State.candleSeries.setMarkers(um);}catch(e){}
+  // Log diagnostic info
+  if(debugInfo.length){
+    logToConsole('Markers: '+debugInfo.join(', ')+' | total: '+um.length,'info');
+    if(um.length>0){
+      var sample=um.slice(0,Math.min(3,um.length));
+      sample.forEach(function(m){
+        logToConsole('  → '+(m.text||'')+' '+m.color+' '+m.shape+' @'+m.position,'info');
+      });
+    }
+  }
+  // Set markers directly
+  try{
+    State.candleSeries.setMarkers(um);
+    logToConsole('setMarkers called with '+um.length+' markers','success');
+  }catch(e){
+    logToConsole('setMarkers error: '+e.message,'error');
+  }
 }
 function clearConsole(){consoleOutput.innerHTML='';}
 function logToConsole(msg,type){
