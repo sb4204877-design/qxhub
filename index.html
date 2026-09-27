@@ -980,6 +980,24 @@ function loadData(){
   rerunAllIndicators();
 }
 function refreshChart(){loadData();}
+/* Force chart to re-render with current data (fixes mobile rendering issues) */
+function forceChartRender(){
+  if(!State.chart||!State.candleSeries)return;
+  // Re-apply candle data
+  if(State.currentChartData.length){
+    State.candleSeries.setData(State.currentChartData);
+    State.lastCandleData=State.currentChartData[State.currentChartData.length-1];
+  }
+  // Re-run all active indicators to recreate their series
+  rerunAllIndicators();
+  // Rebuild all markers
+  rebuildAllMarkers();
+  // Reset visible range
+  var totalBars=State.currentChartData.length;
+  if(totalBars){
+    State.chart.timeScale().setVisibleLogicalRange({from:totalBars-DEFAULT_VISIBLE_BARS,to:totalBars-1+0.5});
+  }
+}
 
 /* Live simulation — only ticks active when on chart page (lifecycle aware) */
 var liveSimTimer=null;
@@ -1208,20 +1226,27 @@ function navigateTo(page,opts){
   var tc=document.getElementById('topControls'),cc=document.getElementById('chartContainer');
   if(page==='chart'){
     tc.classList.add('visible');cc.classList.add('visible');
-    // Force chart resize + marker rebuild with multiple delays
+    // Force chart resize + full re-render with multiple delays
     // to handle mobile rendering timing issues
     setTimeout(function(){
       if(State.chart){
         var tvEl=document.getElementById('tvChart');
         State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
-        rebuildAllMarkers();
+        forceChartRender();
       }
     },150);
     setTimeout(function(){
       if(State.chart){
-        rebuildAllMarkers();
+        var tvEl=document.getElementById('tvChart');
+        State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
+        forceChartRender();
       }
     },400);
+    setTimeout(function(){
+      if(State.chart){
+        rebuildAllMarkers();
+      }
+    },700);
   }else if(page==='editor'){
     tc.classList.remove('visible');cc.classList.remove('visible');
     document.getElementById('editorPage').classList.add('visible');
@@ -1850,22 +1875,26 @@ function runIndicator(ind){
   ind.isMarkerIndicator=plots.some(function(p){return p&&p.type==='markers';});
   logToConsole('✓ '+ind.name+' loaded — '+plots.length+' plot(s): '+pn.join(', ')+' | markers in state: '+State.currentMarkers.length,'success');
   // CRITICAL: rebuild all markers after running indicator
-  // This ensures markers are properly set on the chart
   rebuildAllMarkers();
   updateSidebar();updateIndicatorsList();updateFloatingIndicators();updateRunButton();
   setUnsaved(false);
   saveState();
   // On mobile: navigate to chart so user can see the result
-  // Also force a chart resize + marker rebuild after navigation
+  // Force chart resize + full re-render after navigation
   if(window.innerWidth<=768){
     navigateTo('chart');
     setTimeout(function(){
       if(State.chart){
         var tvEl=document.getElementById('tvChart');
         State.chart.applyOptions({width:tvEl.clientWidth,height:tvEl.clientHeight});
-        rebuildAllMarkers();
+        forceChartRender();
       }
     },300);
+    setTimeout(function(){
+      if(State.chart){
+        forceChartRender();
+      }
+    },600);
   }
 }
 function stopIndicator(ind){
