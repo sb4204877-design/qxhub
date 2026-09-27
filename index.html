@@ -1797,7 +1797,7 @@ function rebuildAllMarkers(){
       ind.plots.forEach(function(plot){
         if(plot.type==='markers'&&plot.visible&&plot.data){
           plot.data.forEach(function(m){
-            am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''});
+            am.push({time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'arrowUp',text:m.text||''});
           });
         }
       });
@@ -1807,16 +1807,9 @@ function rebuildAllMarkers(){
   var um=[],seen={};
   am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});
   State.currentMarkers=um;
-  // Set markers using requestAnimationFrame for proper timing
-  // This ensures the chart canvas is ready before setting markers
-  var markersToSet=um.slice();
-  requestAnimationFrame(function(){
-    try{State.candleSeries.setMarkers(markersToSet);}catch(e){}
-    // Double-set in next frame for mobile reliability
-    requestAnimationFrame(function(){
-      try{State.candleSeries.setMarkers(markersToSet);}catch(e){}
-    });
-  });
+  // Set markers directly - this works because rerunAllIndicators
+  // no longer clears markers prematurely
+  try{State.candleSeries.setMarkers(um);}catch(e){}
 }
 function clearConsole(){consoleOutput.innerHTML='';}
 function logToConsole(msg,type){
