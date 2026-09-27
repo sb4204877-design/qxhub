@@ -1842,9 +1842,15 @@ function toggleCurrentIndicator(){
 /* Run indicator with proper error rollback */
 function runIndicator(ind){
   pushHistory();
-  // Commit current editor content to indicator before running
-  ind.code=State.codeMirror.getValue();
-  logToConsole('Running: '+ind.name+'.js','info');
+  // Get code: prefer ind.code (stored), only use editor if current indicator matches
+  // This fixes mobile issue where CodeMirror shows wrong code
+  if(State.codeMirror && State.currentIndicatorId===ind.id){
+    var editorCode=State.codeMirror.getValue();
+    if(editorCode && editorCode.length>10){
+      ind.code=editorCode;
+    }
+  }
+  logToConsole('Running: '+ind.name+'.js (code length: '+(ind.code||'').length+')','info');
   // Check if chart data is available
   if(!State.currentChartData||!State.currentChartData.length){
     logToConsole('No chart data available. Loading data...','info');
@@ -1878,13 +1884,16 @@ function runIndicator(ind){
   if(!result){logToConsole('Indicator must return a result object','error');ind.active=false;updateRunButton();return;}
   var plots=normalizeResult(result);
   if(!plots.length){logToConsole('No plots returned','error');ind.active=false;updateRunButton();return;}
+  logToConsole('Result: '+plots.length+' plots','info');
   var pc=0,pn=[];
   plots.forEach(function(plot){
     if(!plot)return;
     pc++;
     if(!plot.name||plot.name.startsWith('Plot '))plot.name=plot.name||('Plot '+pc);
+    var dataLen=(plot.data&&plot.data.length)?plot.data.length:0;
+    logToConsole('  plot '+pc+': '+plot.name+' type='+plot.type+' data='+dataLen,'info');
     var sr=createPlotSeries(plot,ind);
-    pn.push(plot.name+' ('+plot.type+')');
+    pn.push(plot.name+' ('+plot.type+', '+dataLen+' pts)');
     ind.plots.push({
       id:ind.id+'_'+pc,name:plot.name,type:plot.type,color:plot.color,
       width:plot.width,lineStyle:plot.lineStyle,visible:true,seriesRef:sr,
