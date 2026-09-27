@@ -1806,18 +1806,17 @@ function rebuildAllMarkers(){
   am.sort(function(a,b){return a.time-b.time;});
   var um=[],seen={};
   am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});
-  // Set markers immediately
-  try{State.candleSeries.setMarkers(um);}catch(e){}
   State.currentMarkers=um;
-  // On mobile: setMarkers needs to be called multiple times with delays
-  // because the chart canvas isn't ready on first call
-  if(window.innerWidth<=768||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
-    var markersCopy=um.slice();
-    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},100);
-    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},300);
-    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},600);
-    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},1000);
-  }
+  // Set markers using requestAnimationFrame for proper timing
+  // This ensures the chart canvas is ready before setting markers
+  var markersToSet=um.slice();
+  requestAnimationFrame(function(){
+    try{State.candleSeries.setMarkers(markersToSet);}catch(e){}
+    // Double-set in next frame for mobile reliability
+    requestAnimationFrame(function(){
+      try{State.candleSeries.setMarkers(markersToSet);}catch(e){}
+    });
+  });
 }
 function clearConsole(){consoleOutput.innerHTML='';}
 function logToConsole(msg,type){
@@ -1964,9 +1963,11 @@ function rerunIndicator(ind){
   rebuildAllMarkers();
 }
 function rerunAllIndicators(){
-  State.currentMarkers=[];
-  State.candleSeries.setMarkers([]);
+  // Don't clear markers here - rebuildAllMarkers will handle it
+  // Clearing here causes flicker/issues on mobile
   State.indicators.forEach(function(ind){if(ind.active&&!ind.hidden)rerunIndicator(ind);});
+  // Set markers once at the end
+  rebuildAllMarkers();
 }
 
 document.getElementById('editorBack').addEventListener('click',function(){navigateTo('chart');});
