@@ -1132,16 +1132,8 @@ function createPlotSeries(plot,indicator){
       if(plot.data&&plot.data.length>0)series.setData(plot.data);
       break;
     case 'markers':
-      if(plot.data&&plot.data.length>0){
-        var em=State.currentMarkers.slice();
-        var nm=plot.data.map(function(m){return{time:m.time,position:m.position||'aboveBar',color:m.color||'#00ff88',shape:m.shape||'circle',text:m.text||''};});
-        var am=em.concat(nm);
-        am.sort(function(a,b){return a.time-b.time;});
-        var um=[],seen={};
-        am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});
-        State.candleSeries.setMarkers(um);
-        State.currentMarkers=um;
-      }
+      // Markers are handled by rebuildAllMarkers() which is called
+      // after all plots are created. Don't set markers here.
       series=null;
       break;
     case 'fill':
@@ -1814,8 +1806,18 @@ function rebuildAllMarkers(){
   am.sort(function(a,b){return a.time-b.time;});
   var um=[],seen={};
   am.forEach(function(m){var k=m.time+'_'+m.position;if(!seen[k]){seen[k]=true;um.push(m);}});
-  State.candleSeries.setMarkers(um);
+  // Set markers immediately
+  try{State.candleSeries.setMarkers(um);}catch(e){}
   State.currentMarkers=um;
+  // On mobile: setMarkers needs to be called multiple times with delays
+  // because the chart canvas isn't ready on first call
+  if(window.innerWidth<=768||/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
+    var markersCopy=um.slice();
+    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},100);
+    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},300);
+    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},600);
+    setTimeout(function(){try{State.candleSeries.setMarkers(markersCopy);}catch(e){}},1000);
+  }
 }
 function clearConsole(){consoleOutput.innerHTML='';}
 function logToConsole(msg,type){
