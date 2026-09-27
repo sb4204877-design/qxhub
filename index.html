@@ -714,7 +714,7 @@ var State={
 };
 
 /* ---------- State persistence (localStorage) ---------- */
-var STORAGE_KEY='qxview.state.v1';
+var STORAGE_KEY='qxview.state.v2';
 function saveState(){
   try{
     var data={
@@ -2180,12 +2180,23 @@ if(!State.indicators.length){
   createIndicator('MA 20',MA20_CODE);
   createIndicator('Signals',SIGNALS_EXAMPLE_CODE);
 }else{
+  // Fix built-in indicators with wrong code (from old localStorage)
+  State.indicators.forEach(function(ind){
+    if(ind.name==='Signals' && ind.code.indexOf('markers')===-1){
+      ind.code=SIGNALS_EXAMPLE_CODE;
+    }else if(ind.name==='MA 10' && ind.code.indexOf('Moving Average 10')===-1){
+      ind.code=MA10_CODE;
+    }else if(ind.name==='MA 20' && ind.code.indexOf('Moving Average 20')===-1){
+      ind.code=MA20_CODE;
+    }
+  });
   // Pick first as current
   if(State.currentIndicatorId===null&&State.indicators.length){
     State.currentIndicatorId=State.indicators[0].id;
   }
   var ci=findIndicator(State.currentIndicatorId);
   if(ci&&State.codeMirror)State.codeMirror.setValue(ci.code);
+  saveState();
 }
 updateIndicatorsList();
 updateFloatingIndicators();
